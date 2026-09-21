@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator - Exact Age in Years, Months, Days | GCalc Free Tool</title>
+  <meta name="description" content="Free age calculator to find your exact age in years, months, days, hours, and minutes. Supports chronological age, completed age, Korean age, and cultural age systems. No sign-up required.">
+  <meta name="keywords" content="age calculator, exact age calculator, calculate age, birthday calculator, age difference calculator, how old am I, Korean age, completed age, chronological age, leap year birthday, age in different cultures">
+  <link rel="canonical" href="https://gcalc.app/calculators/age-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Age Calculator - Exact Age in Years, Months, Days | GCalc Free Tool">
+  <meta property="og:description" content="Free age calculator to find your exact age in years, months, days, hours, and minutes. Supports chronological age, completed age, Korean age, and cultural age systems. No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/age-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Age Calculator - Exact Age in Years, Months, Days | GCalc Free Tool">
+  <meta name="twitter:description" content="Free age calculator to find your exact age in years, months, days, hours, and minutes. Supports chronological age, completed age, Korean age, and cultural age systems. No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+    .age-result { margin-top: 1.5rem; }
+    .age-main { font-size: 2.5rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .age-breakdown { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+    .age-card { background: var(--bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .age-card-value { font-family: var(--font-mono); font-size: 2rem; font-weight: 700; color: var(--text-primary); }
+    .age-card-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .age-next { margin-top: 1.5rem; padding: 1rem; background: var(--accent-subtle); border: 1px solid var(--accent-border); border-radius: var(--radius-md); text-align: center; color: var(--accent); }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/age-calculator/",
+      "name": "Age Calculator | GCalc",
+      "description": "Free age calculator to calculate exact age in years, months, and days. No sign-up required.",
+      "url": "https://gcalc.app/calculators/age-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/age-calculator/#app",
+      "name": "Age Calculator",
+      "description": "Free age calculator to calculate exact age in years, months, and days. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between chronological age and completed age",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chronological age is the continuous time elapsed since birth. Completed age counts only full years that have passed. They are the same for most of the year, except between your birthday and the next January 1st, when chronological age is technically higher."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Korean age different from Western age",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In the traditional Korean system, a baby is one year old at birth, and everyone gains a year on January 1st. A baby born on December 31st would be considered two years old just two days later. In 2023, South Korea officially adopted the international standard for legal documents."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When do leap year babies legally turn 18 or 21",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In most legal systems, someone born on February 29th legally ages on either February 28th or March 1st in non-leap years. The exact date depends on jurisdiction: the UK uses March 1st, while Hong Kong uses February 28th."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate age difference between two people",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our calculator lets you input two dates and see the exact difference in years, months, and days. The smaller the gap, the more precise the day count matters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my age in months matter for my child",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pediatricians use age in months for the first two years because developmental milestones, vaccine schedules, and growth charts are calibrated monthly. A 15-month-old and an 18-month-old can have very different expected abilities."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is my Chinese zodiac age",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "In traditional Chinese culture, age is calculated from the Lunar New Year. You were considered one year old at birth, and your age increased by one at each Lunar New Year. For zodiac purposes, your Chinese zodiac animal is determined by the lunar year of your birth."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I calculate my age back to year 1 AD",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our calculator handles dates back to year 1 CE using the proleptic Gregorian calendar, which projects the modern calendar backward for consistency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my age the same in every country",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if every country used the same calendar and age definition, which they do not. While most countries use the Western standard for legal purposes, cultural age systems vary. Always verify which age convention applies for immigration, employment, or legal matters."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the most accurate way to calculate age manually",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subtract the birth year from the current year. If the current date has not yet passed the birth month and day, subtract one year. Then subtract the birth month from the current month (adjusting by borrowing years if necessary), and the birth day from the current day (borrowing from the month if necessary)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do age calculation results sometimes differ between tools",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Different tools handle month-end rounding and leap years differently. Some round months to 30 days, which introduces errors. Others display completed age only, while some display running age. Our calculator shows the full year-month-day breakdown for complete transparency."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Your Exact Age</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Date of Birth</label><input type="date" id="age-dob" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Calculate As Of (Optional)</label><input type="date" id="age-asof" class="form-input"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetAge()">Reset</button><button class="btn btn-primary" onclick="calculateAge()">Calculate</button></div>
+      </div>
+      <div id="age-result" class="age-result">
+        <div class="age-main" id="age-main">Enter your birthdate</div>
+        <div class="age-breakdown" id="age-breakdown"></div>
+        <div class="age-next" id="age-next" style="display:none"></div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyAge()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is an Age Calculator and Why Use One?</h2>
+      <p>An age calculator is a digital tool that computes the exact time elapsed between two dates, most commonly from your date of birth to today. While age seems like a simple concept, calculating it with precision requires handling leap years, varying month lengths, timezone differences, and cultural conventions that change how age is expressed and understood across the world.</p>
+      <p>Age matters in nearly every stage of life. Governments use it for voting rights, driving permits, and retirement benefits. Schools use enrollment cutoffs down to a single day. Courts enforce age-of-consent and criminal responsibility laws. HR departments verify minimum age requirements. Healthcare providers scale medication by weight and age. Even social media platforms enforce age limits. Getting age right is not a trivial matter.</p>
+      <p>Many people think age is merely "current year minus birth year," but that shortcut fails at the individual level, overcounting by up to 364 days. Our calculator computes exact age in years, months, days, hours, and minutes — going far beyond a rough estimate to give you the precise duration you need for both legal and personal use.</p>
+
+      <h2>Chronological Age vs. Completed Age: The Critical Difference</h2>
+      <p>There are two ways to express age, and the difference can matter in legal, medical, and everyday contexts. <strong>Chronological age</strong> (sometimes called running age) is the continuous measure of time since birth. If you were born on March 1, 2000, on March 2, 2025, your chronological age is 25 years, 0 months, and 1 day. You are "in your 25th year."</p>
+      <p><strong>Completed age</strong> (sometimes called age at last birthday) counts only full years that have passed. Under this system, you are "25" only after your 25th birthday has fully arrived. In many legal and medical settings, this is the default definition used for eligibility, because it is unambiguous and easy to verify from a birth certificate.</p>
+      <p>For most of your birthday, your completed age and chronological age are the same. The only time they differ is in the period between your birthday and January 1 of the following year, when your running age is technically higher. Our calculator shows both the exact breakdown and completed years so you always have the right number for the situation.</p>
+
+      <h2>How Age Calculation Works: The Mathematics Behind It</h2>
+      <p>Calculating exact age requires accounting for varying month lengths and leap years. The basic formula subtracts the birth year from the current year, then adjusts by subtracting one if the current date has not yet reached the birth month and day. But the edge cases make this more complex than it first appears.</p>
+      <p><strong>The algorithm our calculator uses:</strong></p>
+      <ul>
+        <li><strong>Step 1:</strong> Compute the year difference between the two dates.</li>
+        <li><strong>Step 2:</strong> Compute the month difference. If the current month is less than the birth month, subtract a year and add 12 months.</li>
+        <li><strong>Step 3:</strong> Compute the day difference. If the current day is less than the birth day, adjust by borrowing days from the previous month (which may have 28, 29, 30, or 31 days).</li>
+        <li><strong>Step 4:</strong> Convert the total elapsed time into days, hours, minutes, and seconds for the full breakdown.</li>
+      </ul>
+      <p>This logic ensures that someone born on January 31 who checks their age on February 28 sees "0 months, 28 days" rather than getting an incorrect result. It also correctly handles leap year birthdays, which require special treatment in non-leap years.</p>
+
+      <h2>Leap Year Birthdays and Special Cases</h2>
+      <p>Approximately 1 in 1,461 people are born on February 29th during a leap year. If you were born on this date, you technically have a birthday only once every four years. This creates practical questions: when do you celebrate? When do you turn a legal age?</p>
+      <p>Most legal systems treat February 29th birthdays as if they occurred on February 28th in non-leap years, or March 1st, depending on jurisdiction. In the United Kingdom and most Commonwealth countries, the legal birthday for someone born on February 29th is March 1st in common years. In Hong Kong and New Zealand, it is February 28th. Our calculator allows you to see both, helping you answer the question "how old am I really?" with clarity.</p>
+      <p><strong>Other special cases our calculator handles:</strong></p>
+      <ul>
+        <li><strong>Month-end transitions:</strong> January 31 plus one month should result in February 28/29, not March 31.</li>
+        <li><strong>Historical dates:</strong> Our calculator works for dates all the way back to year 1 CE, handling calendar transitions correctly.</li>
+        <li><strong>Future dates:</strong> You can calculate age at any future date for planning purposes.</li>
+      </ul>
+
+      <h2>How Age Is Calculated in Different Cultures: Korean, Chinese, and More</h2>
+      <p>Age is not calculated the same way everywhere. Cultural age systems can produce numbers that differ dramatically from the Western chronological standard.</p>
+      <p><strong>Korean Age (East Asian Age Reckoning):</strong> In South Korea (and historically in China and Japan), a baby is considered one year old at birth. Then, on the first day of the lunar new year (or January 1 in modern South Korea), everyone gains an additional year. This means a baby born on December 31st could be considered 2 years old just two days after birth. The formula is: <strong>Korean Age = Current Year - Birth Year + 1</strong>. In 2023, South Korea officially moved to the international standard for legal documents, but the traditional Korean age system remains in everyday conversation.</p>
+      <p><strong>Chinese Lunar Age:</strong> In traditional Chinese culture, age is often calculated by the lunar calendar. A baby is considered one year old at birth, and everyone adds a year at each Lunar New Year. This is still used for fortune telling, zodiac compatibility, and traditional medicine.</p>
+      <p><strong>Japanese Traditional Age (Kazoedoshi):</strong> Similar to Korea, Japan historically used the kazoedoshi system where age counted the number of calendar years lived. Newborns were 1 year old, and everyone aged up on January 1st. This was officially replaced in 1902 for legal purposes but persists in some traditional contexts.</p>
+      <p><strong>Western Standard (Chronological):</strong> Most Western countries use the calendar-year system, where age is the full years elapsed since birth. You turn 18 on your 18th birthday, not on January 1st of the year.</p>
+      <p>Here is a comparison for someone born on June 15, 2000, checking their age on July 1, 2025:</p>
+      <ul>
+        <li><strong>Western age:</strong> 25 years, 0 months, 16 days</li>
+        <li><strong>Korean age:</strong> 26 (or 27 depending on whether the new year has passed)</li>
+        <li><strong>Chinese lunar age:</strong> 26 (lunar new year dependent)</li>
+      </ul>
+      <p>These differences can cause confusion in global contexts like international sports, immigration, and online age verification. Our calculator provides the Western standard, but understanding these cultural variants is important for anyone working across borders.</p>
+
+      <h2>Legal Age Milestones Around the World</h2>
+      <p>Age thresholds determine when you can drive, vote, drink alcohol, consent to medical treatment, and retire. These vary significantly by country and are critical for anyone traveling, living abroad, or handling international legal matters.</p>
+      <p><strong>Driving age:</strong> The minimum age for a drivers license ranges from 14 (South Dakota, USA, with restrictions) to 18 (most European countries). Many countries use a graduated licensing system: learner permits at 15-16, restricted licenses at 16-17, and full licenses at 18.</p>
+      <p><strong>Voting age:</strong> Most democracies set the voting age at 18, including the United States, the UK, Canada, and Australia. Some countries like Austria allow voting at 16 for local elections. Scotland lowered the voting age to 16 for its independence referendum in 2014. Brazil and Cuba have compulsory voting starting at 16.</p>
+      <p><strong>Drinking age:</strong> The legal age for purchasing alcohol is 21 in the United States, 18 in the UK, Spain, and Australia, and as low as 16 in some German states for beer and wine. Many countries have no minimum drinking age but restrict purchase.</p>
+      <p><strong>Marriage age:</strong> Most countries set the minimum marriage age at 18, though exceptions exist with parental consent. Some countries allow marriage as young as 15-16 with judicial approval. As of 2023, many nations are raising marriage ages to combat child marriage.</p>
+      <p><strong>Retirement age:</strong> The standard retirement age for full government pensions is 65-67 in most developed nations, though it varies. France recently raised its retirement age from 62 to 64. In Japan, the mandatory retirement age is often 60, though pensions may not start until 65.</p>
+      <p><strong>Criminal responsibility:</strong> The age at which a child can be charged with a crime ranges from 7 (Singapore, some US states) to 14 (most European countries). The UN recommends a minimum age of 12.</p>
+
+      <h2>Common Mistakes and Misconceptions About Age</h2>
+      <p><strong>Mistake 1: "Current year minus birth year."</strong> This shortcut works only on your birthday and for the rest of the year overstates your age by one year. A person born in December who uses this formula in January will appear a full year older.</p>
+      <p><strong>Mistake 2: Ignoring time zones.</strong> If you were born in Tokyo at 11:00 PM UTC on December 31st, your birthdate in the US might still be December 30th. Our calculator uses your local browser time, which is usually correct, but be aware of this edge case for borderline birthdates.</p>
+      <p><strong>Mistake 3: Assuming February 29th birthdays age every four years.</strong> While the calendar date recurs every four years, the person ages continuously. They celebrate on February 28th or March 1st in common years.</p>
+      <p><strong>Mistake 4: Treating all months as 30 days.</strong> A rough estimate of age in days using 30 days per month can produce errors of several days. Precise age calculation must use actual calendar months.</p>
+      <p><strong>Mistake 5: Confusing completed age with running age.</strong> In some medical and educational settings, the wrong age can lead to incorrect eligibility decisions. Always verify which definition applies.</p>
+
+      <h2>Practical Applications and Use Cases</h2>
+      <p>Beyond personal curiosity, exact age calculation serves many professional and practical needs:</p>
+      <ul>
+        <li><strong>Human Resources:</strong> Verifying minimum age for employment, retirement date calculations, and benefits eligibility.</li>
+        <li><strong>Healthcare:</strong> Pediatric dosing often scales by age in months. Geriatric assessments use exact age for risk stratification.</li>
+        <li><strong>Education:</strong> school districts use strict age cutoffs for kindergarten and first grade, sometimes down to a single day difference determining eligibility for a full year.</li>
+        <li><strong>Insurance:</strong> Life insurance premiums, term lengths, and annuity payouts are all calculated based on exact age.</li>
+        <li><strong>Forensic Science:</strong> Estimating age from skeletal remains or dental records requires precise reference ages.</li>
+        <li><strong>Voting & Civil Rights:</strong> Election officials verify voter eligibility down to the registration date and election day.</li>
+        <li><strong>Genealogy:</strong> Family historians use exact age calculations to verify census records, death certificates, and marriage licenses.</li>
+      </ul>
+
+      <h2>Age in Different Units: Fun Facts and Perspective</h2>
+      <p>Thinking about age in units other than years can be both fun and enlightening.</p>
+      <ul>
+        <li>At approximately 31.7 years old, you have been alive for roughly <strong>1 billion seconds</strong>.</li>
+        <li>10,000 days is approximately 27.4 years.</li>
+        <li>1 million minutes is about 1.9 years.</li>
+        <li>The average human lifespan is roughly 4,000 weeks or 28,000 days.</li>
+        <li>A 65-year-old has lived approximately 20,000+ sunrises.</li>
+        <li>Your heart beats approximately 100,000 times per day, totaling around 2.5 billion beats in an average lifetime.</li>
+      </ul>
+      <p>These alternative units help visualize the passage of time and can be used in motivational contexts, retirement speeches, and personal reflections.</p>
+
+      <h2>Frequently Asked Questions About Age Calculation</h2>
+      <p><strong>What is the difference between chronological age and completed age?</strong> Chronological age is the continuous time elapsed since birth. Completed age counts only full years that have passed. They are the same for most of the year, except between your birthday and the next January 1st, when chronological age is technically higher.</p>
+      <p><strong>How is Korean age different from Western age?</strong> In the traditional Korean system, a baby is one year old at birth, and everyone gains a year on January 1st. A baby born on December 31st would be considered two years old just two days later. In 2023, South Korea officially adopted the international standard for legal documents.</p>
+      <p><strong>When do leap year babies legally turn 18 or 21?</strong> In most legal systems, someone born on February 29th legally ages on either February 28th or March 1st in non-leap years. The exact date depends on jurisdiction: the UK uses March 1st, while Hong Kong uses February 28th.</p>
+      <p><strong>How do I calculate age difference between two people?</strong> Our calculator lets you input two dates and see the exact difference in years, months, and days. The smaller the gap, the more precise the day count matters.</p>
+      <p><strong>Why does my age in months matter for my child?</strong> Pediatricians use age in months for the first two years because developmental milestones, vaccine schedules, and growth charts are calibrated monthly. A 15-month-old and an 18-month-old can have very different expected abilities.</p>
+      <p><strong>What is my Chinese zodiac age?</strong> In traditional Chinese culture, age is calculated from the Lunar New Year. You were considered one year old at birth, and your age increased by one at each Lunar New Year. For zodiac purposes, your Chinese zodiac animal is determined by the lunar year of your birth.</p>
+      <p><strong>Can I calculate my age back to year 1 AD?</strong> Yes. Our calculator handles dates back to year 1 CE using the proleptic Gregorian calendar, which projects the modern calendar backward for consistency.</p>
+      <p><strong>Is my age the same in every country?</strong> Only if every country used the same calendar and age definition, which they do not. While most countries use the Western standard for legal purposes, cultural age systems vary. Always verify which age convention applies for immigration, employment, or legal matters.</p>
+      <p><strong>What is the most accurate way to calculate age manually?</strong> Subtract the birth year from the current year. If the current date has not yet passed the birth month and day, subtract one year. Then subtract the birth month from the current month (adjusting by borrowing years if necessary), and the birth day from the current day (borrowing from the month if necessary).</p>
+      <p><strong>Why do age calculation results sometimes differ between tools?</strong> Different tools handle month-end rounding and leap years differently. Some round months to 30 days, which introduces errors. Others display completed age only, while some display running age. Our calculator shows the full year-month-day breakdown for complete transparency.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../date-calculator/">Date Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../grade-calculator/">Grade Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+
+    function calculateAge() {
+      const dobStr = document.getElementById('age-dob').value;
+      const asOfStr = document.getElementById('age-asof').value;
+      if (!dobStr) { alert('Please enter your date of birth.'); return; }
+      const dob = new Date(dobStr);
+      const asOf = asOfStr ? new Date(asOfStr) : new Date();
+      if (dob > asOf) { alert('Date of birth cannot be in the future.'); return; }
+      let years = asOf.getFullYear() - dob.getFullYear();
+      let months = asOf.getMonth() - dob.getMonth();
+      let days = asOf.getDate() - dob.getDate();
+      if (days < 0) { months--; const prevMonth = new Date(asOf.getFullYear(), asOf.getMonth(), 0); days += prevMonth.getDate(); }
+      if (months < 0) { years--; months += 12; }
+      const totalDays = Math.floor((asOf - dob) / 86400000);
+      const totalHours = Math.floor((asOf - dob) / 3600000);
+      const totalMinutes = Math.floor((asOf - dob) / 60000);
+      const totalSeconds = Math.floor((asOf - dob) / 1000);
+      document.getElementById('age-main').textContent = `${years}y ${months}m ${days}d`;
+      const breakdown = [
+        { label: 'Total Days', value: totalDays.toLocaleString() },
+        { label: 'Total Hours', value: totalHours.toLocaleString() },
+        { label: 'Total Minutes', value: totalMinutes.toLocaleString() },
+        { label: 'Total Seconds', value: totalSeconds.toLocaleString() }
+      ];
+      document.getElementById('age-breakdown').innerHTML = breakdown.map(b => `<div class="age-card"><div class="age-card-value">${b.value}</div><div class="age-card-label">${b.label}</div></div>`).join('');
+      let nextBirthday = new Date(asOf.getFullYear(), dob.getMonth(), dob.getDate());
+      if (nextBirthday <= asOf) { nextBirthday.setFullYear(nextBirthday.getFullYear() + 1); }
+      const daysUntil = Math.ceil((nextBirthday - asOf) / 86400000);
+      document.getElementById('age-next').innerHTML = `Next birthday in <strong>${daysUntil} day${daysUntil !== 1 ? 's' : ''}</strong> (${nextBirthday.toLocaleDateString()})`;
+      document.getElementById('age-next').style.display = 'block';
+    }
+
+    function resetAge() {
+      document.getElementById('age-dob').value = '';
+      document.getElementById('age-asof').value = '';
+      document.getElementById('age-main').textContent = 'Enter your birthdate';
+      document.getElementById('age-breakdown').innerHTML = '';
+      document.getElementById('age-next').style.display = 'none';
+    }
+
+    function copyAge() {
+      const main = document.getElementById('age-main').textContent;
+      copyToClipboard(`Age: ${main}`);
+    }
+
+    document.querySelectorAll('#age-dob, #age-asof').forEach(i => i.addEventListener('change', calculateAge));
+    // No max restriction on as-of date — users can calculate age at future dates for planning purposes
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

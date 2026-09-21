@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Investment Calculator - Compound Interest Growth | GCalc Free Tool</title>
+  <meta name="description" content="Free investment calculator to project portfolio growth with compound interest. Calculate future value with initial investment, monthly contributions, and expected returns.">
+  <meta name="keywords" content="investment calculator, compound interest calculator, investment growth calculator, retirement calculator, portfolio calculator, future value calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/investment-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Investment Calculator - Compound Interest Growth | GCalc Free Tool">
+  <meta property="og:description" content="Free investment calculator to project portfolio growth with compound interest. Calculate future value with initial investment, monthly contributions, and expected returns.">
+  <meta property="og:url" content="https://gcalc.app/calculators/investment-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Investment Calculator - Compound Interest Growth | GCalc Free Tool">
+  <meta name="twitter:description" content="Free investment calculator to project portfolio growth with compound interest. Calculate future value with initial investment, monthly contributions, and expected returns.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+    .result-breakdown { margin-top: 1.5rem; }
+    .result-main { font-size: 2rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .result-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .result-details { margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .detail-card { background: var(--bg); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .detail-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; }
+    .detail-value { font-family: var(--font-mono); font-size: 1.1rem; margin-top: 0.25rem; }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/investment-calculator/",
+      "name": "Investment Calculator | GCalc",
+      "description": "Free investment calculator to estimate compound interest growth and future value. Plan your financial future with projections. No sign-up required.",
+      "url": "https://gcalc.app/calculators/investment-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/investment-calculator/#app",
+      "name": "Investment Calculator",
+      "description": "Free investment calculator to estimate compound interest growth and future value. Plan your financial future with projections. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much money do I need to start investing",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can start with as little as $1. Many brokers now offer fractional shares, allowing you to buy partial shares of expensive stocks like Amazon or Berkshire Hathaway. What matters is consistency, not the starting amount."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What rate of return can I realistically expect",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Over multi-decade periods, a diversified portfolio of global stocks and bonds has historically returned 6-8% after inflation. In any given year, returns could be -30% or +40%, but the long-term trend is upward. Do not expect more than 10% averaged over 30 years unless you are taking extraordinary risks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I pay off debt or invest first",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on the interest rate. If the debt is above 7-8%, pay it off first. If it is below 4% (like some mortgages or subsidized student loans), invest while making minimum payments. Between 4-7%, it is a judgment call based on your risk tolerance and the guaranteed return of debt payoff versus the uncertain return of the market."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I handle a market crash",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Do not panic. Do not sell. Historically, every market crash has been followed by a recovery, often within 2-4 years. If anything, crashes are a buying opportunity. The most successful investors in history \u2014 Warren Buffett, Vanguard founder Jack Bogle, and others \u2014 all advise staying the course during downturns."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it better to invest in individual stocks or index funds",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For 99% of people, low-cost index funds are superior. They provide instant diversification, require no research, have lower fees, and statistically outperform most actively managed funds over long periods. Stock picking is a full-time job and even professionals fail to beat the index most of the time."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a 401\u4e70\u7684 and an IRA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A 401(k) is an employer-sponsored plan. An IRA is an individual account you open on your own. Both offer tax advantages, but 401(k)s often come with employer matches (free money), while IRAs offer more investment choices. Ideally, you contribute to both."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I invest in a Roth or Traditional account",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you expect to be in a higher tax bracket in retirement, choose Roth. If you expect to be in a lower bracket, choose Traditional. For young people early in their careers (lower current tax bracket), Roth is usually the mathematically optimal choice. For peak earners in high-tax states, Traditional may be better."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does inflation affect my investments",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Inflation erodes purchasing power. If your investments return 8% but inflation is 3%, your real return is 5%. This is why simply keeping money in a savings account (which earns 0.5-5%) often results in a loss of purchasing power over time. Investing in real assets like stocks and real estate is the primary way to outpace inflation over long periods."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Project Your Investment Growth</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Initial Investment</label><input type="number" id="inv-initial" class="form-input" placeholder="10000" step="100"></div>
+        <div class="form-group"><label class="form-label">Monthly Contribution</label><input type="number" id="inv-monthly" class="form-input" placeholder="500" step="50"></div>
+        <div class="form-group"><label class="form-label">Time Period (Years)</label><input type="number" id="inv-years" class="form-input" placeholder="20" step="1"></div>
+        <div class="form-group"><label class="form-label">Expected Annual Return (%)</label><input type="number" id="inv-rate" class="form-input" placeholder="7" step="0.1"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetInvestment()">Reset</button><button class="btn btn-primary" onclick="calculateInvestment()">Calculate</button></div>
+      </div>
+      <div id="inv-result" class="calc-result">
+        <div class="result-main">
+          <div class="result-main-label">Future Value</div>
+          <span id="inv-future">$0</span>
+        </div>
+        <div class="result-details">
+          <div class="detail-card"><div class="detail-label">Total Contributed</div><div class="detail-value" id="inv-contributed">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Investment Growth</div><div class="detail-value" id="inv-growth">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Initial Investment</div><div class="detail-value" id="inv-initial-out">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Monthly Contributions</div><div class="detail-value" id="inv-monthly-total">$0</div></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyInvestment()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>The Power of Compound Interest and Long-Term Investing</h2>
+      <p>Albert Einstein reportedly called compound interest the "eighth wonder of the world." While he may not have been a financial advisor, the sentiment is directionally correct: compound interest is the most powerful force in personal finance. When you invest consistently over time, your earnings generate their own earnings, creating exponential growth that accelerates the longer you stay invested. Our investment calculator puts the math of compounding directly at your fingertips, showing not just the final number but the journey to get there.</p>
+      <p>The core idea is simple: in year one, you earn returns on your principal. In year two, you earn returns on your principal plus the returns from year one. This snowball effect, when combined with regular contributions and a reasonable rate of return, can turn modest monthly savings into life-changing wealth over decades. The key variables are time, contribution amount, and rate of return, and the calculator below lets you experiment with all three to build your own financial plan.</p>
+
+      <h2>Understanding the Compound Interest Formula</h2>
+      <p>The formula for compound interest with regular contributions is: <strong>FV = P(1+r/n)^(nt) + PMT × [((1+r/n)^(nt) - 1) / (r/n)]</strong>. Here, FV is the future value, P is the initial principal, r is the annual interest rate三观 rate, n is the number of compounding periods per year, t is the number of years, and PMT is the regular contribution amount.</p>
+      <p>This formula has two parts. The first part, P(1+r/n)^(nt), calculates what your initial investment grows to with compound interest. The second part calculates what your series of regular contributions grows to, assuming they are invested at the end of each compounding period. When you add them together, you get the total future value of your investment strategy.</p>
+      <p>Let us walk through a concrete example. Imagine you start with $5,000 and contribute $300 per month for 25 years, earning an average annual return of 8%. The initial $5,000 grows to approximately $34,242. The monthly contributions, totaling $90,000 over the period, grow to approximately $277,256. Combined, your investment grows to $311,498. Without any compounding, you would have only $95,000. The remaining $216,498 is pure compound growth. That is the power of time and consistency.</p>
+
+      <h2>The Time Factor: Why Starting Early Is Everything</h2>
+      <p>Time is the single most important variable in the compound interest equation because it is in the exponent. Doubling the time does not double the result, it more than quadruples it. This is why starting early is the single best financial decision you can make, regardless of how much you can afford to invest.</p>
+      <p>Consider two investors. Alice starts at age 25, contributing $500 per month for 10 years, then stops contributing entirely but lets the money grow until age 65. Bob starts at age 35, contributing $500 per month for 30 years until age 65. Assuming an 8% annual return, Alice contributes a total of $60,000 and ends up with approximately $1.18 million. Bob contributes $180,000, three times as much, and ends up with approximately $745,000. Alice invested less but started earlier, and time did the heavy lifting. This is the single most important concept in personal finance.</p>
+
+      <h2>Realistic Return Expectations by Investment Type</h2>
+      <p>Understanding what returns are realistic helps you avoid scams and set sensible goals. Here are the long-term average annual returns for the most common investment vehicles:</p>
+      <ul>
+        <li><strong>High-Yield Savings / CDs:</strong> 4-5% (current rate environment). Safe, FDIC-insured, but returns barely outpace inflation. Suitable for emergency funds and short-term goals under 3 years.</li>
+        <li><strong>Bonds / Bond Funds:</strong> 4-6% historically. Lower risk than stocks, but susceptible to interest rate risk. A 60-year treasury bond purchased at 2% loses value if rates rise to 5%.</li>
+        <li><strong>Balanced Portfolio (60% Stocks, 40% Bonds):</strong> 6-8% historically. The classic "moderate" risk profile. Features lower volatility than pure stock portfolios with only modest returns sacrifice.</li>
+        <li><strong>S&P 500 Index Fund:</strong> ~10% nominal return, ~7% inflation-adjusted, averaged since 1926. The benchmark for passive equity investing. Includes dividends reinvested.</li>
+        <li><strong>International Developed Markets:</strong> ~7-9% historically. Adds diversification, but has underperformed U.S. markets in recent decades.</li>
+        <li><strong>Emerging Markets:</strong> ~8-10% historically but with extreme volatility (50%+ drawdowns are common). Suitable for a small portion (5-15%) of an aggressive portfolio.</li>
+        <li><strong>Real Estate (REITs):</strong> ~8-11% historically. Provides income and inflation hedging but is sensitive to interest rates.</li>
+      </ul>
+      <p>It is crucial to remember that historical averages include multiple recessions, depressions, and bear markets. The "average" is achieved by staying invested through the bad times, not by timing the market. Anyone promising guaranteed returns above 10-12% is likely operating a scam. If it sounds too good to be true, it almost certainly is.</p>
+
+      <h2>Dollar-Cost Averaging (DCA): Removing Emotion From Investing</h2>
+      <p>Dollar-cost averaging is the practice of investing a fixed amount of money at regular intervals, regardless of market conditions. This is the strategy most people use when contributing to a 401(k) or automatically investing monthly. The psychological and financial benefits are substantial.</p>
+      <p>When the market is down, your fixed amount buys more shares. When the market is up, it buys fewer shares. Over time, this averages out your cost per share and eliminates the emotional temptation to time the market or panic-sell during downturns. Research from Vanguard, Morningstar, and academic journals consistently shows that DCA is superior to attempting to time lump-sum investments for most retail investors. The best time to invest was 20 years ago. The second best time is today.</p>
+
+      <h2>The Devastating Impact of Fees on Long-Term Returns</h2>
+      <p>Most investors overlook fees, but they are one of the most significant determinants of your final wealth. Consider two investors, each contributing $500 per month for 30 years at an 8% gross return. Investor A pays a 1% annual fee, while Investor B pays a 0.1% fee. Investor A ends up with $724,000. Investor B ends up with $962,000. The fee difference of just 0.9% per year costs Investor A $238,000, or nearly 25% of their potential wealth.</p>
+      <p>Always understand the total cost of ownership (TOC) before investing. Low-cost index funds from providers like Vanguard, Fidelity, and Schwab often charge 0.03% to 0.20% per year, compared to actively managed mutual funds that charge 0.75% to 1.50%. Over a 40-year career, switching from a 1% fund to a 0.10% fund can literally mean the difference between a comfortable retirement and a tight one.</p>
+
+      <h2>Understanding Investment Account Types and Tax Implications</h2>
+      <p>Where you invest is sometimes as important as what you invest in because of tax treatment. Here is a breakdown of the major account types:</p>
+      <ul>
+        <li><strong>401(k) / 403(b):</strong> Employer-sponsored retirement accounts. Contributions are pre-tax, reducing your taxable income now. Employers often match contributions (typically 3-6% of salary), which is free money. Taxes are paid upon withdrawal in retirement. Contribution limit for 2024 is $23,000 under age 50, $30,500 over 50.</li>
+        <li><strong>Traditional IRA:</strong> Individual retirement account with pre-tax contributions. Tax-deferred growth. Contribution limit is $7,000 ($8,000 over 50). Income limits may affect deductibility if you also have a 401(k).</li>
+        <li><strong>Roth IRA:</strong> Contributions are made with after-tax dollars, but all growth and withdrawals in retirement are tax-free. This is incredibly powerful if you expect to be in the same or higher tax bracket in retirement. Income limits apply: for 2024, single filers cannot contribute fully if their MAGI exceeds $146,000.</li>
+        <li><strong>HSA (Health Savings Account):</strong> The most tax-advantaged account in the U.S. Contributions are tax-deductible, growth is tax-free, and withdrawals for qualified medical expenses are tax-free. After age 65, it functions like a Traditional IRA for non-medical expenses. Must have a high-deductible health plan (HDHP) to contribute. Triple tax advantage.</li>
+        <li><strong>Taxable Brokerage:</strong> A standard investment account with no contribution limits or withdrawal restrictions. You pay capital gains taxes on profits. Ideal for goals before retirement age or for investments that have exceeded tax-advantaged account limits.</li>
+      </ul>
+      <p>The optimal strategy is to max out tax-advantaged accounts (401k match first, then HSA, then Roth IRA, then back to 401k) before investing in a taxable brokerage. This maximizes your tax-adjusted return.</p>
+
+      <h2>Understanding Risk Tolerance and Asset Allocation</h2>
+      <p>Asset allocation is the mix of stocks, bonds, and other assets in your portfolio, and it is the single most important determinant of your returns and volatility. A common rule of thumb is to hold your age in bonds (e.g., a 30-year-old holds 70% stocks, 30% bonds), though many financial planners now recommend a more aggressive allocation due to longer life expectancies.</p>
+      <p>Risk tolerance is personal. If a 20% portfolio drop would cause you to sell everything in a panic, you are too aggressive. If a 50% drop (like the 2008 crash) would not change your behavior, you have high risk tolerance. Be honest with yourself. The worst portfolio is one that you abandon during a downturn. Research from Dalbar shows that the average investor earns far less than the market because they buy high and sell low out of fear.</p>
+
+      <h2>The 4% Rule and Retirement Planning</h2>
+      <p>The 4% rule is a guideline for sustainable retirement withdrawals. It states that you can withdraw 4% of your portfolio balance in the first year of retirement, then adjust that amount for inflation each year, and your money has a high probability of lasting 30 years. This implies you need 25 times your annual expenses saved to retire securely.</p>
+      <p>For example, if you spend $60,000 per year, you need $1.5 million invested (25 × $60,000). If you use our calculator and find that contributing $1,500 per month at 8% return gets you there in 25 years, you have a concrete target. The 4% rule is not perfect — it assumes historical returns, does not account for sequence-of-returns risk, and may be too aggressive for early retirees — but it is a useful starting point.</p>
+
+      <h2>Rebalancing, Tax-Loss Harvesting, and Advanced Strategies</h2>
+      <p>Rebalancing is the act of selling assets that have grown beyond their target allocation and buying assets that have fallen below it. If your target is 70% stocks / 30% bonds and stocks have a great year, you might end up at 80/20. Rebalancing sells the high-performing asset and buys the underperforming one, enforcing the "buy low, sell high" discipline. Rebalancing once per year is generally sufficient for most investors.</p>
+      <p>Tax-loss harvesting is selling investments at a loss to offset capital gains taxes. If you have a $10,000 gain and a $4,000 loss, you only owe taxes on $6,000. This is particularly powerful in taxable brokerage accounts. Automated robo-advisors like Betterment and Wealthfront offer this service, but you can also do it manually.</p>
+
+      <h2>Frequently Asked Questions About Investing</h2>
+      <p><strong>How much money do I need to start investing?</strong> You can start with as little as $1. Many brokers now offer fractional shares, allowing you to buy partial shares of expensive stocks like Amazon or Berkshire Hathaway. What matters is consistency, not the starting amount.</p>
+      <p><strong>What rate of return can I realistically expect?</strong> Over multi-decade periods, a diversified portfolio of global stocks and bonds has historically returned 6-8% after inflation. In any given year, returns could be -30% or +40%, but the long-term trend is upward. Do not expect more than 10% averaged over 30 years unless you are taking extraordinary risks.</p>
+      <p><strong>Should I pay off debt or invest first?</strong> It depends on the interest rate. If the debt is above 7-8%, pay it off first. If it is below 4% (like some mortgages or subsidized student loans), invest while making minimum payments. Between 4-7%, it is a judgment call based on your risk tolerance and the guaranteed return of debt payoff versus the uncertain return of the market.</p>
+      <p><strong>How do I handle a market crash?</strong> Do not panic. Do not sell. Historically, every market crash has been followed by a recovery, often within 2-4 years. If anything, crashes are a buying opportunity. The most successful investors in history — Warren Buffett, Vanguard founder Jack Bogle, and others — all advise staying the course during downturns.</p>
+      <p><strong>Is it better to invest in individual stocks or index funds?</strong> For 99% of people, low-cost index funds are superior. They provide instant diversification, require no research, have lower fees, and statistically outperform most actively managed funds over long periods. Stock picking is a full-time job and even professionals fail to beat the index most of the time.</p>
+      <p><strong>What is the difference between a 401买的 and an IRA?</strong> A 401(k) is an employer-sponsored plan. An IRA is an individual account you open on your own. Both offer tax advantages, but 401(k)s often come with employer matches (free money), while IRAs offer more investment choices. Ideally, you contribute to both.</p>
+      <p><strong>Should I invest in a Roth or Traditional account?</strong> If you expect to be in a higher tax bracket in retirement, choose Roth. If you expect to be in a lower bracket, choose Traditional. For young people early in their careers (lower current tax bracket), Roth is usually the mathematically optimal choice. For peak earners in high-tax states, Traditional may be better.</p>
+      <p><strong>How does inflation affect my investments?</strong> Inflation erodes purchasing power. If your investments return 8% but inflation is 3%, your real return is 5%. This is why simply keeping money in a savings account (which earns 0.5-5%) often results in a loss of purchasing power over time. Investing in real assets like stocks and real estate is the primary way to outpace inflation over long periods.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    function calculateInvestment() {
+      const initial = parseFloat(document.getElementById('inv-initial').value) || 0;
+      const monthly = parseFloat(document.getElementById('inv-monthly').value) || 0;
+      const years = parseFloat(document.getElementById('inv-years').value) || 0;
+      const annualRate = parseFloat(document.getElementById('inv-rate').value) || 0;
+
+      if (years <= 0) {
+        alert('Please enter a valid time period.');
+        return;
+      }
+
+      const monthlyRate = annualRate / 100 / 12;
+      const months = years * 12;
+
+      const lumpSum = initial * Math.pow(1 + monthlyRate, months);
+      const annuity = monthlyRate === 0
+        ? monthly * months
+        : monthly * (Math.pow(1 + monthlyRate, months) - 1) / monthlyRate;
+
+      const futureValue = lumpSum + annuity;
+      const totalContributed = initial + monthly * months;
+      const growth = futureValue - totalContributed;
+
+      document.getElementById('inv-future').textContent = '$' + futureValue.toLocaleString(undefined, {maximumFractionDigits: 0});
+      document.getElementById('inv-contributed').textContent = '$' + totalContributed.toLocaleString();
+      document.getElementById('inv-growth').textContent = '$' + growth.toLocaleString(undefined, {maximumFractionDigits: 0});
+      document.getElementById('inv-initial-out').textContent = '$' + initial.toLocaleString();
+      document.getElementById('inv-monthly-total').textContent = '$' + (monthly * months).toLocaleString();
+      document.getElementById('inv-result').classList.add('visible');
+    }
+
+    function resetInvestment() {
+      document.querySelectorAll('#inv-initial, #inv-monthly, #inv-years, #inv-rate').forEach(i => i.value = '');
+      document.getElementById('inv-result').classList.remove('visible');
+    }
+
+    function copyInvestment() {
+      const fv = document.getElementById('inv-future').textContent;
+      const contributed = document.getElementById('inv-contributed').textContent;
+      const growth = document.getElementById('inv-growth').textContent;
+      copyToClipboard(`Future Value: ${fv} | Contributed: ${contributed} | Growth: ${growth}`);
+    }
+
+    document.querySelectorAll('#inv-initial, #inv-monthly, #inv-years, #inv-rate').forEach(i => i.addEventListener('input', calculateInvestment));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

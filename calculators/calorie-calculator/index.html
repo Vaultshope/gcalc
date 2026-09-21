@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator - BMR & TDEE Calculator | GCalc Free Tool</title>
+  <meta name="description" content="Free calorie calculator to estimate your daily calorie needs (BMR & TDEE) using the Mifflin-St Jeor equation. Calculate maintenance, weight loss, and weight gain targets.">
+  <meta name="keywords" content="calorie calculator, BMR calculator, TDEE calculator, daily calorie needs, maintenance calories, weight loss calories, Mifflin-St Jeor">
+  <link rel="canonical" href="https://gcalc.app/calculators/calorie-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Calorie Calculator - BMR & TDEE Calculator | GCalc Free Tool">
+  <meta property="og:description" content="Free calorie calculator to estimate your daily calorie needs (BMR & TDEE) using the Mifflin-St Jeor equation. Calculate maintenance, weight loss, and weight gain targets.">
+  <meta property="og:url" content="https://gcalc.app/calculators/calorie-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calorie Calculator - BMR & TDEE Calculator | GCalc Free Tool">
+  <meta name="twitter:description" content="Free calorie calculator to estimate your daily calorie needs (BMR & TDEE) using the Mifflin-St Jeor equation. Calculate maintenance, weight loss, and weight gain targets.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .cal-results { margin-top: 1.5rem; }
+    .cal-main { font-size: 2.5rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .cal-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .cal-targets { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    .cal-target { background: var(--bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .cal-target.highlight { border-color: var(--accent); background: var(--accent-subtle); }
+    .cal-target-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .cal-target-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--text-primary); }
+    .cal-target-value.accent { color: var(--accent); }
+    .cal-breakdown { margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .cal-break-card { background: var(--bg); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .cal-break-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; }
+    .cal-break-value { font-family: var(--font-mono); font-size: 1.25rem; margin-top: 0.25rem; }
+        @media (max-width: 900px) { .cal-targets { grid-template-columns: 1fr; } .cal-breakdown { grid-template-columns: 1fr; } }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/calorie-calculator/",
+      "name": "Calorie Calculator | GCalc",
+      "description": "Free calorie calculator to estimate daily calorie needs (BMR & TDEE). Includes activity multipliers and weight targets. No sign-up required.",
+      "url": "https://gcalc.app/calculators/calorie-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/calorie-calculator/#app",
+      "name": "Calorie Calculator",
+      "description": "Free calorie calculator to estimate daily calorie needs (BMR & TDEE). Includes activity multipliers and weight targets. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How accurate is the Mifflin-St Jeor equation",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is the most accurate predictive formula for modern populations, within 5% of actual metabolic measurements for most people. However, individual variation can still be \u00b110-20%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I eat below my BMR to lose weight faster",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is not recommended for extended periods. A safe minimum is generally 1,200 calories for women and 1,500 for men, except under medical supervision."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why am I not losing weight at a 500-calorie deficit",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Reasons include: overeating on weekends, water retention, inaccurate calorie tracking, overestimating activity level, or metabolic adaptation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I recalculate my TDEE as I lose weight",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. As you lose weight, your BMR decreases. Recalculate every 5-10 kg lost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I build muscle and lose fat at the same time",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, especially if you are a beginner or have a higher body fat percentage. This is called body recomposition."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best diet for weight loss",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The one you can stick to. Adherence trumps theoretical perfection."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I account for cheat meals",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Plan for them. If you will eat 1,000 extra calories on Saturday, reduce intake by 200 calories for the other five days."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is counting macros better than counting calories",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Macros ensure you get enough protein for muscle retention and enough fat for hormones. For most people, counting calories is enough to start."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Your Calorie Needs</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" id="cal-weight" class="form-input" placeholder="70" step="0.1" min="1"></div>
+        <div class="form-group"><label class="form-label">Height (cm)</label><input type="number" id="cal-height" class="form-input" placeholder="175" step="0.1" min="1"></div>
+        <div class="form-group"><label class="form-label">Age</label><input type="number" id="cal-age" class="form-input" placeholder="30" step="1" min="1" max="120"></div>
+        <div class="form-group"><label class="form-label">Gender</label>
+          <select id="cal-gender" class="form-select"><option value="male">Male</option><option value="female">Female</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Activity Level</label>
+          <select id="cal-activity" class="form-select">
+            <option value="1.2">Sedentary (little/no exercise)</option>
+            <option value="1.375">Light (1-3 days/week)</option>
+            <option value="1.55" selected>Moderate (3-5 days/week)</option>
+            <option value="1.725">Heavy (6-7 days/week)</option>
+            <option value="1.9">Athlete (twice daily)</option>
+          </select>
+        </div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetCal()">Reset</button><button class="btn btn-primary" onclick="calculateCal()">Calculate</button></div>
+      </div>
+      <div id="cal-result" class="cal-results">
+        <div class="cal-main">
+          <div class="cal-main-label">Maintenance (TDEE)</div>
+          <span id="cal-tdee">0</span><span style="font-size:1rem;font-weight:500;color:var(--text-muted)"> cal/day</span>
+        </div>
+        <div class="cal-targets">
+          <div class="cal-target">
+            <div class="cal-target-label">Lose Weight (-500 cal)</div>
+            <div class="cal-target-value accent" id="cal-lose">0</div>
+          </div>
+          <div class="cal-target highlight">
+            <div class="cal-target-label">Maintain Weight</div>
+            <div class="cal-target-value" id="cal-maintain">0</div>
+          </div>
+          <div class="cal-target">
+            <div class="cal-target-label">Gain Weight (+500 cal)</div>
+            <div class="cal-target-value accent" id="cal-gain">0</div>
+          </div>
+        </div>
+        <div class="cal-breakdown">
+          <div class="cal-break-card"><div class="cal-break-label">BMR (Basal Metabolic Rate)</div><div class="cal-break-value" id="cal-bmr">0</div></div>
+          <div class="cal-break-card"><div class="cal-break-label">Activity Multiplier</div><div class="cal-break-value" id="cal-mult">0</div></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyCal()">Copy Results</button>
+      </div>
+    </div>
+
+        <div class="calc-info-panel">
+      <h2>What Is a Calorie, and Why Does It Matter?</h2>
+      <p>A calorie (technically a kilocalorie, or kcal) is a unit of energy. In nutrition, it represents the energy your body obtains from the food you eat and the energy your body expends to function. If you consume more calories than your body uses, the surplus is stored as fat. If you consume fewer than your body needs, it turns to stored fat and muscle for fuel. This fundamental principle is the basis of nearly all weight management strategies.</p>
+      <p>However, not all calories are created equal. The source of your calories matters for satiety, hormonal health, and body composition. A 200-calorie portion of almonds affects your body very differently than a 200-calorie can of soda, even though both contain the same amount of energy.</p>
+
+      <h2>Understanding TDEE, BMR, and Energy Expenditure</h2>
+      <p>Your Total Daily Energy Expenditure (TDEE) is the total number of calories your body burns in a 24-hour period. It is the sum of several components:</p>
+      <ul>
+        <li><strong>Basal Metabolic Rate (BMR):</strong> The minimum number of calories your body needs to function at rest. BMR accounts for roughly 60-75% of total daily calorie expenditure for most people.</li>
+        <li><strong>Thermic Effect of Food (TEF):</strong> The energy required to digest, absorb, and process nutrients. Protein has the highest thermic effect (20-30%), followed by carbohydrates (5-10%) and fats (0-3%). TEF accounts for about 10% of total daily energy expenditure.</li>
+        <li><strong>Thermic Effect of Activity (TEA):</strong> Calories burned during physical exercise and movement, including structured workouts and non-exercise activity like walking and fidgeting.</li>
+      </ul>
+
+      <h2>The Mifflin-St Jeor Equation in Detail</h2>
+      <p>The Mifflin-St Jeor equation is considered the most accurate predictive formula for modern populations. It replaced the older Harris-Benedict equation, which tends to overestimate BMR in contemporary individuals. For men: <strong>BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age + 5</strong>. For women: <strong>BMR = 10 × weight(kg) + 6.25 × height(cm) - 5 × age - 161</strong>.</p>
+      <p>Once BMR is calculated, TDEE is estimated by multiplying BMR by an activity factor. For example, a 30-year-old woman who is 165 cm and weighs 65 kg has a BMR of approximately 1,361 calories. If she exercises moderately (factor 1.55), her TDEE is about 2,110 calories per day. To lose weight, she would eat 1,610 calories. To maintain, 2,110. To gain, 2,610.</p>
+
+      <h2>Understanding Activity Level Multipliers</h2>
+      <p>The activity multiplier you select in the calculator has a enormous impact on your calorie estimate. Here is a detailed breakdown of each level:</p>
+      <ul>
+        <li><strong>Sedentary (1.2):</strong> You work a desk job, commute by car, rarely exercise, and spend most of your free time sitting or lying down. Estimated extra calories: ~200-400 per day.</li>
+        <li><strong>Light Activity (1.375):</strong> You exercise lightly 1-3 days per week or have a job that involves some standing and walking. Estimated extra calories: ~400-600 per day.</li>
+        <li><strong>Moderate Activity (1.55):</strong> You exercise moderately 3-5 days per week. This is the most common selection for people who work out consistently. Estimated extra calories: ~600-900 per day.</li>
+        <li><strong>Heavy Activity (1.725):</strong> You exercise hard 6-7 days per week. Estimated extra calories: ~900-1,200 per day.</li>
+        <li><strong>Athlete (1.9):</strong> You train intensely twice per day or are a competitive athlete. Estimated extra calories: 1,200+ per day.</li>
+      </ul>
+
+      <h2>Safe Rates of Weight Loss and Weight Gain</h2>
+      <p>Our calculator provides three targets: a 500-calorie deficit, a maintenance level, and a 500-calorie surplus. These correspond to roughly 0.5 kg (1.1 lbs) of weight change per week. A pound of body fat contains approximately calories. A 500-calorie daily deficit creates a weekly deficit of 3,500 calories, which should result in losing one pound of fat per week.</p>
+      <p>Faster weight loss (1,000+ calorie deficit) can lead to muscle loss, nutrient deficiencies, gallstones, and metabolic slowdown. It is rarely sustainable and often leads to rebound weight gain. For most people, the 500-calorie approach balances speed and sustainability.</p>
+
+      <h2>Common Mistakes When Using Calorie Calculators</h2>
+      <ul>
+        <li><strong>Overestimating Activity Level:</strong> This is the #1 reason people overeat. A 30-minute walk does not make you "moderately active."</li>
+        <li><strong>Underestimating Portion Sizes:</strong> Use a food scale for at least a week to calibrate your eye. A "serving" of peanut butter is 2 tablespoons, not the heaping spoonful most people use.</li>
+        <li><strong>Ignoring Liquid Calories:</strong> A daily latte (200 calories), soda (140 calories), or two glasses of wine (240 calories) can destroy a 500-calorie deficit.</li>
+        <li><strong>Catastrophizing Minor Setbacks:</strong> One day of overeating followed by six days of compliance is infinitely better than giving up entirely. Weight loss is nonlinear.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions About Calorie Calculators</h2>
+      <p><strong>How accurate is the Mifflin-St Jeor equation?</strong> It is the most accurate predictive formula for modern populations, within 5% of actual metabolic measurements for most people. However, individual variation can still be ±10-20%.</p>
+      <p><strong>Can I eat below my BMR to lose weight faster?</strong> It is not recommended for extended periods. A safe minimum is generally 1,200 calories for women and 1,500 for men, except under medical supervision.</p>
+      <p><strong>Why am I not losing weight at a 500-calorie deficit?</strong> Reasons include: overeating on weekends, water retention, inaccurate calorie tracking, overestimating activity level, or metabolic adaptation.</p>
+      <p><strong>Should I recalculate my TDEE as I lose weight?</strong> Yes. As you lose weight, your BMR decreases. Recalculate every 5-10 kg lost.</p>
+      <p><strong>Can I build muscle and lose fat at the same time?</strong> Yes, especially if you are a beginner or have a higher body fat percentage. This is called body recomposition.</p>
+      <p><strong>What is the best diet for weight loss?</strong> The one you can stick to. Adherence trumps theoretical perfection.</p>
+      <p><strong>How do I account for cheat meals?</strong> Plan for them. If you will eat 1,000 extra calories on Saturday, reduce intake by 200 calories for the other five days.</p>
+      <p><strong>Is counting macros better than counting calories?</strong> Macros ensure you get enough protein for muscle retention and enough fat for hormones. For most people, counting calories is enough to start.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../age-calculator/">Age Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+
+    function calculateCal() {
+      const weight = parseFloat(document.getElementById('cal-weight').value);
+      const height = parseFloat(document.getElementById('cal-height').value);
+      const age = parseFloat(document.getElementById('cal-age').value);
+      const gender = document.getElementById('cal-gender').value;
+      const activity = parseFloat(document.getElementById('cal-activity').value);
+
+      if (isNaN(weight) || weight <= 0 || isNaN(height) || height <= 0 || isNaN(age) || age <= 0) {
+        alert('Please enter valid positive values for weight, height, and age.');
+        return;
+      }
+
+      // Mifflin-St Jeor
+      const bmr = gender === 'male'
+        ? 10 * weight + 6.25 * height - 5 * age + 5
+        : 10 * weight + 6.25 * height - 5 * age - 161;
+
+      const tdee = bmr * activity;
+
+      document.getElementById('cal-tdee').textContent = Math.round(tdee);
+      document.getElementById('cal-bmr').textContent = Math.round(bmr);
+      document.getElementById('cal-mult').textContent = activity + 'x';
+      document.getElementById('cal-maintain').textContent = Math.round(tdee);
+      document.getElementById('cal-lose').textContent = Math.max(0, Math.round(tdee - 500));
+      document.getElementById('cal-gain').textContent = Math.round(tdee + 500);
+    }
+
+    function resetCal() {
+      document.querySelectorAll('#cal-weight, #cal-height, #cal-age').forEach(i => i.value = '');
+      document.getElementById('cal-gender').value = 'male';
+      document.getElementById('cal-activity').value = '1.55';
+      document.getElementById('cal-tdee').textContent = '0';
+      document.getElementById('cal-bmr').textContent = '0';
+      document.getElementById('cal-mult').textContent = '0';
+      document.getElementById('cal-maintain').textContent = '0';
+      document.getElementById('cal-lose').textContent = '0';
+      document.getElementById('cal-gain').textContent = '0';
+    }
+
+    function copyCal() {
+      const tdee = document.getElementById('cal-tdee').textContent;
+      const bmr = document.getElementById('cal-bmr').textContent;
+      const maintain = document.getElementById('cal-maintain').textContent;
+      const lose = document.getElementById('cal-lose').textContent;
+      const gain = document.getElementById('cal-gain').textContent;
+      copyToClipboard(`TDEE: ${tdee} cal | BMR: ${bmr} cal | Maintain: ${maintain} | Lose: ${lose} | Gain: ${gain}`);
+    }
+
+    document.querySelectorAll('#cal-weight, #cal-height, #cal-age, #cal-gender, #cal-activity').forEach(i => i.addEventListener('input', calculateCal));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

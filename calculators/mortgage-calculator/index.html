@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mortgage Calculator - Calculate Monthly Payments | GCalc Free Tool</title>
+  <meta name="description" content="Free mortgage calculator to estimate monthly house payments. Includes principal, interest, property tax, and home insurance (PITI). No sign-up required.">
+  <meta name="keywords" content="mortgage calculator, mortgage payment calculator, monthly mortgage calculator, house payment calculator, mortgage estimator, PITI calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/mortgage-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Mortgage Calculator - Calculate Monthly Payments | GCalc Free Tool">
+  <meta property="og:description" content="Free mortgage calculator to estimate monthly house payments. Includes principal, interest, property tax, and home insurance (PITI). No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/mortgage-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mortgage Calculator - Calculate Monthly Payments | GCalc Free Tool">
+  <meta name="twitter:description" content="Free mortgage calculator to estimate monthly house payments. Includes principal, interest, property tax, and home insurance (PITI). No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+    .result-breakdown { margin-top: 1.5rem; }
+    .result-main { font-size: 2rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .result-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .result-details { margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .detail-card { background: var(--bg); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .detail-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; }
+    .detail-value { font-family: var(--font-mono); font-size: 1.1rem; margin-top: 0.25rem; }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/mortgage-calculator/",
+      "name": "Mortgage Calculator | GCalc",
+      "description": "Free mortgage calculator to estimate monthly house payments. Includes principal, interest, property tax, and home insurance (PITI). No sign-up required.",
+      "url": "https://gcalc.app/calculators/mortgage-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/mortgage-calculator/#app",
+      "name": "Mortgage Calculator",
+      "description": "Free mortgage calculator to estimate monthly house payments. Includes principal, interest, property tax, and home insurance (PITI). No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much house can I afford",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A common rule of thumb is the 28/36 rule: spend no more than 28% of gross monthly income on housing and no more than 36% on total debt. However, this varies by region, family size, and financial goals."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What credit score do I need to buy a house",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a conventional loan, a minimum of 620 is typically required, but scores of 740+ get the best rates. FHA loans can accept scores as low as 580 with 3.5% down, or 500 with 10% down."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much are closing costs",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Expect to pay 2-5% of the purchase price in closing costs. On a $400,000 home, this is $8,000 to $20,000. Costs include lender fees, appraisal, title insurance, attorney fees, and prepaid property taxes and insurance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I refinance my mortgage",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Refinancing can lower your rate, shorten your term, or convert equity to cash. It's generally worth it if you can reduce your rate by at least 0.75% and recoup closing costs within 2-3 years of savings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an escrow account",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An escrow account is managed by your lender to pay property taxes and insurance on your behalf. You pay 1/12th of the annual cost each month as part of your mortgage payment. This ensures these bills are never missed and protects the lender's collateral."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I deduct mortgage interest on my taxes",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, mortgage interest on loans up to $750,000 is tax-deductible for the first and second homes, provided you itemize deductions (Schedule A). Property taxes are also deductible up to $10,000 (combined state and local taxes)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if I miss a mortgage payment",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most lenders offer a grace period of 10-15 days. After that, late fees apply. After 30 days, the late payment is reported to credit bureaus. After 90-120 days of non-payment, the lender may begin foreclosure proceedings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a 20% down payment necessary",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, but it is the threshold at which PMI is avoided. First-time buyers often put down 3-10%. VA and USDA loans allow 0% down. The trade-off is higher monthly payments and PMI costs, but homeownership may still be the right path depending on rent vs buy economics in your area."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Mortgage Details</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Home Price</label><input type="number" id="mh-price" class="form-input" placeholder="400000" step="1000"></div>
+        <div class="form-group"><label class="form-label">Down Payment</label><input type="number" id="mh-down" class="form-input" placeholder="80000" step="1000"></div>
+        <div class="form-group"><label class="form-label">Interest Rate (%)</label><input type="number" id="mh-rate" class="form-input" placeholder="6.5" step="0.01"></div>
+        <div class="form-group"><label class="form-label">Loan Term (Years)</label>
+          <select id="mh-term" class="form-select"><option value="30" selected>30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option></select>
+        </div>
+        <div class="form-group"><label class="form-label">Property Tax ($/year)</label><input type="number" id="mh-tax" class="form-input" placeholder="4000" step="100"></div>
+        <div class="form-group"><label class="form-label">Home Insurance ($/year)</label><input type="number" id="mh-ins" class="form-input" placeholder="1200" step="100"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetMortgage()">Reset</button><button class="btn btn-primary" onclick="calculateMortgage()">Calculate</button></div>
+      </div>
+      <div id="mh-result" class="calc-result">
+        <div class="result-main">
+          <div class="result-main-label">Monthly Payment</div>
+          <span id="mh-monthly">$0</span>
+        </div>
+        <div class="result-details">
+          <div class="detail-card"><div class="detail-label">Principal & Interest</div><div class="detail-value" id="mh-pi">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Property Tax</div><div class="detail-value" id="mh-taxm">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Home Insurance</div><div class="detail-value" id="mh-insm">$0</div></div>
+          <div class="detail-card" style="grid-column:1/-1"><div class="detail-label">Loan Amount</div><div class="detail-value" id="mh-loan">$0</div></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyMortgage()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Mortgage Payment and How Is It Calculated?</h2>
+      <p>A mortgage is a long-term loan used to purchase real estate, where the property itself serves as collateral. Understanding your monthly mortgage payment is essential before buying a home because it is typically the largest recurring expense in a household budget. Our mortgage calculator helps you estimate this payment by accounting for the four components collectively known as PITI: Principal, Interest, Property Taxes, and Homeowners Insurance.</p>
+      <p>The principal is the amount you borrow to buy the home, minus your down payment. Interest is the cost of borrowing that principal, determined by your interest rate and loan term. Property taxes are assessed by local governments and fund public services like schools, roads, and emergency services. Homeowners insurance protects your investment against fire, theft, and liability. Together, these four elements make up the total monthly payment most lenders require, and this is the figure most homeowners should budget for.</p>
+
+      <h2>Understanding PITI: The Four Components of Your Mortgage Payment</h2>
+      <p><strong>Principal:</strong> Each month, a portion of your payment goes toward reducing your loan balance. In the early years of a mortgage, this is a small fraction of the total payment. For a $400,000 loan at 6.5% over 30 years, only about $240 of the first payment goes toward principal. Over time, via amortization, the principal portion grows while the interest portion shrinks.</p>
+      <p><strong>Interest:</strong> During the first several years of a mortgage, most of your payment goes to interest. On a 30-year loan, you will pay approximately the same amount in interest as you do in principal over the life of the loan. On a 15-year loan, total interest is roughly 40% of the principal, making it significantly cheaper overall.</p>
+      <p><strong>Property Tax:</strong> In the United States, property tax rates range from 0.25% to over 2.5% of assessed value annually, depending on the state and county. California averages about 0.75%, while New Jersey averages over 2.2%. Lenders typically require that property taxes be included in your monthly payment and held in an escrow account until the bill is due.</p>
+      <p><strong>Homeowners Insurance:</strong> Lenders require insurance to protect the collateral. Annual premiums vary by location, home value, and coverage level but typically range from $800 to $2,500 per year. Flood insurance, earthquake insurance, and windstorm coverage are often separate from standard policies and may be required in high-risk areas.</p>
+
+      <h2>The Mortgage Payment Formula Explained</h2>
+      <p>The core of any mortgage calculator is the amortization formula: <strong>M = P × [ r(1+r)ⁿ ] / [ (1+r)ⁿ - 1 ]</strong>. Here, M is the monthly payment, P is the principal borrowed, r is the monthly interest rate (annual rate divided by 12), and n is the total number of payments (loan term in years multiplied by 12). This formula assumes a fixed-rate mortgage where the rate never changes.</p>
+      <p>For example, if you borrow $320,000 at a 6% annual interest rate over 30 years, the monthly principal and interest payment would be $1,918.56. Adding estimated property taxes of $3,600/year ($300/month) and insurance of $1,200/year ($100/month) brings the total estimated monthly payment to $2,318.56. Over the life of the loan, you will pay back the $320,000 principal plus approximately $355,000 in interest alone.</p>
+
+      <h2>15-Year vs 30-Year Mortgage: A Detailed Comparison</h2>
+      <p>The choice between a 15-year and 30-year mortgage is one of the most consequential financial decisions a homeowner makes. A 15-year loan typically comes with an interest rate 0.25% to 0.75% lower than a 30-year loan, but the monthly payment is approximately 40-50% higher because the principal must be repaid in half the time.</p>
+      <p>Consider a $300,000 home purchase with 20% down ($60,000). On a 30-year loan at 6.5%, the monthly P&I payment is $1,896, and total interest paid over the life of the loan is $502,000. On a 15-year loan at 6.0%, the monthly P&I payment is $2,532, but total interest paid is only $256,000. The 15-year loan saves $246,000 in interest but costs $636 more per month.</p>
+      <p>The right choice depends on your cash flow, job stability, and other financial goals. If the higher payment would leave you with no emergency fund, the 30-year loan is safer. You can always make extra principal payments when you have surplus cash, effectively turning a 30-year loan into a shorter one without committing to the mandatory higher payment.</p>
+
+      <h2>How Much Down Payment Should You Make?</h2>
+      <p>The down payment is the upfront cash you pay at closing. It directly reduces the amount you need to borrow and can eliminate the need for Private Mortgage Insurance (PMI). PMI is a monthly fee lenders charge when the down payment is below 20%, to protect themselves against default. PMI typically costs 0.3% to 1.5% of the original loan amount per year and is added to your monthly payment.</p>
+      <p>However, putting 20% down is not always optimal. In a market with rising home prices, saving for a 20% down payment can take so long that home prices outpace your savings. Additionally, if you can invest the money you would have put toward a down payment at a higher return than your mortgage interest rate, a smaller down payment may be financially optimal. The right down payment depends on interest rates, your investment options, housing market dynamics, and your personal risk tolerance.</p>
+
+      <h2>Factors That Affect Your Mortgage Interest Rate</h2>
+      <p>Mortgage rates are determined by a combination of personal financial factors and macroeconomic conditions. Understanding these can help you secure the best possible rate:</p>
+      <ul>
+        <li><strong>Credit Score:</strong> A score above 740 typically qualifies for the best rates. A score below 620 may limit you to FHA or subprime products with significantly higher rates.</li>
+        <li><strong>Debt-to-Income Ratio (DTI):</strong> Lenders prefer a front-end DTI (housing costs ÷ gross income) below 28% and a back-end DTI (all debt ÷ gross income) below 36%. Some programs allow up to 50%.</li>
+        <li><strong>Loan-to-Value Ratio (LTV):</strong> The less you borrow relative to the home's value, the better your rate. An LTV of 80% or lower avoids PMI and gets better terms.</li>
+        <li><strong>Loan Type:</strong> Conventional, FHA, VA, and USDA loans have different rate structures. FHA loans have slightly higher rates but easier qualification. VA loans often have the lowest rates for qualifying veterans.</li>
+        <li><strong>Market Conditions:</strong> The Federal Reserve's federal funds rate, inflation, and bond yields directly impact mortgage rates. Rates tend to rise when inflation is high and fall during economic slowdowns.</li>
+        <li><strong>Points and Fees:</strong> You can buy down your rate by paying discount points upfront. One point typically costs 1% of the loan amount and reduces the rate by 0.25%.</li>
+      </ul>
+
+      <h2>Fixed-Rate vs Adjustable-Rate Mortgages (ARMs)</h2>
+      <p>A fixed-rate mortgage locks in your interest rate for the entire loan term, providing predictability. An adjustable-rate mortgage (ARM) starts with a lower rate for an initial period (e.g., 5, 7, or 10 years), then adjusts periodically based on a market index plus a margin. Common ARMs are 5/1, 7/1, and 10/1, where the first number is the fixed period and the second is how often the rate adjusts after that.</p>
+      <p>ARMs can be advantageous if you plan to sell or refinance before the fixed period ends, or if you believe rates will fall in the future. However, if rates rise and you are still in the home, your payments could increase significantly. If you are risk-averse, have a fixed income, or plan to stay in the home long-term, a fixed-rate mortgage is generally the safer choice.</p>
+
+      <h2>Private Mortgage Insurance (PMI) Explained</h2>
+      <p>PMI is required on conventional loans with less than 20% down. It protects the lender, not the borrower. PMI typically ranges from $100 to $300 per month on a $300,000 loan. The good news: once your home equity reaches 20% through payments or appreciation, you can request PMI cancellation. Federal law requires automatic termination when the loan balance reaches 78% of the original home value. Some lenders offer lender-paid PMI (LPMI) in exchange for a slightly higher interest rate, which can be advantageous if you plan to keep the loan for a short period.</p>
+
+      <h2>Understanding Amortization Schedules</h2>
+      <p>Amortization is the process of paying off a loan through regular payments over time. An amortization schedule is a table showing exactly how much of each payment goes to principal and interest. In the first year of a 30-year loan, about 83% of each payment goes to interest. By year 15, that flips to about 55% principal. By the final year, nearly 99% goes to principal. Viewing your amortization schedule can be eye-opening and motivational, as it shows how extra principal payments can dramatically shorten the loan and reduce total interest.</p>
+
+      <h2>How to Pay Off Your Mortgage Faster</h2>
+      <p>Reducing the total interest paid and shortening your loan term can save tens of thousands of dollars. Here are proven strategies:</p>
+      <ul>
+        <li><strong>Biweekly Payments:</strong> Instead of 12 monthly payments, make a half-payment every two weeks. This results in 26 half-payments, or 13 full payments per year, cutting approximately 4-5 years off a 30-year loan.</li>
+        <li><strong>Extra Principal Payments:</strong> Even an extra $100 per month toward principal can save $30,000+ in interest and shorten a 30-year loan by several years.</li>
+        <li><strong>Refinance:</strong> If rates drop by at least 0.75% to 1%, refinancing may reduce your payment or term, though closing costs (2-5% of loan value) must be factored in.</li>
+        <li><strong>Round Up:</strong> If your payment is $1,863, round up to $1,900. The extra $37 goes straight to principal and is barely missed.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions About Mortgages</h2>
+      <p><strong>How much house can I afford?</strong> A common rule of thumb is the 28/36 rule: spend no more than 28% of gross monthly income on housing and no more than 36% on total debt. However, this varies by region, family size, and financial goals.</p>
+      <p><strong>What credit score do I need to buy a house?</strong> For a conventional loan, a minimum of 620 is typically required, but scores of 740+ get the best rates. FHA loans can accept scores as low as 580 with 3.5% down, or 500 with 10% down.</p>
+      <p><strong>How much are closing costs?</strong> Expect to pay 2-5% of the purchase price in closing costs. On a $400,000 home, this is $8,000 to $20,000. Costs include lender fees, appraisal, title insurance, attorney fees, and prepaid property taxes and insurance.</p>
+      <p><strong>Should I refinance my mortgage?</strong> Refinancing can lower your rate, shorten your term, or convert equity to cash. It's generally worth it if you can reduce your rate by at least 0.75% and recoup closing costs within 2-3 years of savings.</p>
+      <p><strong>What is an escrow account?</strong> An escrow account is managed by your lender to pay property taxes and insurance on your behalf. You pay 1/12th of the annual cost each month as part of your mortgage payment. This ensures these bills are never missed and protects the lender's collateral.</p>
+      <p><strong>Can I deduct mortgage interest on my taxes?</strong> Yes, mortgage interest on loans up to $750,000 is tax-deductible for the first and second homes, provided you itemize deductions (Schedule A). Property taxes are also deductible up to $10,000 (combined state and local taxes).</p>
+      <p><strong>What happens if I miss a mortgage payment?</strong> Most lenders offer a grace period of 10-15 days. After that, late fees apply. After 30 days, the late payment is reported to credit bureaus. After 90-120 days of non-payment, the lender may begin foreclosure proceedings.</p>
+      <p><strong>Is a 20% down payment necessary?</strong> No, but it is the threshold at which PMI is avoided. First-time buyers often put down 3-10%. VA and USDA loans allow 0% down. The trade-off is higher monthly payments and PMI costs, but homeownership may still be the right path depending on rent vs buy economics in your area.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    function calculateMortgage() {
+      const price = parseFloat(document.getElementById('mh-price').value);
+      const down = parseFloat(document.getElementById('mh-down').value) || 0;
+      const rateVal = parseFloat(document.getElementById('mh-rate').value);
+      const years = parseInt(document.getElementById('mh-term').value);
+      const tax = parseFloat(document.getElementById('mh-tax').value) || 0;
+      const ins = parseFloat(document.getElementById('mh-ins').value) || 0;
+
+      if (isNaN(price) || price <= 0 || down < 0 || price <= down || isNaN(rateVal) || rateVal < 0) {
+        alert('Please enter a valid home price, down payment, and interest rate.');
+        return;
+      }
+
+      const principal = price - down;
+      const months = years * 12;
+      const rate = rateVal / 100 / 12;
+      const pi = rate === 0 ? principal/months : principal * rate * Math.pow(1+rate, months) / (Math.pow(1+rate, months) - 1);
+      const total = pi + tax/12 + ins/12;
+
+      document.getElementById('mh-monthly').textContent = '$' + total.toFixed(2);
+      document.getElementById('mh-pi').textContent = '$' + pi.toFixed(2);
+      document.getElementById('mh-taxm').textContent = '$' + (tax/12).toFixed(2);
+      document.getElementById('mh-insm').textContent = '$' + (ins/12).toFixed(2);
+      document.getElementById('mh-loan').textContent = '$' + principal.toLocaleString();
+      document.getElementById('mh-result').classList.add('visible');
+    }
+
+    function resetMortgage() {
+      document.querySelectorAll('#mh-price, #mh-down, #mh-rate, #mh-tax, #mh-ins').forEach(i => i.value = '');
+      document.getElementById('mh-term').value = '30';
+      document.getElementById('mh-result').classList.remove('visible');
+    }
+
+    function copyMortgage() {
+      const monthly = document.getElementById('mh-monthly').textContent;
+      const loan = document.getElementById('mh-loan').textContent;
+      copyToClipboard(`Monthly mortgage: ${monthly} | Loan amount: ${loan}`);
+    }
+
+    document.querySelectorAll('#mh-price, #mh-down, #mh-rate, #mh-term, #mh-tax, #mh-ins').forEach(i => i.addEventListener('input', calculateMortgage));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

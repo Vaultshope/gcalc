@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Calculator - Days Between Dates | GCalc Free Tool</title>
+  <meta name="description" content="Free date calculator to find days between two dates, add/subtract days from a date, and calculate business days. No sign-up required.">
+  <meta name="keywords" content="date calculator, days between dates, date difference calculator, add days to date, business days calculator, how many days until">
+  <link rel="canonical" href="https://gcalc.app/calculators/date-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Date Calculator - Days Between Dates | GCalc Free Tool">
+  <meta property="og:description" content="Free date calculator to find days between two dates, add/subtract days from a date, and calculate business days. No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/date-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Date Calculator - Days Between Dates | GCalc Free Tool">
+  <meta name="twitter:description" content="Free date calculator to find days between two dates, add/subtract days from a date, and calculate business days. No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .date-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .date-tab { flex: 1; padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); font-weight: 500; transition: all 0.15s ease; }
+    .date-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .date-tab:hover:not(.active) { background: var(--surface-hover); color: var(--text-secondary); }
+    .date-panel { display: none; }
+    .date-panel.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .date-result { margin-top: 1.5rem; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .date-result-value { font-family: var(--font-mono); font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+    .date-result-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .date-breakdown { margin-top: 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.75rem; text-align: left; }
+    .date-break-item { background: var(--surface); padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border); }
+    .date-break-label { font-size: 0.65rem; color: var(--text-faint); text-transform: uppercase; }
+    .date-break-value { font-family: var(--font-mono); font-size: 1.1rem; margin-top: 0.25rem; }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/date-calculator/",
+      "name": "Date Calculator | GCalc",
+      "description": "Free date calculator to find days between two dates, add/subtract days, and calculate business days. No sign-up required.",
+      "url": "https://gcalc.app/calculators/date-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/date-calculator/#app",
+      "name": "Date Calculator",
+      "description": "Free date calculator to find days between two dates, add/subtract days, and calculate business days. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate the exact number of days between two dates",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter the start date and the end date into the \"Days Between\" mode of our calculator. The result shows the exact number of 24-hour periods between the two dates, along with approximate breakdowns in weeks, months, and years. The day count is always exact; the month and year equivalents are estimates because months vary in length."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between calendar days and business days",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Calendar days include every day of the week: Monday through Sunday. Business days exclude weekends (Saturday and Sunday) and typically exclude public holidays. If you need business days, take our calculator's total day count, remove weekends, and subtract any holidays that fall within your date range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do leap years affect date calculations",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Leap years add an extra day (February 29) to the calendar. When calculating the days between two dates that span a leap year, the total includes the extra day. When adding days to a date that crosses February 29, the result automatically accounts for the 366-day year structure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I add or subtract months from a date",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our calculator works in days. To add months, you must convert the months to days manually. A common approximation is to use 30.44 days per month (365.25 \u00f7 12). For exact month-level calculations, use the month and year breakdown alongside the exact day count."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate due dates or deadlines",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the \"Add/Subtract\" mode. Enter the start date (for example, the project start date or first day of the last menstrual period) and the number of days to add. The calculator returns the exact future date, accounting for month lengths and leap years."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the calculator account for time zones",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our calculator uses UTC (Coordinated Universal Time) for all calculations to ensure consistency. This means the result is the same no matter where in the world you access it. If you are working with local time, the result is still valid for calendar-day-level calculations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does adding 30 days to different dates give different month results",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because months have different lengths, adding 30 days to January 15 gives February 14 (30 days later), but adding 30 days to March 15 gives April 14 (31 days later in terms of calendar positions). The result is always an exact day count; the month name on the resulting date depends on the month lengths of the specific calendar year."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate are the month and year breakdowns",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The month and year values are approximate, based on an average month length of 30.44 days and an average year length of 365.25 days. These are useful for context but not for precise billing or legal applications where exact day counts are required. The day count is always the exact, primary figure."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I calculate dates before the year 1582",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Our calculator uses the proleptic Gregorian calendar, which projects the modern calendar backward. For historical dates that cross the Julian-to-Gregorian transition, be aware that real-world dates may differ by 10-13 days depending on the country."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best date format to use",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend ISO 8601 (YYYY-MM-DD) because it is unambiguous, sorts correctly, and is the international standard. Our calculator's date picker enforces this format to prevent confusion between US (MM/DD) and European (DD/MM) month-day orderings."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Date Calculator</h3>
+
+      <div class="date-tabs">
+        <button class="date-tab active" data-tab="diff" onclick="switchTab('diff')">Days Between</button>
+        <button class="date-tab" data-tab="add" onclick="switchTab('add')">Add/Subtract</button>
+      </div>
+
+      <!-- Days Between Panel -->
+      <div class="date-panel active" id="panel-diff">
+        <div class="calc-form">
+          <div class="form-group"><label class="form-label">Start Date</label><input type="date" id="date-start" class="form-input"></div>
+          <div class="form-group"><label class="form-label">End Date</label><input type="date" id="date-end" class="form-input"></div>
+          <div class="form-actions"><button class="btn btn-primary" onclick="calcDiff()">Calculate</button></div>
+        </div>
+        <div id="diff-result" class="date-result" style="display:none">
+          <div class="date-result-label">Days Between</div>
+          <div class="date-result-value" id="diff-days">0</div>
+          <div class="date-breakdown" id="diff-breakdown"></div>
+        </div>
+      </div>
+
+      <!-- Add/Subtract Panel -->
+      <div class="date-panel" id="panel-add">
+        <div class="calc-form">
+          <div class="form-group"><label class="form-label">Start Date</label><input type="date" id="date-base" class="form-input"></div>
+          <div class="form-group"><label class="form-label">Days to Add/Subtract</label><input type="number" id="date-offset" class="form-input" placeholder="30" step="1"></div>
+          <div class="form-actions"><button class="btn btn-primary" onclick="calcAdd()">Calculate</button></div>
+        </div>
+        <div id="add-result" class="date-result" style="display:none">
+          <div class="date-result-label">Result Date</div>
+          <div class="date-result-value" id="add-date" style="font-size:1.5rem"></div>
+          <div class="date-breakdown" id="add-breakdown"></div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyDate()">Copy Result</button>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Date Calculator and Why Use One?</h2>
+      <p>A date calculator is a digital tool that performs arithmetic on calendar dates, finding the duration between two points in time or projecting a future date by adding or subtracting a specific number of days. While the concept seems straightforward, calendar calculations are surprisingly complex due to the irregular structure of our calendar: months with 28, 29, 30, or 31 days, leap years that add an extra day every four years, and timezone shifts that can alter the date depending on where you are in the world.</p>
+      <p>Our date calculator handles all of this automatically. It supports two primary modes: calculating the number of days between two dates (the interval), and adding or subtracting a number of days from a given date (date projection). The tool uses standard JavaScript Date objects and works in UTC by default to eliminate timezone confusion, ensuring that you get the same result regardless of where you access it from.</p>
+      <p>Professionals and individuals use date calculators for everything from legal contract management and project planning to personal curiosity about anniversaries and pregnancy due dates. The difference between manual counting and automated calculation can mean errors of days or even weeks when dealing with multi-month or multi-year spans.</p>
+
+      <h2>How Date Calculation Works: The Math Behind the Calendar</h2>
+      <p>Calculating the difference between two dates requires more than simple subtraction because the Gregorian calendar is not a decimal system. A month can be 28, 29, 30, or 31 days long, and the length of February changes depending on whether the year is a leap year. Our calculator resolves this by converting every date to its underlying representation in milliseconds since January 1, 1970 (Unix epoch), taking the difference in milliseconds, and converting that back to days, weeks, months, and years.</p>
+      <p><strong>Days Between mode:</strong> This is the most common use case. The calculator converts Date A and Date B into their millisecond representations, subtracts the smaller from the larger, divides the result by 86,400,000 (the number of milliseconds in one day), and rounds down to the nearest whole day. This gives the exact number of 24-hour periods between the two dates.</p>
+      <p><strong>Add/Subtract mode:</strong> When adding days to a date, the calculator adds the specified number of days (converted to milliseconds) to the base date and returns the resulting date. This automatically handles month-end transitions: if you add 30 days to January 31, the result is not February 31 but March 2 (or March 1 in a non-leap year), because the calendar logic accounts for the actual number of days in the month.</p>
+      <p><strong>Month handling:</strong> For month-level approximations, the calculator also provides a breakdown in months and years. Because months have different lengths, this breakdown is approximate. The calculator uses the average month length of 30.44 days (365.25 ÷ 12) to estimate the month and year equivalents, while always keeping the exact day count as the primary figure.</p>
+
+      <h2>Understanding Leap Years and Their Impact on Date Math</h2>
+      <p>Leap years are the central correction mechanism of the Gregorian calendar, which keeps the calendar year synchronized with Earth's orbit around the Sun. Without leap years, the calendar would drift by about one day every four years, eventually placing the seasons in the wrong months.</p>
+      <p>A year is a leap year if it satisfies the following conditions:</p>
+      <ul>
+        <li>The year is divisible by 4, AND</li>
+        <li>The year is not divisible by 100, UNLESS it is also divisible by 400</li>
+      </ul>
+      <p><strong>Examples of leap year calculation:</strong></p>
+      <ul>
+        <li><strong>Year 2000:</strong> Divisible by 400 → Leap Year ✓</li>
+        <li><strong>Year 1900:</strong> Divisible by 100 but not 400 → Not a Leap Year ✗</li>
+        <li><strong>Year 2024:</strong> Divisible by 4 but not 100 → Leap Year ✓</li>
+        <li><strong>Year 2100:</strong> Divisible by 100 but not 400 → Not a Leap Year ✗</li>
+      </ul>
+      <p>This 400-year cycle means that the years 2000 and 2400 are leap years, while 1900, 2100, and 2200 are not. This rule, introduced in 1582 by Pope Gregory XIII, corrects a slight overcorrection in the Julian calendar and keeps the calendar accurate to within one day for over 3,000 years.</p>
+      <p>For date calculations, leap years matter most when computing spans that cross February 29. If you calculate the days between February 28, 2024, and February 28, 2025, the result is 366 days because February 29, 2024, is included in the range. Between February 28, 2025, and February 28, 2026, the result is 365 days because 2025 is not a leap year.</p>
+
+      <h2>Business Days, Weekdays, and Working Calendars</h2>
+      <p>While our calculator provides the total number of calendar days between two dates, many professional applications require the number of business days. Business days exclude weekends (typically Saturday and Sunday) and often public holidays. Calculating business days is essential for project management, shipping estimates, contract deadlines, and financial settlements.</p>
+      <p><strong>Quick estimation:</strong> A rough approximation for the number of business days between two dates is to multiply the total days by 5/7. For example, a span of 70 calendar days contains approximately 50 business days (70 × 5 ÷ 7). This is accurate for short spans but accumulates error over longer periods.</p>
+      <p><strong>Exact calculation:</strong> For an exact count, you must subtract weekends (Saturdays and Sundays) from the total. If the start or end date falls on a weekend, you must count only the weekdays. For example, the days between Friday, July 1 and Monday, July 4 total 3 calendar days, but only 1 business day because Saturday and Sunday are excluded.</p>
+      <p><strong>Holidays:</strong> Different countries, regions, and companies observe different holidays. The United States has 11 federal holidays. The United Kingdom has 8 bank holidays. Japan has 16 national holidays. India has over 40 public holidays at the state and national level. Because holiday calendars vary by jurisdiction, our calculator provides the total days and weekends, and users should subtract locally observed holidays manually or consult a business days calculator configured for their specific calendar.</p>
+
+      <h2>Time Zones, Daylight Saving Time, and Midnight Ambiguity</h2>
+      <p>Our calculator operates in Coordinated Universal Time (UTC) by default. This means that the result is consistent regardless of the user's timezone. However, in real-world applications, time zones and daylight saving time (DST) transitions can introduce complexity.</p>
+      <p><strong>UTC vs. Local Time:</strong> UTC is the time standard used worldwide. It does not observe daylight saving time and remains constant. When calculating days between two dates, using UTC eliminates ambiguity caused by crossing timezone boundaries. For example, if you are in New York and you calculate days until a date in Tokyo, the exact number of days may differ by one depending on the time of day due to the 13-hour time difference. Our calculator ignores these hour-level differences and treats dates as full 24-hour periods in UTC.</p>
+      <p><strong>Daylight Saving Time transitions:</strong> In regions that observe DST, the clock shifts forward by one hour in spring and back by one hour in autumn. This means that one day per year has 23 hours and another has 25 hours. These one-hour shifts do not affect day-level date calculations because they still occur within a single calendar day, but they do matter when working with exact times or durations measured in hours.</p>
+      <p><strong>International Date Line:</strong> Crossing the International Date Line causes the calendar day to change. A flight from Japan to Hawaii departs on Monday and arrives on Sunday. Date calculations for travel, shipping, and global teams must account for the date line when working in local time.</p>
+
+      <h2>Common Real-World Use Cases for Date Calculations</h2>
+      <p>Date calculators serve a wide variety of professional and personal needs. Here are the most common scenarios where accurate date math is critical:</p>
+      <ul>
+        <li><strong>Project management:</strong> Calculating deadlines, sprint lengths, and milestone dates. A project starting June 1 with a 90-day duration ends on August 30. Knowing the exact date helps prevent missed deadlines.</li>
+        <li><strong>Legal and contracts:</strong> Lease agreements, rental terms, insurance policies, and service contracts all depend on exact date spans. A one-year lease starting March 15, 2024, ends on March 15, 2025 — unless the contract specifies "calendar year," in which case it ends on December 31, 2024.</li>
+        <li><strong>Pregnancy and due dates:</strong> Obstetricians estimate due dates by adding 280 days (40 weeks) to the first day of the last menstrual period (LMP). This calculation is a classic date math problem that determines the expected delivery window.</li>
+        <li><strong>Age verification and milestones:</strong> You can use the days-between mode to calculate exact age in days, or add days to find when someone turns 18, 21, or 65. International age verification for sports, school, or employment often requires exact date counting.</li>
+        <li><strong>Investment and finance:</strong> Interest accrual, bond maturity, stock vesting schedules, and loan tenors all require exact date calculations. Day count conventions like 30/360 and actual/actual require precise date math.</li>
+        <li><strong>Shipping and logistics:</strong> Delivery estimates often state "5-7 business days." Converting this to a calendar range and accounting for weekends and holidays requires date calculation.</li>
+        <li><strong>Event planning:</strong> Counting down to weddings, concerts, vacations, or product launches. Reverse-counting from a target date helps teams coordinate preparation schedules.</li>
+      </ul>
+
+      <h2>Date Formats Across the World: ISO, US, and European Standards</h2>
+      <p>Date formats vary dramatically by region, and ambiguity can cause serious errors. Our calculator uses the ISO 8601 format (YYYY-MM-DD) because it is unambiguous, internationally recognized, and sorts correctly in plain text.</p>
+      <ul>
+        <li><strong>ISO 8601 (YYYY-MM-DD):</strong> The international standard used in computing, science, and aviation. It is unambiguous, language-independent, and sorts chronologically in plain text. Example: 2025-07-02.</li>
+        <li><strong>US format (MM/DD/YYYY):</strong> Common in the United States and a few Caribbean nations. The middle-endian format places the month first. Example: 07/02/2025.</li>
+        <li><strong>European format (DD/MM/YYYY):</strong> Used in the United Kingdom, most of Europe, Australia, and many other countries. The day comes first, followed by the month. Example: 02/07/2025.</li>
+      </ul>
+      <p>When a date like 02/03/2025 is written, it can mean February 3rd (US), March 2nd (Europe), or March 2nd, 2025 (ISO). Using the ISO 8601 format eliminates this ambiguity entirely. Our calculator's date picker enforces ISO format for input but allows users to interpret results in any standard they prefer.</p>
+
+      <h2>Historical Calendar Changes and Proleptic Dates</h2>
+      <p>The Gregorian calendar was introduced in October 1582 by Pope Gregory XIII to correct the drift of the Julian calendar, which had accumulated a 10-day error over the centuries. When first adopted, countries that switched dropped 10 days from the calendar. For example, Thursday, October 4, 1582, was followed by Friday, October 15, 1582, in countries like Italy, Spain, and Portugal.</p>
+      <p>However, not all countries adopted the Gregorian calendar at the same time. Great Britain and its colonies waited until 1752, by which time the discrepancy had grown to 11 days. Russia adopted it in 1918, dropping 13 days. Greece was the last European country to adopt it in 1923.</p>
+      <p>This creates a historical complexity: the date "September 2, 1752" in England was followed by "September 14, 1752." When calculating historical dates that cross these transitions, historians use the <strong>proleptic Gregorian calendar</strong>, which projects the modern calendar backward as if it had always been in use. Our calculator uses the proleptic Gregorian calendar for historical dates, meaning it treats all dates as if the modern calendar system had always applied, providing consistent mathematical results even for dates before 1582.</p>
+
+      <h2>Common Mistakes in Manual Date Calculation</h2>
+      <p><strong>Mistake 1: Ignoring month length.</strong> Many people assume every month has 30 days and calculate spans using this approximation. The error accumulates quickly. A 12-month span calculated as 360 days (12 × 30) is actually 365 or 366 days, an error of 5-6 days.</p>
+      <p><strong>Mistake 2: Forgetting leap years.</strong> When counting days across a February that includes the 29th, forgetting to add the extra day produces an off-by-one error. This is especially common when calculating annual anniversaries or interest accrual over multi-year periods.</p>
+      <p><strong>Mistake 3: Counting inclusively vs. exclusively.</strong> Some applications count the start date as "day 1" while others count it as "day 0." For example, is January 1 to January 2 one day or two days? Our calculator counts the span exclusively: the number of 24-hour periods between the two dates. If you need to include the start date, add one to the result.</p>
+      <p><strong>Mistake 4: Confusing calendar days with business days.</strong> A 10-day project started on a Monday does not finish on the 10th calendar day if it excludes weekends. It finishes on the following Tuesday, 12 days later. Always clarify whether a deadline refers to calendar days or business days.</p>
+
+      <h2>Frequently Asked Questions About Date Calculation</h2>
+      <p><strong>How do I calculate the exact number of days between two dates?</strong> Enter the start date and the end date into the "Days Between" mode of our calculator. The result shows the exact number of 24-hour periods between the two dates, along with approximate breakdowns in weeks, months, and years. The day count is always exact; the month and year equivalents are estimates because months vary in length.</p>
+      <p><strong>What is the difference between calendar days and business days?</strong> Calendar days include every day of the week: Monday through Sunday. Business days exclude weekends (Saturday and Sunday) and typically exclude public holidays. If you need business days, take our calculator's total day count, remove weekends, and subtract any holidays that fall within your date range.</p>
+      <p><strong>How do leap years affect date calculations?</strong> Leap years add an extra day (February 29) to the calendar. When calculating the days between two dates that span a leap year, the total includes the extra day. When adding days to a date that crosses February 29, the result automatically accounts for the 366-day year structure.</p>
+      <p><strong>Can I add or subtract months from a date?</strong> Our calculator works in days. To add months, you must convert the months to days manually. A common approximation is to use 30.44 days per month (365.25 ÷ 12). For exact month-level calculations, use the month and year breakdown alongside the exact day count.</p>
+      <p><strong>How do I calculate due dates or deadlines?</strong> Use the "Add/Subtract" mode. Enter the start date (for example, the project start date or first day of the last menstrual period) and the number of days to add. The calculator returns the exact future date, accounting for month lengths and leap years.</p>
+      <p><strong>Does the calculator account for time zones?</strong> Our calculator uses UTC (Coordinated Universal Time) for all calculations to ensure consistency. This means the result is the same no matter where in the world you access it. If you are working with local time, the result is still valid for calendar-day-level calculations.</p>
+      <p><strong>Why does adding 30 days to different dates give different month results?</strong> Because months have different lengths, adding 30 days to January 15 gives February 14 (30 days later), but adding 30 days to March 15 gives April 14 (31 days later in terms of calendar positions). The result is always an exact day count; the month name on the resulting date depends on the month lengths of the specific calendar year.</p>
+      <p><strong>How accurate are the month and year breakdowns?</strong> The month and year values are approximate, based on an average month length of 30.44 days and an average year length of 365.25 days. These are useful for context but not for precise billing or legal applications where exact day counts are required. The day count is always the exact, primary figure.</p>
+      <p><strong>Can I calculate dates before the year 1582?</strong> Yes. Our calculator uses the proleptic Gregorian calendar, which projects the modern calendar backward. For historical dates that cross the Julian-to-Gregorian transition, be aware that real-world dates may differ by 10-13 days depending on the country.</p>
+      <p><strong>What is the best date format to use?</strong> We recommend ISO 8601 (YYYY-MM-DD) because it is unambiguous, sorts correctly, and is the international standard. Our calculator's date picker enforces this format to prevent confusion between US (MM/DD) and European (DD/MM) month-day orderings.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../age-calculator/">Age Calculator</a>
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    let lastResult = '';
+
+    function switchTab(tab) {
+      document.querySelectorAll('.date-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+      document.querySelectorAll('.date-panel').forEach(p => p.classList.toggle('active', p.id === 'panel-' + tab));
+      document.getElementById('diff-result').style.display = 'none';
+      document.getElementById('add-result').style.display = 'none';
+    }
+
+    function calcDiff() {
+      const start = document.getElementById('date-start').value;
+      const end = document.getElementById('date-end').value;
+
+      if (!start || !end) {
+        alert('Please select both dates.');
+        return;
+      }
+
+      const startDate = new Date(start);
+      const endDate = new Date(end);
+      const diffMs = Math.abs(endDate - startDate);
+      const diffDays = Math.floor(diffMs / 86400000);
+      const diffWeeks = Math.floor(diffDays / 7);
+      const diffMonths = Math.floor(diffDays / 30.44);
+      const diffYears = Math.floor(diffDays / 365.25);
+
+      document.getElementById('diff-days').textContent = diffDays.toLocaleString();
+      const monthRemainder = Math.round(diffDays - diffMonths * 30.44);
+      const yearRemainder = Math.round(diffDays - diffYears * 365.25);
+      document.getElementById('diff-breakdown').innerHTML = `
+        <div class="date-break-item"><div class="date-break-label">Weeks</div><div class="date-break-value">${diffWeeks} wk ${diffDays % 7} d</div></div>
+        <div class="date-break-item"><div class="date-break-label">Months (approx.)</div><div class="date-break-value">${diffMonths} mo ${monthRemainder} d</div></div>
+        <div class="date-break-item"><div class="date-break-label">Years</div><div class="date-break-value">${diffYears} yr ${yearRemainder} d</div></div>
+      `;
+      document.getElementById('diff-result').style.display = 'block';
+      lastResult = `${diffDays} days between ${start} and ${end}`;
+    }
+
+    function calcAdd() {
+      const base = document.getElementById('date-base').value;
+      const rawOffset = parseFloat(document.getElementById('date-offset').value);
+
+      if (!base) {
+        alert('Please select a start date.');
+        return;
+      }
+      if (isNaN(rawOffset)) {
+        alert('Please enter a valid number of days.');
+        return;
+      }
+      const offset = Math.round(rawOffset);
+
+      const baseDate = new Date(base);
+      const resultDate = new Date(baseDate);
+      resultDate.setDate(resultDate.getDate() + offset);
+
+      const resultStr = resultDate.toISOString().split('T')[0];
+      const dayName = resultDate.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+
+      document.getElementById('add-date').textContent = dayName;
+      document.getElementById('add-breakdown').innerHTML = `
+        <div class="date-break-item"><div class="date-break-label">ISO Date</div><div class="date-break-value">${resultStr}</div></div>
+        <div class="date-break-item"><div class="date-break-label">Day of Week</div><div class="date-break-value">${resultDate.toLocaleDateString(undefined, { weekday: 'long' })}</div></div>
+        <div class="date-break-item"><div class="date-break-label">Day of Year</div><div class="date-break-value">${Math.floor((resultDate - new Date(resultDate.getFullYear(), 0, 0)) / 86400000)}</div></div>
+      `;
+      document.getElementById('add-result').style.display = 'block';
+      lastResult = `${resultStr} (${offset > 0 ? '+' : ''}${offset} days from ${base})`;
+    }
+
+    function copyDate() {
+      if (lastResult) {
+        copyToClipboard(lastResult);
+      }
+    }
+
+    // Set default dates to today
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('date-start').value = today;
+      document.getElementById('date-base').value = today;
+      // Auto-calc on load
+      document.getElementById('date-end').value = today;
+      calcDiff();
+    });
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

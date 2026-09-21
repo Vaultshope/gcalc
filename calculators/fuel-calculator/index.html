@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fuel Calculator - Trip Cost Estimator | GCalc Free Tool</title>
+  <meta name="description" content="Free fuel calculator to estimate trip fuel costs. Calculate gallons needed and total cost based on distance, vehicle MPG, and fuel price. Supports metric and imperial units.">
+  <meta name="keywords" content="fuel calculator, trip fuel cost calculator, gas mileage calculator, fuel cost estimator, MPG calculator, road trip calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/fuel-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Fuel Calculator - Trip Cost Estimator | GCalc Free Tool">
+  <meta property="og:description" content="Free fuel calculator to estimate trip fuel costs. Calculate gallons needed and total cost based on distance, vehicle MPG, and fuel price. Supports metric and imperial units.">
+  <meta property="og:url" content="https://gcalc.app/calculators/fuel-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Fuel Calculator - Trip Cost Estimator | GCalc Free Tool">
+  <meta name="twitter:description" content="Free fuel calculator to estimate trip fuel costs. Calculate gallons needed and total cost based on distance, vehicle MPG, and fuel price. Supports metric and imperial units.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .fuel-toggle { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .fuel-toggle .btn { flex: 1; padding: 0.5rem; font-size: 0.8rem; }
+    .fuel-toggle .btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .fuel-results { margin-top: 1.5rem; }
+    .fuel-main { font-size: 2.5rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .fuel-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .fuel-details { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+    .fuel-card { background: var(--bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .fuel-card-value { font-family: var(--font-mono); font-size: 1.75rem; font-weight: 700; color: var(--text-primary); }
+    .fuel-card-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .fuel-comparison { margin-top: 1.5rem; padding: 1rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .comparison-title { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+    .comparison-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.5rem; }
+    .comparison-item { padding: 0.5rem; background: var(--surface); border-radius: var(--radius-sm); border: 1px solid var(--border); text-align: center; }
+    .comparison-mpg { font-weight: 700; color: var(--accent); }
+    .comparison-cost { font-family: var(--font-mono); font-size: 0.9rem; }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/fuel-calculator/",
+      "name": "Fuel Calculator | GCalc",
+      "description": "Free fuel calculator to estimate trip fuel costs and gas mileage. Calculate gallons needed and total cost based on distance, MPG, and fuel price.",
+      "url": "https://gcalc.app/calculators/fuel-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/fuel-calculator/#app",
+      "name": "Fuel Calculator",
+      "description": "Free fuel calculator to estimate trip fuel costs and gas mileage. Calculate gallons needed and total cost based on distance, MPG, and fuel price.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate the fuel cost for a road trip",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter the total distance of your trip, your vehicle's average MPG (or L/100km), and the current price of fuel in your area. The calculator multiplies these values to show total gallons (or liters) needed and total cost. For long trips, use the highway MPG value from your vehicle, as sustained highway driving is usually more efficient than city driving."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between MPG and L/100km",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MPG (miles per gallon) measures how far you can travel per unit of fuel. A higher number is better. L/100km (liters per 100 kilometers) measures how much fuel you use per fixed distance. A lower number is better. The two are inverses. A car that gets 30 MPG consumes approximately 7.84 L/100km."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my actual fuel consumption differ from the calculator's estimate",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The calculator uses your input values under ideal conditions. Real-world driving involves stop-and-go traffic, hills, weather, and driving style, all of which affect actual consumption. If you find your real costs are consistently 20% higher, use an adjusted MPG that is 20% lower than your vehicle's rated value."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to drive 100 miles",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At 25 MPG and a fuel price of $3.50 per gallon, driving 100 miles costs $14.00. At 20 MPG and $4.00 per gallon, the same 100 miles costs $20.00. Small changes in efficiency and fuel price have a large impact on total cost."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do electric vehicle fuel costs compare to gasoline",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "EVs are significantly cheaper to fuel. If electricity costs $0.13 per kWh and your EV gets 3 miles per kWh, driving 100 miles costs $4.33. A gasoline car getting 30 MPG at $3.50 per gallon costs $11.67 for the same distance, almost three times as much."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the formula for L/100km to MPG",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MPG = 235.2 \u00f7 (L/100km). For example, a vehicle that consumes 8.0 L/100km gets approximately 29.4 MPG."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does idling affect fuel calculations",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but indirectly. Idling consumes fuel while covering zero distance, which mathematically results in zero MPG for that time period. For every 10 minutes of idling, most vehicles consume 0.1-0.3 gallons. In heavy traffic, factor in an additional 5-10% fuel consumption beyond the distance-based estimate."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How accurate is the fuel price I should use",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the price at the stations you typically visit. Prices fluctuate by location, brand, and day of the week. Midweek fuel (Tuesday and Wednesday) is often cheaper than weekend fuel. For long trips, research average prices along your route to get a realistic total."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much more fuel do I use with the AC running",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Air conditioning typically reduces fuel economy by 5-25% in city driving and 5-10% on the highway. The impact is greater in smaller engines because the AC compressor consumes a larger percentage of total engine power."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I calculate monthly or annual fuel costs with this tool",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Multiply your average weekly distance by 52 (or monthly distance by 12) to get an annual distance, then enter that into the calculator. For mixed driving (city and highway), use a weighted average of your city and highway MPG based on the percentage of time spent in each."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Trip Fuel Cost</h3>
+
+      <div class="fuel-toggle">
+        <button class="btn btn-secondary active" id="mode-imperial" onclick="setFuelMode('imperial')">Miles / MPG / Gal</button>
+        <button class="btn btn-secondary" id="mode-metric" onclick="setFuelMode('metric')">Km / L/100km / Liter</button>
+      </div>
+
+      <div class="calc-form" id="fuel-form-imperial">
+        <div class="form-group"><label class="form-label">Distance (miles)</label><input type="number" id="fuel-dist" class="form-input" placeholder="500" step="1" min="1"></div>
+        <div class="form-group"><label class="form-label">Vehicle MPG</label><input type="number" id="fuel-mpg" class="form-input" placeholder="30" step="0.1" min="1"></div>
+        <div class="form-group"><label class="form-label">Fuel Price ($/gallon)</label><input type="number" id="fuel-price" class="form-input" placeholder="3.50" step="0.01" min="0.01"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetFuel()">Reset</button><button class="btn btn-primary" onclick="calculateFuel()">Calculate</button></div>
+      </div>
+
+      <div class="calc-form hidden" id="fuel-form-metric">
+        <div class="form-group"><label class="form-label">Distance (km)</label><input type="number" id="fuel-dist-km" class="form-input" placeholder="800" step="1" min="1"></div>
+        <div class="form-group"><label class="form-label">Fuel Consumption (L/100km)</label><input type="number" id="fuel-lpk" class="form-input" placeholder="7.5" step="0.1" min="0.1"></div>
+        <div class="form-group"><label class="form-label">Fuel Price ($/liter)</label><input type="number" id="fuel-price-l" class="form-input" placeholder="1.20" step="0.01" min="0.01"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetFuel()">Reset</button><button class="btn btn-primary" onclick="calculateFuel()">Calculate</button></div>
+      </div>
+
+      <div id="fuel-result" class="fuel-results" style="display:none">
+        <div class="fuel-main">
+          <div class="fuel-main-label">Total Fuel Cost</div>
+          <span id="fuel-total">$0.00</span>
+        </div>
+        <div class="fuel-details">
+          <div class="fuel-card"><div class="fuel-card-value" id="fuel-gallons">0</div><div class="fuel-card-label">Gallons / Liters</div></div>
+          <div class="fuel-card"><div class="fuel-card-value" id="fuel-cost-per">$0</div><div class="fuel-card-label">Cost per 100 mi/km</div></div>
+          <div class="fuel-card"><div class="fuel-card-value" id="fuel-remaining">$0</div><div class="fuel-card-label">Cost per Mile/km</div></div>
+        </div>
+        <div class="fuel-comparison">
+          <div class="comparison-title">Cost Comparison at Different MPG</div>
+          <div class="comparison-grid" id="fuel-comparison"></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyFuel()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Fuel Cost Calculator and Why Use One?</h2>
+      <p>A fuel cost calculator is a digital tool that estimates how much money you will spend on fuel for a specific trip or over a given period. It answers the question that every driver, fleet manager, and road trip planner asks before turning the key: how much is this going to cost me? By combining three simple inputs, distance, vehicle fuel efficiency, and fuel price, the calculator provides an accurate estimate of total fuel consumption and total cost.</p>
+      <p>Unlike rough mental math or back-of-the-envelope estimates, a fuel calculator accounts for the specific efficiency of your vehicle and the exact distance of your route. A trip of 500 miles costs very different amounts for a hybrid getting 50 MPG, a sedan getting 30 MPG, and a heavy truck getting 12 MPG. At a fuel price of $3.50 per gallon, that same 500-mile trip costs $35 for the hybrid, $58 for the sedan, and nearly $150 for the truck. These differences add up quickly for daily commutes, weekly grocery runs, and long vacations.</p>
+      <p>Beyond personal budgeting, fuel calculators are essential tools for businesses that operate vehicle fleets, logistics companies calculating delivery costs, and rideshare drivers who need to understand their net earnings after fuel expenses. Accurate fuel cost estimation helps prevent surprise expenses and supports better decision-making, whether you are buying a new vehicle, choosing a route, or planning a cross-country move.</p>
+
+      <h2>How the Fuel Calculator Works: The Formulas Behind the Numbers</h2>
+      <p>Our calculator supports both Imperial (US) and Metric (European/International) units and automatically handles the conversion logic so you do not have to think about it. Here is how the math works in each system:</p>
+      <p><strong>Imperial System (Miles, MPG, and Gallons):</strong></p>
+      <ul>
+        <li>Gallons needed = Distance (miles) ÷ Miles per Gallon (MPG)</li>
+        <li>Total cost = Gallons needed × Price per gallon ($)</li>
+      </ul>
+      <p>Example: A 400-mile trip in a car that gets 25 MPG on the highway with fuel at $3.60 per gallon requires 16 gallons and costs $57.60.</p>
+      <p><strong>Metric System (Kilometers, L/100km, and Liters):</strong></p>
+      <ul>
+        <li>Liters needed = Distance (km) × (Liters per 100km ÷ 100)</li>
+        <li>Total cost = Liters needed × Price per liter (€, 元, etc.)</li>
+      </ul>
+      <p>Example: A 600-kilometer trip in a car that consumes 7.0 L/100km with fuel at €1.80 per liter requires 42 liters and costs €75.60.</p>
+      <p>Both formulas yield the same physical result when converted, but using the correct system for your region ensures that you are comparing apples to apples when evaluating vehicle efficiency. In the metric system, a lower L/100km number is better, while in the Imperial system, a higher MPG number is better. This inverse relationship is a common source of confusion for international drivers.</p>
+
+      <h2>Understanding Fuel Efficiency: MPG, L/100km, and MPGe Explained</h2>
+      <p>Miles per gallon (MPG) is the most common fuel efficiency metric in the United States, Canada, and the United Kingdom. It measures how many miles a vehicle can travel using one gallon of fuel. A higher number means greater efficiency. However, MPG is not a linear measure. The improvement from 10 MPG to 20 MPG saves much more fuel than the improvement from 30 MPG to 40rossover: 20-28 MPG</li>
+        <li><strong>Truck/Van:</strong> 15-22 MPG</li>
+        <li><strong>Large SUV/Truck:</strong> 12-18 MPG</li>
+      </ul>
+
+      <h3>L/100km to MPG Conversion Table</h3>
+      <ul>
+        <li>3.0 L/100km = 78 MPG</li>
+        <li>5.0 L/100km = 47 MPG</li>
+        <li>7.0 L/100km = 34 MPG</li>
+        <li>10.0 L/100km = 24 MPG</li>
+        <li>12.0 L/100km = 20 MPG</li>
+        <li>15.0 L/100km = 16 MPG</li>
+      </ul>
+      <p>Formula: MPG = 235.2 ÷ (L/100km)</p>
+
+      <h2>Real-World Factors That Affect Your Actual MPG</h2>
+      <p>The fuel efficiency figure printed on your vehicle's window sticker or in its manual is measured under controlled laboratory conditions. In the real world, your actual MPG can be 20-30% lower depending on how and where you drive. Understanding these factors helps you adjust your expectations and your inputs when using the calculator.</p>
+      <ul>
+        <li><strong>Driving style:</strong> Aggressive acceleration and hard braking can reduce MPG by 15-30% in stop-and-go traffic. Smooth, gradual acceleration and coasting toward red lights are the most effective ways to improve efficiency.</li>
+        <li><strong>Speed:</strong> Fuel efficiency drops significantly above 50-60 mph (80-100 km/h) due to aerodynamic drag. At 70 mph, most vehicles lose 10-15% of their highway MPG compared to 55 mph. At 80 mph, the loss can be 20-25%.</li>
+        <li><strong>Vehicle weight:</strong> Every extra 100 pounds reduces MPG by approximately 1%. Carrying heavy cargo, a full trunk, or additional passengers adds up quickly.</li>
+        <li><strong>Tire pressure:</strong> Under-inflated tires create rolling resistance and reduce MPG by roughly 0.3% for every 1 PSI below the recommended pressure. A tire that is 10 PSI under can cost you 3% in efficiency.</li>
+        <li><strong>Air conditioning:</strong> Running the AC compressor can reduce MPG by 5-25% in city driving and 5-10% on the highway. At low speeds, opening the windows is more efficient than using AC. At high speeds, the opposite is true due to drag.</li>
+        <li><strong>Cold weather:</strong> Winter blend fuel, which vaporizes more easily for cold starts, contains less energy per gallon and reduces MPG by 5-10%. Additional warm-up time and decreased battery performance in hybrids further reduce winter efficiency.</li>
+        <li><strong>Topography:</strong> Hilly or mountainous routes require more energy for climbing. What goes up must come down, but regenerative braking only recaptures a fraction of the energy spent.</li>
+      </ul>
+
+      <h2>Electric Vehicle Efficiency: MPGe, kWh, and Cost Per Mile</h2>
+      <p>Electric vehicles (EVs) do not use gasoline, so traditional MPG is not applicable. Instead, the industry uses two main metrics:</p>
+      <ul>
+        <li><strong>MPGe (Miles Per Gallon equivalent):</strong> This metric compares the energy content of electricity to gasoline. One gallon拉力. A higher number means you are driving farther on the same amount of energy. For example, a vehicle going from 20 MPG to 30 MPG saves more fuel per mile than one going from 30 MPG to 40 MPG, because the gallons saved per 100 miles is greater for lower-MPG vehicles.</li>
+        <li><strong>Liters per 100 kilometers (L/100km):</strong> Used in Europe, Australia, and most of the world, this metric measures the volume of fuel consumed to travel a fixed distance. A lower number is better. Because it measures consumption per unit distance rather than distance per unit fuel, it is often considered more intuitive for cost estimation.</li>
+        <li><strong>MPGe (Miles Per Gallon equivalent):</strong> Used for electric and plug-in hybrid vehicles, MPGe converts electrical energy into a gasoline equivalent for comparison purposes. 33.7 kWh of electrical energy equals the energy in one gallon of gasoline.</li>
+      </ul>
+
+      <h2>Typical Vehicle MPG Ranges by Class</h2>
+      <p>Knowing where your vehicle fits within typical ranges helps you input realistic numbers and detect potential mechanical problems if your actual efficiency is far below average.</p>
+      <ul>
+        <li><strong>Hybrid/Electric:</strong> 50+ MPG (or 80-120+ MPGe for full EVs)</li>
+        <li><strong>Compact Car:</strong> 30-40 MPG</li>
+        <li><strong>Sedan:</strong> 25-35 MPG</li>
+        <li><strong>SUV/Crossover:</strong> 20-28 MPG</li>
+        <li><strong>Truck/Van:</strong> 15-22 MPG</li>
+        <li><strong>Large SUV/Truck:</strong> 12-18 MPG</li>
+      </ul>
+
+      <h2>Money-Saving Strategies for Fuel</h2>
+      <p>Once you know what your trips cost, the next step is reducing those costs. These strategies can save hundreds of dollars per year:</p>
+      <ul>
+        <li><strong>Use fuel price apps:</strong> Apps like GasBuddy, Waze, and Fuelio show real-time fuel prices near you. Regular savings of $0.10-0.30 per gallon are common.</li>
+        <li><strong>Loyalty programs and credit cards:</strong> Reward credit cards offer 3-5% cash back on fuel purchases. Gas station loyalty programs often provide $0.05-0.10 per gallon discounts that stack with card rewards.</li>
+        <li><strong>Route optimization:</strong> Apps like Google Maps and Waze help avoid traffic, idling, and unnecessary miles. Combining multiple errands into a single trip saves both time and fuel.</li>
+        <li><strong>Vehicle maintenance:</strong> Regular oil changes, clean air filters, and properly inflated tires maintain optimal efficiency. A dirty air filter alone can reduce MPG by 5-10%.</li>
+        <li><strong>Aerodynamics:</strong> Roof racks increase drag and reduce highway MPG by 5-15%. Remove them when not in use.</li>
+        <li><strong>Weight reduction:</strong> Empty the trunk. Carrying unnecessary cargo adds weight and reduces efficiency.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions About Fuel Calculation</h2>
+      <p><strong>How do I calculate the fuel cost for a road trip?</strong> Enter the total distance of your trip, your vehicle's average MPG (or L/100km), and the current price of fuel in your area. The calculator multiplies these values to show total gallons (or liters) needed and total cost. For long trips, use the highway MPG value from your vehicle, as sustained highway driving is usually more efficient than city driving.</p>
+      <p><strong>What is the difference between MPG and L/100km?</strong> MPG (miles per gallon) measures how far you can travel per unit of fuel. A higher number is better. L/100km (liters per 100 kilometers) measures how much fuel you use per fixed distance. A lower number is better. The two are inverses. A car that gets 30 MPG consumes approximately 7.84 L/100km.</p>
+      <p><strong>Why does my actual fuel consumption differ from the calculator's estimate?</strong> The calculator uses your input values under ideal conditions. Real-world driving involves stop-and-go traffic, hills, weather, and driving style, all of which affect actual consumption. If you find your real costs are consistently 20% higher, use an adjusted MPG that is 20% lower than your vehicle's rated value.</p>
+      <p><strong>How much does it cost to drive 100 miles?</strong> At 25 MPG and a fuel price of $3.50 per gallon, driving 100 miles costs $14.00. At 20 MPG and $4.00 per gallon, the same 100 miles costs $20.00. Small changes in efficiency and fuel price have a large impact on total cost.</p>
+      <p><strong>How do electric vehicle fuel costs compare to gasoline?</strong> EVs are significantly cheaper to fuel. If electricity costs $0.13 per kWh and your EV gets 3 miles per kWh, driving 100 miles costs $4.33. A gasoline car getting 30 MPG at $3.50 per gallon costs $11.67 for the same distance, almost three times as much.</p>
+      <p><strong>What is the formula for L/100km to MPG?</strong> MPG = 235.2 ÷ (L/100km). For example, a vehicle that consumes 8.0 L/100km gets approximately 29.4 MPG.</p>
+      <p><strong>Does idling affect fuel calculations?</strong> Yes, but indirectly. Idling consumes fuel while covering zero distance, which mathematically results in zero MPG for that time period. For every 10 minutes of idling, most vehicles consume 0.1-0.3 gallons. In heavy traffic, factor in an additional 5-10% fuel consumption beyond the distance-based estimate.</p>
+      <p><strong>How accurate is the fuel price I should use?</strong> Use the price at the stations you typically visit. Prices fluctuate by location, brand, and day of the week. Midweek fuel (Tuesday and Wednesday) is often cheaper than weekend fuel. For long trips, research average prices along your route to get a realistic total.</p>
+      <p><strong>How much more fuel do I use with the AC running?</strong> Air conditioning typically reduces fuel economy by 5-25% in city driving and 5-10% on the highway. The impact is greater in smaller engines because the AC compressor consumes a larger percentage of total engine power.</p>
+      <p><strong>Can I calculate monthly or annual fuel costs with this tool?</strong> Yes. Multiply your average weekly distance by 52 (or monthly distance by 12) to get an annual distance, then enter that into the calculator. For mixed driving (city and highway), use a weighted average of your city and highway MPG based on the percentage of time spent in each.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../date-calculator/">Date Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    let fuelMode = 'imperial';
+
+    function setFuelMode(mode) {
+      fuelMode = mode;
+      document.getElementById('mode-imperial').classList.toggle('active', mode === 'imperial');
+      document.getElementById('mode-metric').classList.toggle('active', mode === 'metric');
+      document.getElementById('fuel-form-imperial').classList.toggle('hidden', mode === 'metric');
+      document.getElementById('fuel-form-metric').classList.toggle('hidden', mode === 'imperial');
+      document.getElementById('fuel-result').style.display = 'none';
+    }
+
+    function calculateFuel() {
+      let distance, consumption, price;
+      let unitVol, unitDist, unitPrice, mpgEquiv;
+
+      if (fuelMode === 'imperial') {
+        distance = parseFloat(document.getElementById('fuel-dist').value);
+        consumption = parseFloat(document.getElementById('fuel-mpg').value);
+        price = parseFloat(document.getElementById('fuel-price').value);
+        unitVol = 'gal'; unitDist = 'mile'; unitPrice = 'gal'; mpgEquiv = consumption;
+      } else {
+        distance = parseFloat(document.getElementById('fuel-dist-km').value);
+        consumption = parseFloat(document.getElementById('fuel-lpk').value);
+        price = parseFloat(document.getElementById('fuel-price-l').value);
+        unitVol = 'L'; unitDist = 'km'; unitPrice = 'L';
+        // Convert L/100km to MPG for comparison
+        mpgEquiv = 235.2 / consumption;
+      }
+
+      if (isNaN(distance) || distance < 0 || isNaN(consumption) || consumption <= 0 || isNaN(price) || price < 0) {
+        document.getElementById('fuel-result').style.display = 'none';
+        return;
+      }
+
+      let volume, totalCost, costPer100, costPerUnit;
+
+      if (fuelMode === 'imperial') {
+        volume = distance / consumption; // gallons
+        totalCost = volume * price;
+        costPer100 = (100 / consumption) * price;
+        costPerUnit = price / consumption;
+      } else {
+        volume = distance * (consumption / 100); // liters
+        totalCost = volume * price;
+        costPer100 = consumption * price;
+        costPerUnit = price * consumption / 100;
+      }
+
+      document.getElementById('fuel-total').textContent = '$' + totalCost.toFixed(2);
+      document.getElementById('fuel-gallons').textContent = volume.toFixed(1) + ' ' + unitVol;
+      document.getElementById('fuel-cost-per').textContent = '$' + costPer100.toFixed(2) + ' / 100 ' + unitDist;
+      document.getElementById('fuel-remaining').textContent = '$' + costPerUnit.toFixed(3) + ' / ' + unitDist;
+
+      // Comparison table
+      const compareMpgs = [15, 20, 25, 30, 35, 40, 50];
+      let html = '';
+      compareMpgs.forEach(mpg => {
+        let compCost;
+        if (fuelMode === 'imperial') {
+          compCost = (distance / mpg) * price;
+        } else {
+          const lpk = 235.2 / mpg;
+          compCost = distance * (lpk / 100) * price;
+        }
+        const savings = totalCost - compCost;
+        const saveColor = savings > 0 ? 'var(--success)' : 'var(--error)';
+        html += `
+          <div class="comparison-item">
+            <div class="comparison-mpg">${mpg} MPG</div>
+            <div class="comparison-cost">$${compCost.toFixed(0)}</div>
+            <div style="font-size:0.7rem;color:${saveColor};margin-top:0.25rem">
+              ${savings >= 0 ? 'Save' : 'Extra'} $${Math.abs(savings).toFixed(0)}
+            </div>
+          </div>
+        `;
+      });
+      document.getElementById('fuel-comparison').innerHTML = html;
+
+      document.getElementById('fuel-result').style.display = 'block';
+    }
+
+    function resetFuel() {
+      document.getElementById('fuel-dist').value = '';
+      document.getElementById('fuel-mpg').value = '';
+      document.getElementById('fuel-price').value = '';
+      document.getElementById('fuel-dist-km').value = '';
+      document.getElementById('fuel-lpk').value = '';
+      document.getElementById('fuel-price-l').value = '';
+      document.getElementById('fuel-result').style.display = 'none';
+    }
+
+    function copyFuel() {
+      const total = document.getElementById('fuel-total').textContent;
+      const vol = document.getElementById('fuel-gallons').textContent;
+      const per100 = document.getElementById('fuel-cost-per').textContent;
+      copyToClipboard(`Total: ${total} | Fuel: ${vol} | Per 100: ${per100}`);
+    }
+
+    document.querySelectorAll('#fuel-dist, #fuel-mpg, #fuel-price, #fuel-dist-km, #fuel-lpk, #fuel-price-l').forEach(i => i.addEventListener('input', calculateFuel));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

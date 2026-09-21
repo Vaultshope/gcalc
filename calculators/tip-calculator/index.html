@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tip Calculator - Bill Splitting & Gratitude Calculator | GCalc</title>
+  <meta name="description" content="Calculate restaurant tips and split bills easily with our free tip calculator. Enter bill amount, tip percentage, and number of people to find per-person cost.">
+  <meta name="keywords" content="tip calculator, bill splitter, restaurant tip calculator, split bill, gratuity calculator, tip calculator free">
+  <link rel="canonical" href="https://gcalc.app/calculators/tip-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Tip Calculator - Bill Splitting & Gratitude Calculator | GCalc">
+  <meta property="og:description" content="Calculate restaurant tips and split bills easily with our free tip calculator. Enter bill amount, tip percentage, and number of people to find per-person cost.">
+  <meta property="og:url" content="https://gcalc.app/calculators/tip-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tip Calculator - Bill Splitting & Gratitude Calculator | GCalc">
+  <meta name="twitter:description" content="Calculate restaurant tips and split bills easily with our free tip calculator. Enter bill amount, tip percentage, and number of people to find per-person cost.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .result-details { margin-top: 1.5rem; padding: 1rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .result-row { display: flex; justify-content: space-between; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+    .result-row:last-child { border-bottom: none; font-weight: 700; color: var(--accent); }
+    .result-row span:first-child { color: var(--text-muted); }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/tip-calculator/",
+      "name": "Tip Calculator | GCalc",
+      "description": "Free tip calculator to calculate gratuity and split bills among friends. No sign-up required.",
+      "url": "https://gcalc.app/calculators/tip-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/tip-calculator/#app",
+      "name": "Tip Calculator",
+      "description": "Free tip calculator to calculate gratuity and split bills among friends. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Should I tip on the pre-tax amount",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, pre-tax is the standard, but post-tax is slightly more generous and only adds a dollar or two."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a fair tip for bad service",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "10% signals dissatisfaction. Speak to a manager if the issue was the server's fault rather than the kitchen's."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to tip if gratuity is included",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Additional tipping is optional and reserved for extraordinary service."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much for takeout",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not expected, but 10% or $2-3 is a nice gesture if the restaurant packaged it well."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I tip at self-checkout",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Tipping is for labor, not automation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Cash vs credit card tips",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cash is preferred by workers (immediate, no processing fees). Credit card tips are taxed and may be delayed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do group payment apps handle tips",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Apps like Venmo, Splitwise, and Cash App let you input the total bill, tip percentage, and number of people to divide the cost. Our calculator does the same math instantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I tip wedding vendors",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 15-20% for caterers and bartenders, and $50-200 for DJs/photographers, unless the contract says gratuity is included."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Your Tip</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Bill Amount</label><input type="number" id="tip-bill" class="form-input" placeholder="100" step="0.01"></div>
+        <div class="form-group"><label class="form-label">Tip Percentage</label><input type="number" id="tip-percent" class="form-input" placeholder="20" value="20"></div>
+        <div class="form-group"><label class="form-label">Number of People</label><input type="number" id="tip-people" class="form-input" placeholder="2" value="1" min="1"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetTip()">Reset</button><button class="btn btn-primary" onclick="calculateTip()">Calculate</button></div>
+      </div>
+      <div id="tip-result" class="calc-result">
+        <div class="result-details">
+          <div class="result-row"><span>Bill:</span><span id="result-bill">$0.00</span></div>
+          <div class="result-row"><span>Tip (<span id="result-pct">0</span>%):</span><span id="result-tip">$0.00</span></div>
+          <div class="result-row"><span>Total:</span><span id="result-total">$0.00</span></div>
+          <div class="result-row"><span>Per Person:</span><span id="result-perp">$0.00</span></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyResult()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>How to Calculate a Tip</h2>
+      <p>Tipping is a common practice in many countries, especially in the United States where restaurant service workers rely on gratuities as part of their income. Here's a simple guide:</p>
+      <p>While tipping is primarily a voluntary practice, it is deeply embedded in the social contract of American service industries. Refusing to tip or significantly undertipping is widely considered rude because it directly impacts the livelihood of service workers who depend on gratuities. However, the customs, amounts, and expectations vary dramatically by service type, region, and country. Understanding these nuances allows you to tip confidently and appropriately.</p>
+
+      <h2>Standard Tipping Percentages by Service Type</h2>
+      <p>The percentage you tip should generally reflect the quality of service and local customs. Here is a comprehensive breakdown:</p>
+      <ul>
+        <li><strong>Restaurants (Table Service):</strong> 15% for acceptable, 18-20% for good, 22-25%+ for exceptional. For poor service, speak to a manager rather than stiffing the server.</li>
+        <li><strong>Bartenders:</strong> $1-2 per drink or 15-20% of tab. For complex cocktails, tip more.</li>
+        <li><strong>Delivery Drivers:</strong> 10-15% of order, minimum $3-5. More for bad weather or if they climb stairs.</li>
+        <li><strong>Hair Stylists / Barbers:</strong> 15-20%. Tip shampoo assistants $3-5 separately.</li>
+        <li><strong>Spa Services:</strong> 15-20% per service provider.</li>
+        <li><strong>Taxi / Rideshare:</strong> 15-20%. Cash tips preferred for rideshare.</li>
+        <li><strong>Hotel Staff:</strong> Porters $1-2/bag, housekeeping $2-5/night, concierge $5-20 for bookings.</li>
+        <li><strong>Food Delivery Apps:</strong> 15% or flat $5 minimum. Zero-tip orders often cost the driver money.</li>
+        <li><strong>Moving Services:</strong> $20-40 per mover, or 10-15% of moving cost.</li>
+        <li><strong>Wedding Vendors:</strong> Caterers 15-20%, DJs/photographers $50-200 each. Check contracts for included gratuity.</li>
+      </ul>
+
+      <h2>Pre-Tax vs Post-Tax Tipping</h2>
+      <p>The standard practice is tipping on the pre-tax subtotal, because sales tax goes to the government. On a $100 bill with 8% tax, a 20% pre-tax tip is $20; post-tax is $21.60. The difference is small, but tipping pre-tax is the convention.</p>
+
+      <h2>Tipping for Large Parties and Group Dining</h2>
+      <p>Most U.S. restaurants automatically add 18-20% gratuity for parties of 6 or more. This "auto-gratuity" is mandatory. Always check your bill before adding an separate tip.</p>
+
+      <h2>Regional and Cultural Variations in Tipping</h2>
+      <ul>
+        <li><strong>United States & Canada:</strong> 15-20% expected, constitutes most of service workers' income.</li>
+        <li><strong>United Kingdom:</strong> 10-12.5% service charge often added automatically.</li>
+        <li><strong>France:</strong> "Service compris" means tip is included; no extra needed.</li>
+        <li><strong>Japan:</strong> Tipping is not customary and can be considered rude.</li>
+        <li><strong>Australia & New Zealand:</strong> Not standard; workers are paid a living wage.</li>
+        <li><strong>China:</strong> Generally not practiced.</li>
+        <li><strong>Mexico:</strong> 10-15% in tourist areas. Check if "propina incluida" is on the bill-DD check on the bill.</li>
+      </ul>
+
+      <h2>When Not to Tip (or to Tip Less)</h2>
+      <ul>
+        <li><strong>Poor Service:</strong> Consider 10% or speaking to a manager. Don't punish the server for kitchen delays.</li>
+        <li><strong>Self-Service:</strong> No tip needed at fast food, counter-service cafes, or buffets.</li>
+        <li><strong>Government/Healthcare Workers:</strong> Tipping can be seen as a bribe.</li>
+        <li><strong>Service Charge Included:</strong> If an 18-20% charge is already on the bill, it functions as the tip.</li>
+      </ul>
+
+      <h2>The Psychology of Tipping</h2>
+      <p>Research shows social norms are the strongest driver of tipping behavior. When a server stands there while the customer selects a tip on a card reader, average tips increase by 2-3 percentage points. Many people also round up as a mental shortcut — if the bill is $47, they leave $10 rather than calculating exactly 20% ($9.40). Our calculator helps you avoid mental shortcuts and tip accurately.</p>
+
+      <h2>Frequently Asked Questions About Tipping</h2>
+      <p><strong>Should I tip on the pre-tax amount?</strong> Yes, pre-tax is the standard, but post-tax is slightly more generous and only adds a dollar or two.</p>
+      <p><strong>What is a fair tip for bad service?</strong> 10% signals dissatisfaction. Speak to a manager if the issue was the server's fault rather than the kitchen's.</p>
+      <p><strong>Do I need to tip if gratuity is included?</strong> No. Additional tipping is optional and reserved for extraordinary service.</p>
+      <p><strong>How much for takeout?</strong> Not expected, but 10% or $2-3 is a nice gesture if the restaurant packaged it well.</p>
+      <p><strong>Should I tip at self-checkout?</strong> No. Tipping is for labor, not automation.</p>
+      <p><strong>Cash vs credit card tips?</strong> Cash is preferred by workers (immediate, no processing fees). Credit card tips are taxed and may be delayed.</p>
+      <p><strong>How do group payment apps handle tips?</strong> Apps like Venmo, Splitwise, and Cash App let you input the total bill, tip percentage, and number of people to divide the cost. Our calculator does the same math instantly.</p>
+      <p><strong>Do I tip wedding vendors?</strong> Yes, 15-20% for caterers and bartenders, and $50-200 for DJs/photographers, unless the contract says gratuity is included.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+
+    function calculateTip() {
+      const bill = parseFloat(document.getElementById('tip-bill').value) || 0;
+      const pct = parseFloat(document.getElementById('tip-percent').value) || 0;
+      const people = parseInt(document.getElementById('tip-people').value) || 1;
+
+      const tipAmt = bill * pct / 100;
+      const total = bill + tipAmt;
+      const perPerson = total / people;
+
+      document.getElementById('result-bill').textContent = '$' + bill.toFixed(2);
+      document.getElementById('result-pct').textContent = pct;
+      document.getElementById('result-tip').textContent = '$' + tipAmt.toFixed(2);
+      document.getElementById('result-total').textContent = '$' + total.toFixed(2);
+      document.getElementById('result-perp').textContent = '$' + perPerson.toFixed(2);
+      document.getElementById('tip-result').classList.add('visible');
+    }
+
+    function resetTip() {
+      document.getElementById('tip-bill').value = '';
+      document.getElementById('tip-percent').value = '';
+      document.getElementById('tip-people').value = '';
+      document.getElementById('tip-result').classList.remove('visible');
+    }
+
+    function copyResult() {
+      const bill = document.getElementById('result-bill').textContent;
+      const tip = document.getElementById('result-tip').textContent;
+      const total = document.getElementById('result-total').textContent;
+      const perp = document.getElementById('result-perp').textContent;
+      copyToClipboard(`Bill: ${bill} | Tip: ${tip} | Total: ${total} | Per Person: ${perp}`);
+    }
+
+    document.querySelectorAll('#tip-bill, #tip-percent, #tip-people').forEach(i => i.addEventListener('input', calculateTip));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

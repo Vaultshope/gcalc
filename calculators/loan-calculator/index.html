@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Calculator - Monthly Payment Estimator | GCalc Free Tool</title>
+  <meta name="description" content="Free loan calculator to estimate monthly payments for personal, auto, or student loans. Enter loan amount, interest rate, and term to see your payment breakdown.">
+  <meta name="keywords" content="loan calculator, monthly payment calculator, loan payment estimator, personal loan calculator, auto loan calculator, amortization calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/loan-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Loan Calculator - Monthly Payment Estimator | GCalc Free Tool">
+  <meta property="og:description" content="Free loan calculator to estimate monthly payments for personal, auto, or student loans. Enter loan amount, interest rate, and term to see your payment breakdown.">
+  <meta property="og:url" content="https://gcalc.app/calculators/loan-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Loan Calculator - Monthly Payment Estimator | GCalc Free Tool">
+  <meta name="twitter:description" content="Free loan calculator to estimate monthly payments for personal, auto, or student loans. Enter loan amount, interest rate, and term to see your payment breakdown.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+    .result-breakdown { margin-top: 1.5rem; }
+    .result-main { font-size: 2rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .result-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .result-details { margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .detail-card { background: var(--bg); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .detail-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; }
+    .detail-value { font-family: var(--font-mono); font-size: 1.1rem; margin-top: 0.25rem; }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/loan-calculator/",
+      "name": "Loan Calculator | GCalc",
+      "description": "Free loan calculator to estimate monthly payments for personal, auto, or student loans. Enter loan amount, interest rate, and term to see your payment breakdown.",
+      "url": "https://gcalc.app/calculators/loan-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/loan-calculator/#app",
+      "name": "Loan Calculator",
+      "description": "Free loan calculator to estimate monthly payments for personal, auto, or student loans. Enter loan amount, interest rate, and term to see your payment breakdown.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is my monthly payment calculated",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is calculated using the amortization formula, which takes into account your principal, interest rate, and loan term. Early payments are interest-heavy, while later payments are principal-heavy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I pay off my loan early without penalty",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most modern personal and auto loans allow early repayment without penalty, but always check your loan agreement. Some subprime or title loans include prepayment penalties."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does applying for a loan hurt my credit",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A hard credit inquiry from a loan application typically lowers your score by 5-10 points for a few months. Multiple inquiries for the same type of loan within a 14-45 day window are usually counted as a single inquiry."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good interest rate for a personal loan",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For excellent credit (720+), 6-10% is competitive. For good credit (690-719), 11-15%. For fair credit (630-689), expect 18-25%. Below 630, rates above 25% are common."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Should I choose a longer term for lower monthly payments",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Only if the lower payment is necessary for cash flow. Otherwise, a shorter term saves substantial interest. The 84-month auto loan is generally a trap."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is debt-to-income ratio (DTI)",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DTI is your total monthly debt payments divided by your gross monthly income. Lenders prefer a DTI below 36%, and some require it below 43% for mortgage qualification."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get a loan with bad credit",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, but rates will be high (25-36%). Consider credit unions, peer-to-peer lenders, or secured loans. Improving your credit score by even 50 points can save thousands."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is a co-signer a good idea",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A co-signer with good credit can help you qualify and secure a lower rate, but they are legally responsible for the debt if you default. This can strain personal relationships."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Your Loan Payment</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Loan Amount</label><input type="number" id="loan-principal" class="form-input" placeholder="250000" step="1000"></div>
+        <div class="form-group"><label class="form-label">Interest Rate (%)</label><input type="number" id="loan-rate" class="form-input" placeholder="5.5" step="0.01"></div>
+        <div class="form-group"><label class="form-label">Loan Term (Years)</label>
+          <select id="loan-years" class="form-select"><option value="30" selected>30 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option><option value="7">7 years</option><option value="5">5 years</option></select>
+        </div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetLoan()">Reset</button><button class="btn btn-primary" onclick="calculateLoan()">Calculate</button></div>
+      </div>
+      <div id="loan-result" class="calc-result">
+        <div class="result-main">
+          <div class="result-main-label">Monthly Payment</div>
+          <span id="loan-monthly">$0</span>
+        </div>
+        <div class="result-details">
+          <div class="detail-card"><div class="detail-label">Total Payment</div><div class="detail-value" id="loan-total">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Total Interest</div><div class="detail-value" id="loan-interest">$0</div></div>
+          <div class="detail-card"><div class="detail-label">Number of Payments</div><div class="detail-value" id="loan-payments">0</div></div>
+          <div class="detail-card"><div class="detail-label">Principal</div><div class="detail-value" id="loan-principal-out">$0</div></div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyLoan()">Copy Results</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>How to Calculate Your Loan Payment and Total Interest</h2>
+      <p>Understanding your loan payment before signing any agreement is one of the most important steps in personal financial management. Whether you are financing a car, paying for education, consolidating debt, or covering an unexpected expense, knowing the exact monthly payment and total cost of borrowing helps you avoid overextending your budget. Our loan calculator uses the standard amortization formula to give you an accurate, instant estimate.</p>
+      <p>A loan is an agreement where a lender provides you with a sum of money, and you agree to repay it over a set period with interest. The cost of the loan is the interest. The tool on this page breaks down how much of each payment goes toward principal (the amount borrowed) versus interest (the cost of borrowing), how many payments you will make, and the total amount paid over the life of the loan.</p>
+
+      <h2>What Affects Your Loan Payment?</h2>
+      <p>Your monthly payment is determined by three variables: the principal (the amount you borrow), the interest rate, and the loan term (how long you take to pay it back). If you increase the principal or the interest rate, your payment goes up. If you extend the term, your monthly payment goes down, but the total interest paid increases, often dramatically.</p>
+      <p>For example, a $25,000 auto loan at 7% interest over 3 years has a monthly payment of $772 and a total interest cost of $2,784. The same loan stretched to 7 years drops the payment to $378 but more than doubles the total interest to $7,728. This is why understanding the trade-off between monthly affordability and total cost is crucial.</p>
+
+      <h2>Using the Amortization Formula</h2>
+      <p>The monthly payment on an installment loan is calculated using the amortization formula: <strong>M = P × [ r(1+r)ⁿ ] / [ (1+r)ⁿ - 1 ]</strong>. Here, M is the monthly payment, P is the principal, r is the monthly interest rate (annual rate divided by 12), and n is the total number of payments (loan term in years times 12). This formula assumes fixed monthly payments over the life of the loan.</p>
+      <p>Early in the loan, most of your payment goes toward interest. For example, on a $25,000 loan at 7% over 5 years, your first payment is $495.03, of which $145.83 is interest and only $349.20 goes to principal. By the final payment, only $2.88 is interest and $492.15 goes to principal. This front-loading of interest is a fundamental characteristic of amortized loans.</p>
+
+      <h2>Common Types of Loans and Their Typical Rates</h2>
+      <ul>
+        <li><strong>Personal Loans:</strong> Unsecured, typically used for debt consolidation, medical expenses, or large purchases. Terms range from 1 to 7 years, with APRs from 6% (excellent credit) to 36% (fair credit).</li>
+        <li><strong>Auto Loans:</strong> Secured by the vehicle itself. Terms from 36 to 84 months, with APRs from 4% (new car, good credit) to 15% or higher (used car, poor credit). Longer terms reduce monthly payments but increase total interest significantly.</li>
+        <li><strong>Student Loans:</strong> Federal loans have fixed rates (currently around 5-7%) and income-driven repayment options. Private loans can be fixed or variable, with rates from 4% to 15% depending on credit.</li>
+        <li><strong>Debt Consolidation Loans:</strong> A specific type of personal loan used to combine multiple high-interest debts (like credit cards) into one lower-interest, fixed-payment loan. This is usually beneficial if the new rate is at least 3-4 percentage points lower than your current average.</li>
+        <li><strong>Home Equity Loans (HELOC):</strong> Secured by your home equity. Typically have lower rates (6-10%) but come with the risk of foreclosure if you default.</li>
+      </ul>
+
+      <h2>Understanding Interest Rates and APR</h2>
+      <p>The interest rate is the cost of borrowing the principal, expressed as a percentage. The APR (Annual Percentage Rate) is a broader measure that includes the interest rate plus any lender fees, origination charges, and prepaid finance charges, spread across the loan term. When comparing loans, always use APR for an apples-to-apples comparison.</p>
+      <p>For example, one lender offers a 6% rate with no fees, while another offers 5.5% with a $500 origination fee on a $10,000 loan. The first loan's APR is 6%. The second loan's APR is approximately 6.4% because the fee effectively raises the cost of borrowing. The first loan is actually cheaper.</p>
+
+      <h2>How Credit Score Impacts Your Loan Terms</h2>
+      <p>Your credit score is the single most important factor in determining your loan terms. It is a three-digit number (typically 300 to 850) that lenders use to assess the risk of lending to you. Here is how credit scores generally map to personal loan APRs:</p>
+      <ul>
+        <li><strong>Excellent (720-850):</strong> 6% - 12% APR</li>
+        <li><strong>Good (690-719):</strong> 13% - 17% APR</li>
+        <li><strong>Fair (630-689):</strong> 18% - 28% APR</li>
+        <li><strong>Poor (300-629):</strong> 29% - 36% APR or denial</li>
+      </ul>
+      <p>If your credit score is below 630, consider improving it before applying. Paying down credit card balances to below 30% of your credit limit, disputing errors on your credit report, and making all payments on time for 6-12 months can raise your score enough to qualify for dramatically better rates.</p>
+
+      <h2>Strategies to Pay Off Your Loan Faster and Save Money</h2>
+      <ul>
+        <li><strong>Make Extra Principal Payments:</strong> Even $50-$100 extra per month can shave months or years off your loan and save hundreds in interest. Specify that extra payments should go to principal, not future payments.</li>
+        <li><strong>Round Up Your Payments:</strong> If your payment is $347, Fleming's technique is rounding up to $350 or $400. The extra amount accelerates principal reduction with minimal budget impact.</li>
+        <li><strong>Biweekly Payments:</strong> Paying half your monthly payment every two weeks results in 26 half-payments, or 13 full payments per year instead of 12. This one extra payment per year can reduce a 5-year loan by several months.</li>
+        <li><strong>Refinance When Rates Drop:</strong> If market rates fall or your credit score improves, refinancing to a lower rate can lower your payment or shorten your term without increasing the monthly burden.</li>
+        <li><strong>Avoid Prepayment Penalties:</strong> Some subprime lenders charge fees for early payoff. Read the fine print and avoid loans with prepayment penalties if you plan to pay off early.</li>
+      </ul>
+
+      <h2>When Debt Consolidation Makes Sense</h2>
+      <p>Debt consolidation involves taking out a new loan to pay off multiple existing debts, typically credit cards. It makes financial sense if the new loan's APR is at least 3-4 percentage points lower than the weighted average of your current debts and if you commit to not accumulating new debt.</p>
+      <p>For example, if you have $15,000 spread across three credit cards at 22%, 24%, and 28% APR, your weighted average is roughly 25%. Consolidating into a 5-year personal loan at 12% drops your total interest from approximately $12,000 to $5,000, saving $7,000. However, if you run the credit cards back up after consolidation, you end up in a worse position than before.</p>
+
+      <h2>The Hidden Costs of Long Loan Terms</h2>
+      <p>Loan advertisements often advertise "payments as low as $150/month." What they don't advertise is that achieving such a low payment requires extending the term to 6, 7, or even 8 years. This dramatically increases the total interest paid and can lead to a situation where you owe more than the asset is worth (negative equity), especially with auto loans.</p>
+      <p>This is called being "upside down" or "underwater." If you need to sell the car, insurance doesn't cover the gap, and you must pay the difference out of pocket. For most auto purchases, a maximum term of 60 months is recommended. For personal loans, 36-48 months is generally optimal.</p>
+
+      <h2>What Happens If You Cannot Make a Payment?</h2>
+      <p>Missing a loan payment has cascading consequences. Most lenders offer a 10-15 day grace period. After that, a late fee is charged (typically $25-$50). After 30 days, the missed payment is reported to credit bureaus, damaging your credit score. After 90-120 days of delinquency, the loan may go into default, and the lender may initiate collections or repossession (for secured loans).</p>
+      <p>If you anticipate difficulty, contact your lender before you miss a payment. Many offer hardship programs, temporary forbearance, or modified payment plans. Being proactive is always better than going silent.</p>
+
+      <h2>Frequently Asked Questions About Loans</h2>
+      <p><strong>How is my monthly payment calculated?</strong> It is calculated using the amortization formula, which takes into account your principal, interest rate, and loan term. Early payments are interest-heavy, while later payments are principal-heavy.</p>
+      <p><strong>Can I pay off my loan early without penalty?</strong> Most modern personal and auto loans allow early repayment without penalty, but always check your loan agreement. Some subprime or title loans include prepayment penalties.</p>
+      <p><strong>Does applying for a loan hurt my credit?</strong> A hard credit inquiry from a loan application typically lowers your score by 5-10 points for a few months. Multiple inquiries for the same type of loan within a 14-45 day window are usually counted as a single inquiry.</p>
+      <p><strong>What is a good interest rate for a personal loan?</strong> For excellent credit (720+), 6-10% is competitive. For good credit (690-719), 11-15%. For fair credit (630-689), expect 18-25%. Below 630, rates above 25% are common.</p>
+      <p><strong>Should I choose a longer term for lower monthly payments?</strong> Only if the lower payment is necessary for cash flow. Otherwise, a shorter term saves substantial interest. The 84-month auto loan is generally a trap.</p>
+      <p><strong>What is debt-to-income ratio (DTI)?</strong> DTI is your total monthly debt payments divided by your gross monthly income. Lenders prefer a DTI below 36%, and some require it below 43% for mortgage qualification.</p>
+      <p><strong>Can I get a loan with bad credit?</strong> Yes, but rates will be high (25-36%). Consider credit unions, peer-to-peer lenders, or secured loans. Improving your credit score by even 50 points can save thousands.</p>
+      <p><strong>Is a co-signer a good idea?</strong> A co-signer with good credit can help you qualify and secure a lower rate, but they are legally responsible for the debt if you default. This can strain personal relationships.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    function calculateLoan() {
+      const principal = parseFloat(document.getElementById('loan-principal').value);
+      const annualRate = parseFloat(document.getElementById('loan-rate').value);
+      const years = parseInt(document.getElementById('loan-years').value);
+
+      if (isNaN(principal) || principal < 0 || isNaN(annualRate) || annualRate < 0 || isNaN(years) || years <= 0) {
+        alert('Please enter all required fields with valid values.');
+        return;
+      }
+
+      const monthlyRate = annualRate / 100 / 12;
+      const months = years * 12;
+
+      const monthly = monthlyRate === 0
+        ? principal / months
+        : principal * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+
+      const total = monthly * months;
+      const interest = total - principal;
+
+      document.getElementById('loan-monthly').textContent = '$' + monthly.toFixed(2);
+      document.getElementById('loan-total').textContent = '$' + total.toFixed(2);
+      document.getElementById('loan-interest').textContent = '$' + interest.toFixed(2);
+      document.getElementById('loan-payments').textContent = months;
+      document.getElementById('loan-principal-out').textContent = '$' + principal.toLocaleString();
+      document.getElementById('loan-result').classList.add('visible');
+    }
+
+    function resetLoan() {
+      document.getElementById('loan-principal').value = '';
+      document.getElementById('loan-rate').value = '';
+      document.getElementById('loan-years').value = '30';
+      document.getElementById('loan-result').classList.remove('visible');
+    }
+
+    function copyLoan() {
+      const monthly = document.getElementById('loan-monthly').textContent;
+      const total = document.getElementById('loan-total').textContent;
+      const interest = document.getElementById('loan-interest').textContent;
+      copyToClipboard(`Monthly: ${monthly} | Total: ${total} | Interest: ${interest}`);
+    }
+
+    document.querySelectorAll('#loan-principal, #loan-rate, #loan-years').forEach(i => i.addEventListener('input', calculateLoan));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

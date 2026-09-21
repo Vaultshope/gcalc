@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scientific Calculator - Advanced Math Functions | GCalc Free Tool</title>
+  <meta name="description" content="Free online scientific calculator with trigonometric, logarithmic, and exponential functions. Supports degrees/radians, parentheses, and constants. No sign-up required.">
+  <meta name="keywords" content="scientific calculator, online scientific calculator, trigonometric calculator, log calculator, scientific calculator free, math calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/scientific-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Scientific Calculator - Advanced Math Functions | GCalc Free Tool">
+  <meta property="og:description" content="Free online scientific calculator with trigonometric, logarithmic, and exponential functions. Supports degrees/radians, parentheses, and constants. No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/scientific-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scientific Calculator - Advanced Math Functions | GCalc Free Tool">
+  <meta name="twitter:description" content="Free online scientific calculator with trigonometric, logarithmic, and exponential functions. Supports degrees/radians, parentheses, and constants. No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .sci-calc { }
+    .sci-display { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; text-align: right; font-family: var(--font-mono); font-size: 2rem; margin-bottom: 1rem; min-height: 72px; overflow-x: auto; }
+    .sci-keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+    .sci-keys .btn { padding: 1rem; font-size: 1.1rem; height: 60px; }
+    .sci-keys .btn-primary { background: var(--accent); color: #fff; }
+    .sci-keys .btn-primary:hover { background: var(--accent-hover); }
+    .sci-keys .btn-func { background: var(--surface); border: 1px solid var(--border); color: var(--text-secondary); }
+    .sci-keys .btn-func:hover { background: var(--surface-hover); border-color: var(--accent-border); color: var(--accent); }
+    .mode-toggle { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .mode-toggle .btn { flex: 1; padding: 0.5rem; font-size: 0.75rem; }
+    .mode-toggle .btn.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+        @media (max-width: 900px) { .sci-keys { grid-template-columns: repeat(4, 1fr); } }
+    @media (max-width: 500px) { .sci-display { font-size: 1.5rem; } .sci-keys .btn { padding: 0.75rem; height: 50px; font-size: 0.95rem; } }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/scientific-calculator/",
+      "name": "Scientific Calculator | GCalc",
+      "description": "Free online scientific calculator with trigonometric, logarithmic, and exponential functions. Supports degrees/radians and constants. No sign-up required.",
+      "url": "https://gcalc.app/calculators/scientific-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/scientific-calculator/#app",
+      "name": "Scientific Calculator",
+      "description": "Free online scientific calculator with trigonometric, logarithmic, and exponential functions. Supports degrees/radians and constants. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is the difference between a scientific calculator and a regular calculator",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A regular calculator handles basic arithmetic: addition, subtraction, multiplication, and division. A scientific calculator adds advanced functions like trigonometry, logarithms, exponents, factorials, and constants, making it essential for higher mathematics, science, and engineering."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When should I use degree mode versus radian mode",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use degree mode for geometry, navigation, and everyday angle measurements where a full circle is 360\u00b0. Use radian mode for calculus, physics, and any mathematical proof where the derivative of sin(x) needs to equal cos(x) without a scaling factor."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does sin(90\u00b0) equal 1 but sin(90) in radian mode not equal 1",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because 90 radians is a very large angle (about 14.3 full rotations), while 90\u00b0 is exactly one quarter of a circle. The mode determines whether the input is interpreted as degrees or radians, and the output differs accordingly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the order of operations and why does it matter",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The order of operations (PEMDAS/BODMAS) defines the sequence in which mathematical operations are performed: parentheses, exponents, multiplication and division (left to right), addition and subtraction (left to right). Without it, the same expression could yield different results."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a factorial",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter a non-negative integer and press the factorial (x!) button. Factorials grow extremely fast: 5! = 120, 10! = 3,628,800, and 20! = 2.43 \u00d7 10\u00b9\u2078. They are used for counting permutations in probability and combinatorics."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are log, ln, and log\u2082",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Log refers to base-10 logarithm, ln refers to the natural logarithm (base e), and log\u2082 is the binary logarithm (base 2). Each is useful in different fields: log for decibels and pH, ln for calculus and exponential growth, and log\u2082 for computer science and information theory."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use parentheses to group operations",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Parentheses allow you to control the order of operations and group complex expressions. Our calculator supports nested parentheses for multi-step calculations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the value of \u03c0 and e",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "\u03c0 (pi) is approximately 3.1415926535, the ratio of a circle's circumference to its diameter. e (Euler's number) is approximately 2.7182818284, the base of the natural logarithm. Both are irrational numbers with infinite, non-repeating decimal expansions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my calculation show \"Error\"",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An error typically means the expression is mathematically undefined, such as dividing by zero, taking the square root of a negative number, or computing the factorial of a non-integer. Check your expression for invalid operations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this calculator suitable for standardized tests",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "While our calculator is accurate and feature-rich, most standardized tests (SAT, ACT, AP exams) require specific approved calculators. Always check your test's calculator policy before relying on any online tool."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Scientific Calculator</h3>
+      <div class="sci-calc">
+        <div class="mode-toggle">
+          <button class="btn btn-secondary active" id="mode-deg" onclick="setMode('deg')">DEG</button>
+          <button class="btn btn-secondary" id="mode-rad" onclick="setMode('rad')">RAD</button>
+        </div>
+        <div class="sci-display" id="sciDisplay">0</div>
+        <div class="sci-keys">
+          <button class="btn btn-func" onclick="sciClear()">AC</button>
+          <button class="btn btn-func" onclick="sciBackspace()">⌫</button>
+          <button class="btn btn-func" onclick="sciAppend('(')">(</button>
+          <button class="btn btn-func" onclick="sciAppend(')')">)</button>
+          <button class="btn btn-primary" onclick="sciAppend('/')" aria-label="Divide">÷</button>
+
+          <button class="btn btn-func" onclick="sciFn('sin')">sin</button>
+          <button class="btn btn-func" onclick="sciFn('cos')">cos</button>
+          <button class="btn btn-func" onclick="sciFn('tan')">tan</button>
+          <button class="btn btn-func" onclick="sciFn('asin')">sin⁻¹</button>
+          <button class="btn btn-primary" onclick="sciAppend('*')" aria-label="Multiply">×</button>
+
+          <button class="btn btn-func" onclick="sciFn('log')">log</button>
+          <button class="btn btn-func" onclick="sciFn('ln')">ln</button>
+          <button class="btn btn-func" onclick="sciFn('sqrt')">√</button>
+          <button class="btn btn-func" onclick="sciFn('pow')">xʸ</button>
+          <button class="btn btn-primary" onclick="sciAppend('-')" aria-label="Subtract">−</button>
+
+          <button class="btn btn-func" onclick="sciConstant('pi')">π</button>
+          <button class="btn btn-func" onclick="sciConstant('e')">e</button>
+          <button class="btn btn-func" onclick="sciAppend('^')">^</button>
+          <button class="btn btn-func" onclick="sciAppend('%')">%</button>
+          <button class="btn btn-primary" onclick="sciAppend('+')" aria-label="Add">+</button>
+
+          <button class="btn btn-func" onclick="sciAppend('7')">7</button>
+          <button class="btn btn-func" onclick="sciAppend('8')">8</button>
+          <button class="btn btn-func" onclick="sciAppend('9')">9</button>
+          <button class="btn btn-func" onclick="sciFn('factorial')">x!</button>
+          <button class="btn btn-primary" onclick="sciEquals()">=</button>
+
+          <button class="btn btn-func" onclick="sciAppend('4')">4</button>
+          <button class="btn btn-func" onclick="sciAppend('5')">5</button>
+          <button class="btn btn-func" onclick="sciAppend('6')">6</button>
+          <button class="btn btn-func" onclick="sciFn('exp')">eˣ</button>
+          <button class="btn btn-primary" onclick="sciEquals()">=</button>
+
+          <button class="btn btn-func" onclick="sciAppend('1')">1</button>
+          <button class="btn btn-func" onclick="sciAppend('2')">2</button>
+          <button class="btn btn-func" onclick="sciAppend('3')">3</button>
+          <button class="btn btn-func" onclick="sciFn('pow10')">10ˣ</button>
+          <button class="btn btn-primary" onclick="sciEquals()">=</button>
+
+          <button class="btn btn-func" style="grid-column:span 2" onclick="sciAppend('0')">0</button>
+          <button class="btn btn-func" onclick="sciAppend('.')">.</button>
+          <button class="btn btn-func" onclick="sciFn('abs')">|x|</button>
+          <button class="btn btn-primary" onclick="sciEquals()">=</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Scientific Calculator and Why Use One?</h2>
+      <p>A scientific calculator is a digital tool that extends basic arithmetic with advanced mathematical functions essential for solving problems in science, engineering, mathematics, statistics, and finance. Unlike a simple four-function calculator that only performs addition, subtraction, multiplication, and division, a scientific calculator handles trigonometric functions, logarithms, exponents, factorials, and mathematical constants, making it indispensable for students, professionals, and anyone working with quantitative problems.</p>
+      <p>Our scientific calculator operates entirely within your web browser, which means no installation is required, no data is sent to a server, and your calculations remain completely private. Whether you are a high school student verifying your trigonometry homework, an engineer solving a complex formula, or a scientist analyzing experimental data, our calculator provides the computational power you need without leaving your browser.</p>
+      <p>The history of scientific calculators dates back to the early 1970s when Hewlett-Packard released the HP-35, the first handheld scientific calculator. Before this innovation, scientists and engineers relied on slide rules, logarithm tables, and mainframe computers. Today, scientific calculators are standard tools in classrooms, laboratories, and workplaces worldwide, and our online version brings that same power to any device with an internet connection.</p>
+
+      <h2>Supported Functions Explained</h2>
+      <p>Our scientific calculator includes a comprehensive set of functions organized into categories:</p>
+      <ul>
+        <li><strong>Trigonometric Functions:</strong> sine (sin), cosine (cos), and tangent (tan) are the primary trigonometric functions used to relate angles to the ratios of sides in a right triangle. Their inverse functions (asin, acos, atan) allow you to calculate an angle given the ratio. These functions are fundamental in physics, engineering, navigation, and geometry.</li>
+        <li><strong>Logarithmic Functions:</strong> log (base 10), ln (natural log, base e), and the implied log₂ are used to solve exponential equations, measure signal intensity (decibels), model population growth, and analyze data that spans many orders of magnitude.</li>
+        <li><strong>Exponential Functions:</strong> eˣ (exponential), 10ˣ (power of ten), xʸ (arbitrary power), and √ (square root) allow you to model growth, decay, and scaling relationships. These are essential in finance (compound interest), physics (radioactive decay), and chemistry (pH calculations).</li>
+        <li><strong>Other Functions:</strong> factorial (x!) counts the number of permutations of a set. Absolute value (|x|) removes the sign of a number. The percentage (%) function converts percentages for calculations.</li>
+        <li><strong>Constants:</strong> π (pi, approximately 3.14159) is the ratio of a circle's circumference to its diameter. e (Euler's number, approximately 2.71828) is the base of the natural logarithm and appears in growth models, compound interest, and probability theory.</li>
+      </ul>
+
+      <h2>Angle Modes: Degrees vs Radians</h2>
+      <p>When working with trigonometric functions, the unit of angle measurement matters critically. Our calculator supports both modes, and the active mode affects the output of sine, cosine, tangent, and their inverses.</p>
+      <p><strong>Degrees (DEG):</strong> A full circle contains 360°. Degrees are intuitive and used in most real-world applications: geometry, navigation, surveying, and everyday angular measurements. sin(30°) = 0.5, cos(90°) = 0, and tan(45°) = 1.</p>
+      <p><strong>Radians (RAD):</strong> A full circle contains 2π radians (approximately 6.283). Radians are the natural unit of angle in calculus and theoretical physics because they simplify derivative formulas. In radian mode, sin(π/2) = 1, cos(π) = -1, and the derivative of sin(x) is simply cos(x) without any scaling factor. 180° = π rad, 90° = π/2 rad.</p>
+      <p><strong>When to use each:</strong> Use degrees for geometry, engineering drawings, and navigation. Use radians for calculus, physics derivations, and any mathematical proof involving angles. Many high school trigonometry courses teach primarily in degrees, while university-level calculus and physics switch to radians.</p>
+
+      <h2>Order of Operations (PEMDAS/BODMAS)</h2>
+      <p>Our calculator follows the standard mathematical order of operations, ensuring that expressions are evaluated correctly regardless of how they are written. The order is:</p>
+      <ol>
+        <li><strong>P/B:</strong> Parentheses/Brackets first. Expressions inside parentheses are always evaluated before anything outside them.</li>
+        <li><strong>E/O:</strong> Exponents/Orders (powers, roots). Calculated after parentheses but before multiplication and division.</li>
+        <li><strong>MD/DM:</strong> Multiplication and Division, evaluated from left to right as they appear.</li>
+        <li><strong>AS:</strong> Addition and Subtraction, evaluated from left to right as they appear.</li>
+      </ol>
+      <p><strong>Example:</strong> 2 + 3 × 4 = 14, not 20, because multiplication is performed before addition. To change the order, use parentheses: (2 + 3) × 4 = 20.</p>
+      <p>This convention is universal in mathematics and programming. Understanding it is essential for writing correct formulas in spreadsheets, code, and mathematical software.</p>
+
+      <h2>Keyboard Shortcuts</h2>
+      <ul>
+        <li>Numbers 0-9 and operators (+, −, ×, ÷, ^, %) for direct entry</li>
+        <li>Enter or = to calculate the result</li>
+        <li>Arrow keys to navigate through expressions; use parentheses for grouping</li>
+        <li>Backspace to delete the last character</li>
+        <li>Escape to clear the display</li>
+      </ul>
+      <p>Keyboard shortcuts make the calculator faster to use for experienced users and mimic the workflow of physical scientific calculators.</p>
+
+      <h2>Practical Examples and Use Cases</h2>
+      <p>Here are common calculations performed with a scientific calculator and why they matter:</p>
+      <ul>
+        <li><code>sin(30)</code> in DEG mode = 0.5. Used in physics for resolving forces and in engineering for structural analysis.</li>
+        <li><code>log(100)</code> = 2. Used in chemistry for pH calculations and in acoustics for decibel measurements.</li>
+        <li><code>ln(e)</code> = 1. The natural logarithm and exponential function are inverses, a property used throughout calculus and differential equations.</li>
+        <li><code>sqrt(16)</code> = 4. Square roots appear in geometry (Pythagorean theorem), statistics (standard deviation), and physics (velocity calculations).</li>
+        <li><code>2^10</code> = 1024. Exponential growth models doubling time, memory sizes, and population dynamics.</li>
+        <li><code>5!</code> = 120. Factorials count permutations in probability and combinatorics.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions About Scientific Calculators</h2>
+      <p><strong>What is the difference between a scientific calculator and a regular calculator?</strong> A regular calculator handles basic arithmetic: addition, subtraction, multiplication, and division. A scientific calculator adds advanced functions like trigonometry, logarithms, exponents, factorials, and constants, making it essential for higher mathematics, science, and engineering.</p>
+      <p><strong>When should I use degree mode versus radian mode?</strong> Use degree mode for geometry, navigation, and everyday angle measurements where a full circle is 360°. Use radian mode for calculus, physics, and any mathematical proof where the derivative of sin(x) needs to equal cos(x) without a scaling factor.</p>
+      <p><strong>Why does sin(90°) equal 1 but sin(90) in radian mode not equal 1?</strong> Because 90 radians is a very large angle (about 14.3 full rotations), while 90° is exactly one quarter of a circle. The mode determines whether the input is interpreted as degrees or radians, and the output differs accordingly.</p>
+      <p><strong>What is the order of operations and why does it matter?</strong> The order of operations (PEMDAS/BODMAS) defines the sequence in which mathematical operations are performed: parentheses, exponents, multiplication and division (left to right), addition and subtraction (left to right). Without it, the same expression could yield different results.</p>
+      <p><strong>How do I calculate a factorial?</strong> Enter a non-negative integer and press the factorial (x!) button. Factorials grow extremely fast: 5! = 120, 10! = 3,628,800, and 20! = 2.43 × 10¹⁸. They are used for counting permutations in probability and combinatorics.</p>
+      <p><strong>What are log, ln, and log₂?</strong> Log refers to base-10 logarithm, ln refers to the natural logarithm (base e), and log₂ is the binary logarithm (base 2). Each is useful in different fields: log for decibels and pH, ln for calculus and exponential growth, and log₂ for computer science and information theory.</p>
+      <p><strong>Can I use parentheses to group operations?</strong> Yes. Parentheses allow you to control the order of operations and group complex expressions. Our calculator supports nested parentheses for multi-step calculations.</p>
+      <p><strong>What is the value of π and e?</strong> π (pi) is approximately 3.1415926535, the ratio of a circle's circumference to its diameter. e (Euler's number) is approximately 2.7182818284, the base of the natural logarithm. Both are irrational numbers with infinite, non-repeating decimal expansions.</p>
+      <p><strong>Why does my calculation show "Error"?</strong> An error typically means the expression is mathematically undefined, such as dividing by zero, taking the square root of a negative number, or computing the factorial of a non-integer. Check your expression for invalid operations.</p>
+      <p><strong>Is this calculator suitable for standardized tests?</strong> While our calculator is accurate and feature-rich, most standardized tests (SAT, ACT, AP exams) require specific approved calculators. Always check your test's calculator policy before relying on any online tool.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../grade-calculator/">Grade Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    let sciInput = '0';
+    let angleMode = 'deg';
+
+    function setMode(mode) {
+      angleMode = mode;
+      document.getElementById('mode-deg').classList.toggle('active', mode === 'deg');
+      document.getElementById('mode-rad').classList.toggle('active', mode === 'rad');
+    }
+
+    function toRad(deg) { return deg * Math.PI / 180; }
+    function toDeg(rad) { return rad * 180 / Math.PI; }
+
+    function sciAppend(v) {
+      if (sciInput === '0' || sciInput === 'Error') sciInput = v;
+      else sciInput += v;
+      updateDisplay();
+    }
+
+    function sciClear() { sciInput = '0'; updateDisplay(); }
+    function sciBackspace() { sciInput = sciInput.length > 1 ? sciInput.slice(0, -1) : '0'; updateDisplay(); }
+
+    function sciFn(fn) {
+      const map = {
+        sin: 'sin(' + (angleMode === 'deg' ? 'toRad(' : ''),
+        cos: 'cos(' + (angleMode === 'deg' ? 'toRad(' : ''),
+        tan: 'tan(' + (angleMode === 'deg' ? 'toRad(' : ''),
+        asin: (angleMode === 'deg' ? 'toDeg(' : '') + 'asin(',
+        acos: (angleMode === 'deg' ? 'toDeg(' : '') + 'acos(',
+        atan: (angleMode === 'deg' ? 'toDeg(' : '') + 'atan(',
+        log: 'log10(',
+        ln: 'log(',
+        sqrt: 'sqrt(',
+        pow: 'pow(',
+        exp: 'exp(',
+        pow10: 'pow(10,',
+        abs: 'abs(',
+        factorial: 'factorial('
+      };
+      if (fn === 'factorial') {
+        // Wrap current input: 5 → factorial(5) instead of 5factorial(
+        if (sciInput === '0' || sciInput === 'Error') {
+          sciInput = 'factorial(';
+        } else {
+          sciInput = 'factorial(' + sciInput;
+        }
+        updateDisplay();
+        return;
+      }
+      if (map[fn]) {
+        const prefix = 'Math.';
+        if (sciInput === '0' || sciInput === 'Error') sciInput = '';
+        sciInput += prefix + map[fn];
+        if (fn === 'pow') sciInput += ',';
+        updateDisplay();
+      }
+    }
+
+    function sciConstant(c) {
+      const val = c === 'pi' ? 'Math.PI' : 'Math.E';
+      if (sciInput === '0' || sciInput === 'Error') {
+        sciInput = val;
+      } else {
+        const last = sciInput.slice(-1);
+        sciInput += (last === '(' || last === ',' ? '' : '*') + val;
+      }
+      updateDisplay();
+    }
+
+    function factorial(n) {
+      if (n < 0 || n !== Math.floor(n)) return NaN;
+      if (n <= 1) return 1;
+      let r = 1;
+      for (let i = 2; i <= n; i++) r *= i;
+      return r;
+    }
+
+    function sciEquals() {
+      try {
+        const expr = sciInput
+          .replace(/\^/g, '**');
+        const fn = new Function('toRad', 'toDeg', 'factorial', '"use strict"; return (' + expr + ')');
+        const result = fn(toRad, toDeg, factorial);
+        sciInput = isFinite(result) && !isNaN(result) ? String(result) : 'Error';
+        updateDisplay();
+      } catch {
+        sciInput = 'Error';
+        updateDisplay();
+      }
+    }
+
+    function updateDisplay() {
+      document.getElementById('sciDisplay').textContent = sciInput;
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', e => {
+      if (e.target.tagName === 'INPUT') return;
+      if (/[\d+\-*/().^%]/.test(e.key)) sciAppend(e.key);
+      else if (e.key === 'Enter' || e.key === '=') sciEquals();
+      else if (e.key === 'Escape') sciClear();
+      else if (e.key === 'Backspace') sciBackspace();
+    });
+
+    updateDisplay();
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grade Calculator - GPA & Weighted Grades | GCalc Free Tool</title>
+  <meta name="description" content="Free grade calculator to calculate GPA, required grades for target GPA, and final exam grades needed. Supports weighted categories and multiple grading scales.">
+  <meta name="keywords" content="grade calculator, GPA calculator, final grade calculator, weighted grade calculator, college GPA calculator, semester grade calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/grade-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Grade Calculator - GPA & Weighted Grades | GCalc Free Tool">
+  <meta property="og:description" content="Free grade calculator to calculate GPA, required grades for target GPA, and final exam grades needed. Supports weighted categories and multiple grading scales.">
+  <meta property="og:url" content="https://gcalc.app/calculators/grade-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Grade Calculator - GPA & Weighted Grades | GCalc Free Tool">
+  <meta name="twitter:description" content="Free grade calculator to calculate GPA, required grades for target GPA, and final exam grades needed. Supports weighted categories and multiple grading scales.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .grade-tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+    .grade-tab { flex: 1; padding: 0.75rem; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--text-muted); font-weight: 500; transition: all 0.15s ease; }
+    .grade-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .grade-tab:hover:not(.active) { background: var(--surface-hover); color: var(--text-secondary); }
+    .grade-panel { display: none; }
+    .grade-panel.active { display: block; animation: fadeIn 0.2s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+    .grade-result { margin-top: 1.5rem; }
+    .grade-main { font-size: 2.5rem; font-weight: 700; color: var(--accent); text-align: center; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .grade-main-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+    .grade-main-value { font-family: var(--font-mono); }
+    .grade-details { margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+    .grade-card { background: var(--bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .grade-card-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; }
+    .grade-card-value.achievable { color: var(--success); }
+    .grade-card-value.difficult { color: var(--warning); }
+    .grade-card-value.impossible { color: var(--error); }
+    .grade-card-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.25rem; }
+    .grade-letter { font-size: 1rem; font-weight: 600; margin-top: 0.5rem; padding: 0.25rem 0.75rem; border-radius: 100px; display: inline-block; }
+    .letter-a { background: rgba(34,197,94,0.10); color: #15803d; border: 1px solid rgba(34,197,94,0.25); }
+    .letter-b { background: rgba(59,130,246,0.10); color: #1d4ed8; border: 1px solid rgba(59,130,246,0.25); }
+    .letter-c { background: rgba(245,158,11,0.10); color: #b45309; border: 1px solid rgba(245,158,11,0.25); }
+    .letter-d { background: rgba(249,115,22,0.10); color: #c2410c; border: 1px solid rgba(249,115,22,0.25); }
+    .letter-f { background: rgba(239,68,68,0.10); color: #b91c1c; border: 1px solid rgba(239,68,68,0.25); }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/grade-calculator/",
+      "name": "Grade Calculator | GCalc",
+      "description": "Free grade calculator to calculate GPA and weighted grades. Track academic standing and semester targets. No sign-up required.",
+      "url": "https://gcalc.app/calculators/grade-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/grade-calculator/#app",
+      "name": "Grade Calculator",
+      "description": "Free grade calculator to calculate GPA and weighted grades. Track academic standing and semester targets. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How is GPA calculated",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "GPA is calculated by multiplying the grade point value of each course by its credit hours, summing these values to get total quality points, and dividing by the total number of credits attempted."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between weighted and unweighted GPA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Unweighted GPA uses a standard 4.0 scale for all courses. Weighted GPA adds extra points for honors, AP, or IB courses to reflect their increased difficulty, allowing GPAs above 4.0."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What score do I need on my final exam",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use our Final Exam calculator mode. Enter your current grade, the final exam's weight as a percentage of the total grade, and your target overall grade. The calculator will show the exact score you need on the final."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I raise my GPA from 3.0 to 3.5 in one semester",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It depends on how many credits you have already completed and how many you are taking. Use our Target GPA calculator to see if your goal is mathematically possible. If you have completed many credits, raising the overall GPA significantly in one semester becomes very difficult."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate my major GPA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Major GPA includes only the courses required for your major, not general education or elective courses. Use the same formula but include only major-specific courses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good GPA for graduate school",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most competitive graduate programs expect a minimum GPA of 3.0 to 3.5. Top-tier programs in law, medicine, and business often look for 3.7 or higher, though holistic admissions processes also consider test scores, experience, and recommendations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do pass/fail courses affect GPA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Pass/fail courses typically do not factor into GPA calculation. A passing grade earns credit but no grade points, and a failing grade earns neither credit nor grade points."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do AP and IB courses affect GPA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most high schools award extra grade points for AP and IB courses. A common system grants 5.0 for an A in an AP course, 4.5 for an A in an honors course, and 4.0 for an A in a regular course."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is academic probation",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Academic probation is a warning status for students whose GPA falls below a minimum threshold, usually 2.0 for undergraduate programs. Students on probation must improve their GPA within a specified timeframe or face suspension or dismissal."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I convert a percentage grade to a GPA",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most schools use the following mapping: 93-100% = 4.0, 90-92% = 3.7, 87-89% = 3.3, 83-86% = 3.0, 80-82% = 2.7, 77-79% = 2.3, 73-76% = 2.0, 70-72% = 1.7, 67-69% = 1.3, 63-66% = 1.0, below 63% = 0.0."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Grade Calculator</h3>
+
+      <div class="grade-tabs">
+        <button class="grade-tab active" data-tab="target" onclick="switchGradeTab('target')">Target GPA</button>
+        <button class="grade-tab" data-tab="final" onclick="switchGradeTab('final')">Final Exam</button>
+        <button class="grade-tab" data-tab="current" onclick="switchGradeTab('current')">Current GPA</button>
+      </div>
+
+      <!-- Target GPA Panel -->
+      <div class="grade-panel active" id="grade-panel-target">
+        <div class="calc-form">
+          <div class="form-group"><label class="form-label">Current GPA</label><input type="number" id="gr-curr" class="form-input" placeholder="3.5" step="0.01" min="0" max="4"></div>
+          <div class="form-group"><label class="form-label">Credits Earned</label><input type="number" id="gr-credits" class="form-input" placeholder="60" step="1" min="0"></div>
+          <div class="form-group"><label class="form-label">Target GPA</label><input type="number" id="gr-target" class="form-input" placeholder="3.8" step="0.01" min="0" max="4"></div>
+          <div class="form-group"><label class="form-label">Credits This Semester</label><input type="number" id="gr-sem" class="form-input" placeholder="15" step="1" min="1"></div>
+          <div class="form-actions"><button class="btn btn-primary" onclick="calcTargetGPA()">Calculate</button></div>
+        </div>
+        <div id="target-result" class="grade-result" style="display:none">
+          <div class="grade-main">
+            <div class="grade-main-label">Required Semester GPA</div>
+            <div class="grade-main-value" id="target-req">0.00</div>
+          </div>
+          <div id="target-letter" class="grade-letter"></div>
+          <div class="grade-details">
+            <div class="grade-card"><div class="grade-card-value" id="target-need">0</div><div class="grade-card-label">Quality Points Needed</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="target-total-credits">0</div><div class="grade-card-label">Total Credits After</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="target-current-pts">0</div><div class="grade-card-label">Current Quality Points</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Final Exam Panel -->
+      <div class="grade-panel" id="grade-panel-final">
+        <div class="calc-form">
+          <div class="form-group"><label class="form-label">Current Grade (%)</label><input type="number" id="gr-current" class="form-input" placeholder="85" step="0.1" min="0" max="100"></div>
+          <div class="form-group"><label class="form-label">Target Grade (%)</label><input type="number" id="gr-desired" class="form-input" placeholder="90" step="0.1" min="0" max="100"></div>
+          <div class="form-group"><label class="form-label">Final Exam Weight (%)</label><input type="number" id="gr-weight" class="form-input" placeholder="30" step="1" min="1" max="100"></div>
+          <div class="form-actions"><button class="btn btn-primary" onclick="calcFinalExam()">Calculate</button></div>
+        </div>
+        <div id="final-result" class="grade-result" style="display:none">
+          <div class="grade-main">
+            <div class="grade-main-label">Needed on Final</div>
+            <div class="grade-main-value" id="final-need">0%</div>
+          </div>
+          <div id="final-letter" class="grade-letter"></div>
+          <div class="grade-details">
+            <div class="grade-card"><div class="grade-card-value" id="final-current-pts">0</div><div class="grade-card-label">Current Weighted Points</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="final-target-pts">0</div><div class="grade-card-label">Target Total Points</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="final-diff">0</div><div class="grade-card-label">Points Deficit</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Current GPA Panel -->
+      <div class="grade-panel" id="grade-panel-current">
+        <div class="calc-form">
+          <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:1rem">Enter grades for each course (leave empty to skip)</p>
+          <div id="grade-courses">
+            <div class="course-row" style="display:grid;grid-template-columns:1fr 80px 80px;gap:0.5rem;margin-bottom:0.5rem">
+              <input type="text" class="form-input" placeholder="Course name (optional)" style="font-family:inherit">
+              <input type="number" class="form-input course-grade" placeholder="Grade %" step="0.1" min="0" max="100">
+              <input type="number" class="form-input course-credit" placeholder="Credits" step="0.5" min="0.5" max="6">
+            </div>
+          </div>
+          <button class="btn btn-secondary" style="margin-bottom:1rem" onclick="addCourseRow()">+ Add Course</button>
+          <div class="form-actions"><button class="btn btn-primary" onclick="calcCurrentGPA()">Calculate GPA</button></div>
+        </div>
+        <div id="current-result" class="grade-result" style="display:none">
+          <div class="grade-main">
+            <div class="grade-main-label">Calculated GPA</div>
+            <div class="grade-main-value" id="current-gpa">0.00</div>
+          </div>
+          <div id="current-letter" class="grade-letter"></div>
+          <div class="grade-details">
+            <div class="grade-card"><div class="grade-card-value" id="current-total-credits">0</div><div class="grade-card-label">Total Credits</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="current-total-points">0</div><div class="grade-card-label">Total Quality Points</div></div>
+            <div class="grade-card"><div class="grade-card-value" id="current-courses">0</div><div class="grade-card-label">Courses Entered</div></div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-secondary" style="margin-top:1rem;width:100%" onclick="copyGrade()">Copy Result</button>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Grade Calculator and Why Use One?</h2>
+      <p>A grade calculator is an essential academic planning tool that helps students, parents, and educators understand, predict, and optimize academic performance. By quantifying the relationship between assignment scores, exam results, and overall GPA, a grade calculator transforms abstract academic goals into concrete, actionable numbers.</p>
+      <p>Whether you are a high school student trying to determine what you need on your final exam to earn an A, a college student planning your semester to reach a target GPA, or a parent helping your child set realistic academic goals, our grade calculator provides the clarity you need. It eliminates guesswork and replaces it with precise mathematical projections.</p>
+      <p>Academic performance is rarely random. It is the product of preparation, time management, and strategic planning. A grade calculator allows you to play "what-if" scenarios: What if I score 85% on the final? What if I retake that C- course? What if I take an extra honors class next semester? These scenarios, which are difficult to calculate mentally, become instant and accurate with our tool.</p>
+
+      <h2>Understanding the Grade Point Average (GPA)</h2>
+      <p>Grade Point Average (GPA) is the standard metric used by educational institutions in the United States and many other countries to summarize a student's academic achievement. It compresses a transcript of letter grades into a single number that is easy to compare and rank.</p>
+      <p>The standard 4.0 scale assigns a numeric value to each letter grade. While some schools use variations (like a 4.3 scale where an A+ receives extra points), the following table represents the most widely accepted standard:</p>
+      <ul>
+        <li><strong>A / A+ (93-100%):</strong> 4.0</li>
+        <li><strong>A- (90-92%):</strong> 3.7</li>
+        <li><strong>B+ (87-89%):</strong> 3.3</li>
+        <li><strong>B (83-86%):</strong> 3.0</li>
+        <li><strong>B- (80-82%):</strong> 2.7</li>
+        <li><strong>C+ (77-79%):</strong> 2.3</li>
+        <li><strong>C (73-76%):</strong> 2.0</li>
+        <li><strong>C- (70-72%):</strong> 1.7</li>
+        <li><strong>D+ (67-69%):</strong> 1.3</li>
+        <li><strong>D (63-66%):</strong> 1.0</li>
+        <li><strong>F (below 63%):</strong> 0.0</li>
+      </ul>
+      <p>Important: Always check your institution's specific grading policy. Some schools use plus-minus grading, others do not. Some cap GPA at 4.0 regardless of A+ performance, while others award 4.3 for an A+. Weighted GPAs, common in high schools, add extra points for honors, AP, or IB courses.</p>
+
+      <h2>Weighted vs. Unweighted GPA: What Is the Difference?</h2>
+      <p><strong>Unweighted GPA</strong> uses the standard 4.0 scale for all courses regardless of difficulty. An A in a regular course and an A in an Advanced Placement (AP) course both count as 4.0. This system is simple but fails to reward students for taking more challenging classes.</p>
+      <p><strong>Weighted GPA</strong> adjusts for course difficulty. A common weighted scale adds 0.5 points for honors courses and 1.0 points for AP/IB courses. Under this system, an A in an AP course might be worth 5.0. Weighted GPAs can exceed 4.0 and are often used for class rank and valedictorian selection.</p>
+      <p>When using our calculator, ensure you are using the correct scale. For weighted calculations, manually adjust the grade point values in the input fields to reflect your school's specific policy.</p>
+
+      <h2>How GPA Calculation Works: The Math Behind the Grades</h2>
+      <p>The fundamental formula for GPA is straightforward but powerful:</p>
+      <p><strong>GPA = Σ (Grade Points × Credits) ÷ Σ Credits</strong></p>
+      <p>In plain English: multiply each course's grade point value by its credit hours, sum all of these values, and divide by the total number of credits attempted.</p>
+      <p><strong>Example:</strong> You earn an A (4.0) in a 3-credit History course and a B (3.0) in a 4-credit Biology course.</p>
+      <ul>
+        <li>History quality points: 4.0 × 3 = 12.0</li>
+        <li>Biology quality points: 3.0 × 4 = 12.0</li>
+        <li>Total quality points: 12.0 + 12.0 = 24.0</li>
+        <li>Total credits: 3 + 4 = 7</li>
+        <li>GPA: 24.0 ÷ 7 = 3.43</li>
+      </ul>
+      <p>This example demonstrates why credit hours matter. A poor grade in a 4-credit lab course hurts your GPA more than the same grade in a 1-credit seminar.</p>
+
+      <h2>Final Exam Score Calculator: The Formula and Logic</h2>
+      <p>One of the most common and stressful academic questions is: "What do I need to score on my final exam to get a certain grade in the class?" Our calculator answers this using a weighted average formula.</p>
+      <p><strong>The Formula:</strong></p>
+      <p>Final Grade = Current Grade × (1 - Final Weight) + Final Exam Score × Final Weight</p>
+      <p>To solve for the required final exam score, the formula is rearranged to:</p>
+      <p>Required Final Score = (Target Grade - Current Grade × (1 - Final Weight)) ÷ Final Weight</p>
+      <p><strong>Example:</strong> Your current grade is 85%, the final exam is worth 30% of the total grade, and you want a 90% overall.</p>
+      <ul>
+        <li>Required Final Score = (90 - 85 × 0.70) ÷ 0.30</li>
+        <li>Required Final Score = (90 - 59.5) ÷ 0.30</li>
+        <li>Required Final Score = 30.5 ÷ 0.30 = 101.7%</li>
+      </ul>
+      <p>In this scenario, achieving a 90% overall is mathematically impossible because you would need to score 101.7% on the final. This type of result, while disappointing, is valuable information because it allows you to set a new, achievable target or focus your energy on other classes where improvement is possible.</p>
+
+      <h2>Target GPA Calculator: Planning Your Semester Strategically</h2>
+      <p>The Target GPA calculator answers the question: "What GPA do I need this semester to reach my overall goal?" This is critical for students on academic probation, those applying to competitive graduate programs, or anyone working toward honors distinctions.</p>
+      <p><strong>The Formula:</strong></p>
+      <p>Required Semester GPA = (Target GPA × Total Future Credits - Current GPA × Current Credits) ÷ Credits This Semester</p>
+      <p><strong>Example:</strong> You have a current 3.2 GPA over 60 credits and want to reach a 3.5 GPA. You are taking 15 credits this semester.</p>
+      <ul>
+        <li>Required Semester GPA = (3.5 × 75 - 3.2 × 60) ÷ 15</li>
+        <li>Required Semester GPA = (262.5 - 192) ÷ 15</li>
+        <li>Required Semester GPA = 70.5 ÷ 15 = 4.7</li>
+      </ul>
+      <p>A required semester GPA of 4.7 is impossible on a standard 4.0 scale, indicating that reaching a 3.5 overall GPA in one semester is not feasible. The student would need to take additional semesters or accept a lower target. This is why the calculator is valuable: it provides a reality check before you commit to an unrealistic plan.</p>
+
+      <h2>Academic Honors and GPA Requirements</h2>
+      <p>Academic honors recognize exceptional performance and often carry benefits such as scholarships, priority registration, and enhanced resumes. The most common Latin honors at the undergraduate level are:</p>
+      <ul>
+        <li><strong>Cum Laude:</strong> Typically requires a GPA of 3.5 to 3.69</li>
+        <li><strong>Magna Cum Laude:</strong> Typically requires a GPA of 3.7 to 3.89</li>
+        <li><strong>Summa Cum Laude:</strong> Typically requires a GPA of 3.9 to 4.0</li>
+      </ul>
+      <p>Other common honors include Dean's List (usually a semester GPA above 3.5 while carrying a full course load) and departmental honors. Graduate programs, especially in law, medicine, and business, often have minimum GPA requirements that range from 3.0 to 3.8 depending on the competitiveness of the school.</p>
+
+      <h2>Common Mistakes in Manual Grade Calculation</h2>
+      <p><strong>Mistake 1: Forgetting credit weight.</strong> Treating a 4-credit course the same as a 1-credit course dramatically skews the result. Always multiply grade points by credits.</p>
+      <p><strong>Mistake 2: Using the wrong scale.</strong> Applying a 4.3 scale when your school uses a 4.0 scale, or using an unweighted scale for honors courses, produces incorrect results.</p>
+      <p><strong>Mistake 3: Ignoring the final exam weight.</strong> A student with an 89% average might think they only need a 90% on the final to get an A, but if the final is worth only 20%, they actually need much more.</p>
+      <p><strong>Mistake 4: Not accounting for grade replacement policies.</strong> Some schools replace a grade when a course is retaken, while others average the two grades. Always check your school's retake policy before relying on a calculated projection.</p>
+
+      <h2>International Grading Systems: A Global Perspective</h2>
+      <p>GPA is not universal. Different countries use fundamentally different systems:</p>
+      <ul>
+        <li><strong>United Kingdom:</strong> Uses percentage or classification (First Class, Upper Second, Lower Second, Third Class). A First Class degree typically requires 70% or higher.</li>
+        <li><strong>India:</strong> Uses percentage (often 60% is considered first division) or a 10-point CGPA scale.</li>
+        <li><strong>Germany:</strong> Uses a 1.0 to 5.0 scale where 1.0 is the best possible grade and 4.0 is the minimum passing grade.</li>
+        <li><strong>France:</strong> Uses a 20-point scale where 10 is passing and 16+ is considered excellent.</li>
+        <li><strong>China:</strong> Often uses a 100-point scale or a 4.0/5.0 GPA scale, with 60 as the passing threshold.</li>
+      </ul>
+      <p>Students applying to universities abroad must often convert their grades. While there is no perfect conversion, most graduate schools and evaluation services provide standardized conversion tables.</p>
+
+      <h2>Frequently Asked Questions About Grade Calculation</h2>
+      <p><strong>How is GPA calculated?</strong> GPA is calculated by multiplying the grade point value of each course by its credit hours, summing these values to get total quality points, and dividing by the total number of credits attempted.</p>
+      <p><strong>What is the difference between weighted and unweighted GPA?</strong> Unweighted GPA uses a standard 4.0 scale for all courses. Weighted GPA adds extra points for honors, AP, or IB courses to reflect their increased difficulty, allowing GPAs above 4.0.</p>
+      <p><strong>What score do I need on my final exam?</strong> Use our Final Exam calculator mode. Enter your current grade, the final exam's weight as a percentage of the total grade, and your target overall grade. The calculator will show the exact score you need on the final.</p>
+      <p><strong>Can I raise my GPA from 3.0 to 3.5 in one semester?</strong> It depends on how many credits you have already completed and how many you are taking. Use our Target GPA calculator to see if your goal is mathematically possible. If you have completed many credits, raising the overall GPA significantly in one semester becomes very difficult.</p>
+      <p><strong>How do I calculate my major GPA?</strong> Major GPA includes only the courses required for your major, not general education or elective courses. Use the same formula but include only major-specific courses.</p>
+      <p><strong>What is a good GPA for graduate school?</strong> Most competitive graduate programs expect a minimum GPA of 3.0 to 3.5. Top-tier programs in law, medicine, and business often look for 3.7 or higher, though holistic admissions processes also consider test scores, experience, and recommendations.</p>
+      <p><strong>Do pass/fail courses affect GPA?</strong> No. Pass/fail courses typically do not factor into GPA calculation. A passing grade earns credit but no grade points, and a failing grade earns neither credit nor grade points.</p>
+      <p><strong>How do AP and IB courses affect GPA?</strong> Most high schools award extra grade points for AP and IB courses. A common system grants 5.0 for an A in an AP course, 4.5 for an A in an honors course, and 4.0 for an A in a regular course.</p>
+      <p><strong>What is academic probation?</strong> Academic probation is a warning status for students whose GPA falls below a minimum threshold, usually 2.0 for undergraduate programs. Students on probation must improve their GPA within a specified timeframe or face suspension or dismissal.</p>
+      <p><strong>How do I convert a percentage grade to a GPA?</strong> Most schools use the following mapping: 93-100% = 4.0, 90-92% = 3.7, 87-89% = 3.3, 83-86% = 3.0, 80-82% = 2.7, 77-79% = 2.3, 73-76% = 2.0, 70-72% = 1.7, 67-69% = 1.3, 63-66% = 1.0, below 63% = 0.0.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../scientific-calculator/">Scientific Calculator</a>
+        <a href="../age-calculator/">Age Calculator</a>
+        <a href="../date-calculator/">Date Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    let lastGradeResult = '';
+
+    function switchGradeTab(tab) {
+      document.querySelectorAll('.grade-tab').forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+      document.querySelectorAll('.grade-panel').forEach(p => p.classList.toggle('active', p.id === 'grade-panel-' + tab));
+      document.getElementById('target-result').style.display = 'none';
+      document.getElementById('final-result').style.display = 'none';
+      document.getElementById('current-result').style.display = 'none';
+    }
+
+    function percentToGPA(pct) {
+      if (pct >= 93) return 4.0;
+      if (pct >= 90) return 3.7;
+      if (pct >= 87) return 3.3;
+      if (pct >= 83) return 3.0;
+      if (pct >= 80) return 2.7;
+      if (pct >= 77) return 2.3;
+      if (pct >= 73) return 2.0;
+      if (pct >= 70) return 1.7;
+      if (pct >= 67) return 1.3;
+      if (pct >= 63) return 1.0;
+      return 0.0;
+    }
+
+    function gpaToLetter(gpa) {
+      if (gpa >= 3.85) return { letter: 'A', class: 'letter-a' };
+      if (gpa >= 3.5) return { letter: 'A-', class: 'letter-a' };
+      if (gpa >= 3.15) return { letter: 'B+', class: 'letter-b' };
+      if (gpa >= 2.85) return { letter: 'B', class: 'letter-b' };
+      if (gpa >= 2.5) return { letter: 'B-', class: 'letter-b' };
+      if (gpa >= 2.15) return { letter: 'C+', class: 'letter-c' };
+      if (gpa >= 1.85) return { letter: 'C', class: 'letter-c' };
+      if (gpa >= 1.5) return { letter: 'C-', class: 'letter-c' };
+      if (gpa >= 1.15) return { letter: 'D+', class: 'letter-d' };
+      if (gpa >= 0.85) return { letter: 'D', class: 'letter-d' };
+      return { letter: 'F', class: 'letter-f' };
+    }
+
+    function setResultClass(el, gpa) {
+      el.className = 'grade-card-value';
+      if (gpa <= 4.0 && gpa >= 3.5) el.classList.add('achievable');
+      else if (gpa > 4.0) el.classList.add('impossible');
+      else el.classList.add('difficult');
+    }
+
+    function calcTargetGPA() {
+      const curr = parseFloat(document.getElementById('gr-curr').value);
+      const credits = parseFloat(document.getElementById('gr-credits').value);
+      const target = parseFloat(document.getElementById('gr-target').value);
+      const sem = parseFloat(document.getElementById('gr-sem').value);
+
+      if (isNaN(curr) || isNaN(credits) || isNaN(target) || isNaN(sem)) {
+        alert('Please fill in all fields.');
+        return;
+      }
+      if (target < 0 || target > 4) {
+        alert('Target GPA must be between 0 and 4.');
+        return;
+      }
+
+      const totalPoints = curr * credits;
+      const needed = target * (credits + sem) - totalPoints;
+      const reqGpa = needed / sem;
+
+      const letter = gpaToLetter(reqGpa <= 4 ? reqGpa : 0);
+
+      document.getElementById('target-req').textContent = reqGpa <= 4 ? reqGpa.toFixed(2) : 'N/A';
+      document.getElementById('target-letter').textContent = reqGpa <= 4 ? letter.letter : 'Impossible';
+      document.getElementById('target-letter').className = 'grade-letter ' + letter.class;
+      document.getElementById('target-need').textContent = Math.max(0, needed.toFixed(1));
+      document.getElementById('target-total-credits').textContent = credits + sem;
+      document.getElementById('target-current-pts').textContent = totalPoints.toFixed(1);
+
+      setResultClass(document.getElementById('target-req'), reqGpa);
+      document.getElementById('target-result').style.display = 'block';
+      lastGradeResult = `Required GPA: ${reqGpa <= 4 ? reqGpa.toFixed(2) : 'Impossible'} (${letter.letter})`;
+    }
+
+    function calcFinalExam() {
+      const current = parseFloat(document.getElementById('gr-current').value);
+      const desired = parseFloat(document.getElementById('gr-desired').value);
+      const weight = parseFloat(document.getElementById('gr-weight').value) / 100;
+
+      if (isNaN(current) || isNaN(desired) || isNaN(weight)) {
+        alert('Please fill in all fields.');
+        return;
+      }
+
+      const currentWeighted = current * (1 - weight);
+      const targetTotal = desired;
+      const finalNeeded = (targetTotal - currentWeighted) / weight;
+
+      const letter = gpaToLetter(percentToGPA(finalNeeded));
+
+      document.getElementById('final-need').textContent = finalNeeded.toFixed(1) + '%';
+      document.getElementById('final-letter').textContent = letter.letter;
+      document.getElementById('final-letter').className = 'grade-letter ' + letter.class;
+      document.getElementById('final-current-pts').textContent = currentWeighted.toFixed(1);
+      document.getElementById('final-target-pts').textContent = targetTotal.toFixed(1);
+      document.getElementById('final-diff').textContent = (targetTotal - currentWeighted).toFixed(1);
+
+      setResultClass(document.getElementById('final-need'), percentToGPA(finalNeeded));
+      document.getElementById('final-result').style.display = 'block';
+      lastGradeResult = `Final needed: ${finalNeeded.toFixed(1)}% (${letter.letter})`;
+    }
+
+    function calcCurrentGPA() {
+      const rows = document.querySelectorAll('.course-row');
+      let totalPoints = 0, totalCredits = 0, courses = 0;
+
+      rows.forEach(row => {
+        const grade = parseFloat(row.querySelector('.course-grade').value);
+        const credit = parseFloat(row.querySelector('.course-credit').value);
+        if (!isNaN(grade) && !isNaN(credit)) {
+          const gpa = percentToGPA(grade);
+          totalPoints += gpa * credit;
+          totalCredits += credit;
+          courses++;
+        }
+      });
+
+      if (courses === 0) {
+        alert('Enter at least one course with grade and credits.');
+        return;
+      }
+
+      const gpa = totalPoints / totalCredits;
+      const letter = gpaToLetter(gpa);
+
+      document.getElementById('current-gpa').textContent = gpa.toFixed(2);
+      document.getElementById('current-letter').textContent = letter.letter;
+      document.getElementById('current-letter').className = 'grade-letter ' + letter.class;
+      document.getElementById('current-total-credits').textContent = totalCredits;
+      document.getElementById('current-total-points').textContent = totalPoints.toFixed(1);
+      document.getElementById('current-courses').textContent = courses;
+
+      setResultClass(document.getElementById('current-gpa'), gpa);
+      document.getElementById('current-result').style.display = 'block';
+      lastGradeResult = `GPA: ${gpa.toFixed(2)} (${letter.letter}) from ${courses} courses`;
+    }
+
+    function addCourseRow() {
+      const container = document.getElementById('grade-courses');
+      const row = document.createElement('div');
+      row.className = 'course-row';
+      row.style.cssText = 'display:grid;grid-template-columns:1fr 80px 80px 36px;gap:0.5rem;margin-bottom:0.5rem';
+      row.innerHTML = `
+        <input type="text" class="form-input" placeholder="Course name (optional)" style="font-family:inherit">
+        <input type="number" class="form-input course-grade" placeholder="Grade %" step="0.1" min="0" max="100">
+        <input type="number" class="form-input course-credit" placeholder="Credits" step="0.5" min="0.5" max="6">
+        <button class="btn btn-secondary" onclick="removeCourseRow(this)" style="padding:0.5rem;font-size:1rem;height:auto" title="Remove course">&times;</button>
+      `;
+      container.appendChild(row);
+    }
+
+    function removeCourseRow(btn) {
+      btn.closest('.course-row').remove();
+    }
+
+    function resetGrade() {
+      // Clear Current GPA panel
+      document.getElementById('grade-courses').innerHTML = '';
+      addCourseRow();
+      addCourseRow();
+      addCourseRow();
+      document.getElementById('current-result').style.display = 'none';
+      // Clear Target GPA panel
+      document.querySelectorAll('#gr-curr, #gr-credits, #gr-target, #gr-sem').forEach(i => i.value = '');
+      document.getElementById('target-result').style.display = 'none';
+      // Clear Final Exam panel
+      document.querySelectorAll('#gr-current, #gr-desired, #gr-weight').forEach(i => i.value = '');
+      document.getElementById('final-result').style.display = 'none';
+      lastGradeResult = '';
+    }
+
+    function copyGrade() {
+      if (lastGradeResult) {
+        copyToClipboard(lastGradeResult);
+      }
+    }
+
+    // Add initial rows
+    document.addEventListener('DOMContentLoaded', () => {
+      addCourseRow();
+      addCourseRow();
+      addCourseRow();
+    });
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

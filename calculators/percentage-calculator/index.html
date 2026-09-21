@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator - Percent Of, Increase, Decrease | GCalc Free Tool</title>
+  <meta name="description" content="Free percentage calculator for finding percentages, percent increase/decrease, and what percent one number is of another. Instant results, no sign-up.">
+  <meta name="keywords" content="percentage calculator, percent calculator, percent of calculator, percent increase decrease, percentage change calculator, what percent is">
+  <link rel="canonical" href="https://gcalc.app/calculators/percentage-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Percentage Calculator - Percent Of, Increase, Decrease | GCalc Free Tool">
+  <meta property="og:description" content="Free percentage calculator for finding percentages, percent increase/decrease, and what percent one number is of another. Instant results, no sign-up.">
+  <meta property="og:url" content="https://gcalc.app/calculators/percentage-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Percentage Calculator - Percent Of, Increase, Decrease | GCalc Free Tool">
+  <meta name="twitter:description" content="Free percentage calculator for finding percentages, percent increase/decrease, and what percent one number is of another. Instant results, no sign-up.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .pct-results { margin-top: 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .pct-card { background: var(--bg); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border); }
+    .pct-card.highlight { border-color: var(--accent); background: var(--accent-subtle); }
+    .pct-label { font-size: 0.7rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .pct-value { font-family: var(--font-mono); font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+        @media (max-width: 900px) { .pct-results { grid-template-columns: 1fr; } }
+  </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/percentage-calculator/",
+      "name": "Percentage Calculator | GCalc",
+      "description": "Free percentage calculator for percent of, increase, and decrease calculations. No sign-up required.",
+      "url": "https://gcalc.app/calculators/percentage-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/percentage-calculator/#app",
+      "name": "Percentage Calculator",
+      "description": "Free percentage calculator for percent of, increase, and decrease calculations. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I calculate X percent of a number",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Multiply the number by the percentage and divide by 100. For example, 15% of 300 is (300 \u00d7 15) \u00f7 100 = 45."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a percentage increase",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Subtract the original value from the new value, divide the difference by the original value, and multiply by 100. Example: (150 - 100) \u00f7 100 \u00d7 100 = 50% increase."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate a percentage decrease",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the same formula as for an increase. If the result is negative, it represents a decrease. Example: (80 - 100) \u00f7 100 \u00d7 100 = -20%, a 20% decrease."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between percentage points and percent change",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Percentage points measure absolute difference (e.g., from 5% to 7% is 2 percentage points). Percent change measures relative difference (e.g., from 5% to 7% is a 40% increase)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I find what percentage one number is of another",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Divide the first number by the second and multiply by 100. Example: What percent is 20 of 80? (20 \u00f7 80) \u00d7 100 = 25%."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate the original price before a discount",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the formula: Original Price = Sale Price \u00f7 (1 - Discount%). If an item is on sale for $60 after a 25% discount, the original price was $60 \u00f7 0.75 = $80."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why doesn't a 50% gain and a 50% loss cancel out",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Because the second change is applied to a different base. A 50% gain on $100 gives $150. A 50% loss from $150 leaves $75, which is a net loss of 25% from the original."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate compound interest",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the formula: Final Value = Initial Value \u00d7 (1 + r/100)\u207f, where r is the annual interest rate and n is the number of years."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between markup and margin",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Markup is the percentage added to the cost to get the selling price. Margin is the percentage of the selling price that is profit. A 50% markup on a $100 cost gives a $150 selling price and a 33.3% margin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I quickly estimate percentages in my head",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use the shortcuts for 1%, 5%, 10%, 20%, 25%, and 50%. Break any percentage into combinations of these easy-to-calculate parts."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Calculate Percentages</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Value</label><input type="number" id="pct-value" class="form-input" placeholder="50" step="any"></div>
+        <div class="form-group"><label class="form-label">Percentage</label><input type="number" id="pct-percent" class="form-input" placeholder="20" step="0.1"></div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetPct()">Reset</button><button class="btn btn-primary" onclick="calculatePct()">Calculate</button></div>
+      </div>
+      <div class="pct-results" id="pct-results">
+        <div class="pct-card highlight">
+          <div class="pct-label">Percentage of Value</div>
+          <div class="pct-value" id="pct-of">0</div>
+        </div>
+        <div class="pct-card">
+          <div class="pct-label">Value + Percentage</div>
+          <div class="pct-value" id="pct-plus">0</div>
+        </div>
+        <div class="pct-card">
+          <div class="pct-label">Value - Percentage</div>
+          <div class="pct-value" id="pct-minus">0</div>
+        </div>
+        <div class="pct-card">
+          <div class="pct-label">Value is P% of What</div>
+          <div class="pct-value" id="pct-what">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Percentage Calculator and Why Use One?</h2>
+      <p>A percentage calculator is a tool that performs calculations involving percentages, one of the most common and useful mathematical concepts in everyday life. Whether you are calculating a discount during a sale, figuring out a tip at a restaurant, analyzing investment returns, or determining what percentage of a budget has been spent, percentages provide a standardized way to compare parts to wholes.</p>
+      <p>Our percentage calculator goes beyond basic arithmetic by computing four related values simultaneously: the percentage of a given value, the value increased by a percentage, the value decreased by a percentage, and what percentage one value represents of another. This multi-output approach saves time and reduces the chance of manual calculation errors, which are common when working with percentages.</p>
+      <p>Percentages are universal. They appear in finance (interest rates, returns, inflation), business (margins, markups, growth rates), education (grades, test scores), health (body fat percentage, success rates), and government (tax rates, unemployment statistics). Understanding how to calculate and interpret percentages correctly is a fundamental numeracy skill with direct impact on your financial and personal decisions.</p>
+
+      <h2>How Percentage Calculations Work: The Four Core Formulas</h2>
+      <p>Our calculator performs four essential computations that cover the vast majority of real-world percentage scenarios:</p>
+      <p><strong>1. Percentage of a Value:</strong> What is X% of Y?</p>
+      <ul>
+        <li>Formula: (X ÷ 100) × Y</li>
+        <li>Example: What is 15% of 200? → (15 ÷ 100) × 200 = 30</li>
+      </ul>
+      <p><strong>2. Value Increased by a Percentage:</strong> Y increased by X%</p>
+      <ul>
+        <li>Formula: Y + [(X ÷ 100) × Y]</li>
+        <li>Example: 200 increased by 15% → 200 + 30 = 230</li>
+      </ul>
+      <p><strong>3. Value Decreased by a Percentage:</strong> Y decreased by X%</p>
+      <ul>
+        <li>Formula: Y - [(X ÷ 100) × Y]</li>
+        <li>Example: 200 decreased by 15% → 200 - 30 = 170</li>
+      </ul>
+      <p><strong>4. What Percentage is A of B:</strong> Expressing a value as a percentage of another</p>
+      <ul>
+        <li>Formula: (A ÷ B) × 100</li>
+        <li>Example: What percent is 45 of 60? → (45 ÷ 60) × 100 = 75%</li>
+      </ul>
+      <p>These four formulas are the building blocks of percentage literacy. Mastering them enables you to handle everything from coupon clipping to financial analysis without relying on a calculator, though our tool makes the process instant and error-free.</p>
+
+      <h2>Percentage Points vs. Percent Change: A Critical Distinction</h2>
+      <p>One of the most common and costly errors in interpreting percentages is confusing percentage points with percent change. They are not the same, and using them interchangeably can lead to fundamentally wrong conclusions.</p>
+      <p><strong>Percentage points</strong> measure absolute difference. If an interest rate rises from 5% to 7%, it has increased by 2 percentage points. This is the straightforward subtraction of the two percentages: 7 - 5 = 2.</p>
+      <p><strong>Percent change</strong> measures relative difference. The same interest rate increase from 5% to 7% represents a change calculated as (7 - 5) ÷ 5 × 100 = 40%. The rate increased by 40% relative to its original value.</p>
+      <p>This distinction is critical in finance, economics, and journalism. A headline stating "Taxes increased by 3%" is ambiguous. Does it mean the tax rate went from 10% to 13% (3 percentage points) or from 10% to 10.3% (3% of 10%)? Always clarify which interpretation applies.</p>
+
+      <h2>Common Real-World Uses of Percentage Calculation</h2>
+      <p>Percentages appear in nearly every aspect of modern life. Here are the most common scenarios where accurate percentage calculation matters:</p>
+      <ul>
+        <li><strong>Sales tax:</strong> Total price = Price × (1 + Tax Rate). A $100 purchase with 8.25% tax costs $108.25.</li>
+        <li><strong>Discounts:</strong> Sale price = Original × (1 - Discount%). A $80 jacket with a 30% discount costs $56.</li>
+        <li><strong>Tips:</strong> Tip amount = Bill × Tip%. A $45 bill with a 20% tip requires a $9 tip.</li>
+        <li><strong>Investment returns:</strong> Return % = (End Value - Start Value) ÷ Start Value × 100. If a stock rises from $50 to $65, the return is (65 - 50) ÷ 50 × 100 = 30%.</li>
+        <li><strong>Grade calculation:</strong> Score % = Points Earned ÷ Points Possible × 100. Earning 85 out of 100 points is 85%.</li>
+        <li><strong>Body fat percentage:</strong> Fat % = Fat Mass ÷ Total Body Mass × 100. Used in fitness and medical assessments.</li>
+        <li><strong>Inflation rate:</strong> The percentage increase in the price level of a basket of goods over a period of time.</li>
+        <li><strong>Profit margin:</strong> Margin = (Revenue - Cost) ÷ Revenue × 100. A business with $10,000 in revenue and $7,000 in costs has a 30% profit margin.</li>
+      </ul>
+
+      <h2>Compound Percentages and the Power of Compounding</h2>
+      <p>One of the most important and often misunderstood concepts in percentage calculation is that percentage changes do not simply add up. They multiply. A 50% gain followed by a 50% loss does not return you to your starting point. Instead: 1.5 × 0.5 = 0.75. You are left with 75% of your original value, a net loss of 25%.</p>
+      <p>This principle is the foundation of compound interest, which Albert Einstein allegedly called the eighth wonder of the world. A 10% annual return compounded for 10 years yields a total growth of 259%, not 100%, because each year's gains are reinvested and earn their own gains. Understanding how percentages compound is essential for investment planning, debt management, and evaluating any multi-period percentage change.</p>
+      <p><strong>Formula for compound growth:</strong> Final Value = Initial Value × (1 + r/100)ⁿ, where r is the percentage rate per period and n is the number of periods.</p>
+
+      <h2>Mental Math Shortcuts for Common Percentages</h2>
+      <p>While our calculator handles the heavy lifting, learning to estimate percentages mentally is a valuable life skill. Here are the most useful shortcuts:</p>
+      <ul>
+        <li><strong>10%:</strong> Move the decimal point one place to the left. 10% of 450 = 45.</li>
+        <li><strong>5%:</strong> Calculate 10% and divide by 2. 5% of 200 = (10% of 200) ÷ 2 = 20 ÷ 2 = 10.</li>
+        <li><strong>1%:</strong> Move the decimal point two places to the left. 1% of 850 = 8.5.</li>
+        <li><strong>20%:</strong> Calculate 10% and double it. 20% of 150 = (10% of 150) × 2 = 15 × 2 = 30.</li>
+        <li><strong>25%:</strong> Divide by 4. 25% of 80 = 80 ÷ 4 = 20.</li>
+        <li><strong>50%:</strong> Divide by 2. 50% of 120 = 120 ÷ 2 = 60.</li>
+        <li><strong>75%:</strong> Calculate 50% and add 25%. 75% of 40 = (40 ÷ 2) + (40 ÷ 4) = 20 + 10 = 30.</li>
+      </ul>
+      <p>These shortcuts are especially useful when you do not have a calculator handy, such as when quickly comparing prices at the grocery store or estimating a tip.</p>
+
+      <h2>Common Mistakes in Percentage Calculation</h2>
+      <p><strong>Mistake 1: Adding or subtracting percentages directly.</strong> A 20% price increase followed by a 20% decrease does not return to the original price. The final price is 96% of the original (1.20 × 0.80 = 0.96).</p>
+      <p><strong>Mistake 2: Confusing markup with margin.</strong> A 50% markup on a $100 item means the selling price is $150. A 50% margin on the same $150 selling price means the profit is $75, which is a 100% markup on cost. These terms are not interchangeable.</p>
+      <p><strong>Mistake 3: Treating percentage points and percent change as the same.</strong> As discussed, these measure fundamentally different things. A change from 2% to 3% is a 1 percentage point increase but a 50% increase in relative terms.</p>
+      <p><strong>Mistake 4: Forgetting the baseline.</strong> "Our revenue increased by 200%" is meaningless without knowing the starting revenue. Always know your baseline when interpreting any percentage change.</p>
+      <p><strong>Mistake 5: Averaging percentages incorrectly.</strong> You cannot simply average two percentages if they are calculated from different bases. If Department A grew 20% from a $1M base and Department B grew 10% from a $10M base, the overall growth is not 15% but (0.2 + 1) / (1 + 10) ≈ 10.9%.</p>
+
+      <h2>Frequently Asked Questions About Percentages</h2>
+      <p><strong>How do I calculate X percent of a number?</strong> Multiply the number by the percentage and divide by 100. For example, 15% of 300 is (300 × 15) ÷ 100 = 45.</p>
+      <p><strong>How do I calculate a percentage increase?</strong> Subtract the original value from the new value, divide the difference by the original value, and multiply by 100. Example: (150 - 100) ÷ 100 × 100 = 50% increase.</p>
+      <p><strong>How do I calculate a percentage decrease?</strong> Use the same formula as for an increase. If the result is negative, it represents a decrease. Example: (80 - 100) ÷ 100 × 100 = -20%, a 20% decrease.</p>
+      <p><strong>What is the difference between percentage points and percent change?</strong> Percentage points measure absolute difference (e.g., from 5% to 7% is 2 percentage points). Percent change measures relative difference (e.g., from 5% to 7% is a 40% increase).</p>
+      <p><strong>How do I find what percentage one number is of another?</strong> Divide the first number by the second and multiply by 100. Example: What percent is 20 of 80? (20 ÷ 80) × 100 = 25%.</p>
+      <p><strong>How do I calculate the original price before a discount?</strong> Use the formula: Original Price = Sale Price ÷ (1 - Discount%). If an item is on sale for $60 after a 25% discount, the original price was $60 ÷ 0.75 = $80.</p>
+      <p><strong>Why doesn't a 50% gain and a 50% loss cancel out?</strong> Because the second change is applied to a different base. A 50% gain on $100 gives $150. A 50% loss from $150 leaves $75, which is a net loss of 25% from the original.</p>
+      <p><strong>How do I calculate compound interest?</strong> Use the formula: Final Value = Initial Value × (1 + r/100)ⁿ, where r is the annual interest rate and n is the number of years.</p>
+      <p><strong>What is the difference between markup and margin?</strong> Markup is the percentage added to the cost to get the selling price. Margin is the percentage of the selling price that is profit. A 50% markup on a $100 cost gives a $150 selling price and a 33.3% margin.</p>
+      <p><strong>How can I quickly estimate percentages in my head?</strong> Use the shortcuts for 1%, 5%, 10%, 20%, 25%, and 50%. Break any percentage into combinations of these easy-to-calculate parts.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../tip-calculator/">Tip Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../investment-calculator/">Investment Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../fuel-calculator/">Fuel Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    function calculatePct() {
+      const value = parseFloat(document.getElementById('pct-value').value);
+      const percent = parseFloat(document.getElementById('pct-percent').value);
+
+      if (isNaN(value) || isNaN(percent)) {
+        return;
+      }
+
+      const pctOf = value * percent / 100;
+      const pctPlus = value + pctOf;
+      const pctMinus = value - pctOf;
+      const pctWhole = percent !== 0 ? value / (percent / 100) : 0;
+
+      document.getElementById('pct-of').textContent = pctOf.toFixed(2);
+      document.getElementById('pct-plus').textContent = pctPlus.toFixed(2);
+      document.getElementById('pct-minus').textContent = pctMinus.toFixed(2);
+      document.getElementById('pct-what').textContent = pctWhole.toFixed(2);
+    }
+
+    function resetPct() {
+      document.getElementById('pct-value').value = '';
+      document.getElementById('pct-percent').value = '';
+      document.getElementById('pct-of').textContent = '0';
+      document.getElementById('pct-plus').textContent = '0';
+      document.getElementById('pct-minus').textContent = '0';
+      document.getElementById('pct-what').textContent = '0';
+    }
+
+    document.querySelectorAll('#pct-value, #pct-percent').forEach(i => i.addEventListener('input', calculatePct));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

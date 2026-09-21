@@ -1,0 +1,1290 @@
+/* ==========================================================================
+   GCalc — Premium Blue Design System
+   Inspired by: Vercel Geist, Stripe, Linear
+   Palette: Single confident blue (#0066FF), cool neutrals, NO pink, NO purple
+   ========================================================================== */
+
+/* ---- Design Tokens ---- */
+:root {
+  /* Surfaces */
+  --bg:           #FAFAFA;
+  --surface:      #FFFFFF;
+  --surface-alt:  #F5F5F5;
+  --surface-hover:#EDEDEC;
+
+  /* Borders */
+  --border:       #E5E5E5;
+  --border-hover: #D4D4D4;
+  --border-focus: #0066FF;
+
+  /* Text */
+  --text-primary:   #0A0A0A;
+  --text-secondary: #525252;
+  --text-tertiary:  #737373;
+  --text-faint:     #A3A3A3;
+  --text-muted:     #737373;
+
+  /* Accent — single confident blue */
+  --accent:       #0066FF;
+  --accent-hover: #0052CC;
+  --accent-light: #E6F0FF;
+  --accent-subtle: #E6F0FF;
+  --accent-border: rgba(0, 102, 255, 0.25);
+  --accent-glow:  rgba(0, 102, 255, 0.12);
+
+  /* Semantic */
+  --success: #16A34A;
+  --warning: #D97706;
+  --error:   #DC2626;
+
+  /* Typography */
+  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', monospace;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-full: 9999px;
+
+  /* Shadows — restrained, structural */
+  --shadow-xs:  0 1px 2px rgba(10, 10, 10, 0.04);
+  --shadow-sm:  0 2px 4px rgba(10, 10, 10, 0.04), 0 0 0 1px rgba(10,10,10,0.04);
+  --shadow-card:  0 1px 3px rgba(10, 10, 10, 0.05), 0 0 0 1px var(--border);
+  --shadow-card-hover: 0 4px 12px rgba(10, 10, 10, 0.08), 0 0 0 1px var(--border-hover);
+  --shadow-elevated: 0 12px 32px rgba(10, 10, 10, 0.10), 0 0 0 1px var(--border);
+
+  /* Motion */
+  --ease: cubic-bezier(0.25, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.2, 0.64, 1);
+  --duration: 0.2s;
+  --duration-slow: 0.35s;
+}
+
+/* ==========================================================================
+   Reset & Base
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+img { max-width: 100%; display: block; }
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ==========================================================================
+   Typography Scale
+   ========================================================================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.25rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); }
+h3 { font-size: 1.125rem; font-weight: 600; }
+
+/* ==========================================================================
+   Utility
+   ========================================================================== */
+.text-accent { color: var(--accent); }
+.hidden { display: none !important; }
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all var(--duration) var(--ease);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: var(--shadow-xs);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.btn-ghost:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.btn-lg {
+  padding: 0.75rem 1.625rem;
+  font-size: 0.95rem;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 60px;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px) saturate(1.2);
+  -webkit-backdrop-filter: blur(14px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+}
+
+.header-inner {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+}
+
+.logo-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--accent);
+  border-radius: var(--radius-md);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.nav-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  transition: all var(--duration) var(--ease);
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: var(--surface-hover);
+}
+
+.nav-link.active {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Mobile menu toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.menu-toggle.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.menu-toggle.active span:nth-child(2) { opacity: 0; }
+.menu-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ==========================================================================
+   Hero — clean, confident, airy
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Subtle dot-pattern backdrop */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.3;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.875rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.hero-badge-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin-bottom: 1.25rem;
+  color: var(--text-primary);
+}
+
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-tertiary);
+  max-width: 520px;
+  margin: 0 auto 2.25rem;
+  line-height: 1.65;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Stats — minimal divider */
+.hero-stats {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.hero-stat { text-align: center; }
+
+.hero-stat-value {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.hero-stat-label {
+  font-size: 0.78rem;
+  color: var(--text-tertiary);
+  margin-top: 0.2rem;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   Ad Banners
+   ========================================================================== */
+.ad-banner {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.ad-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 900px;
+  width: 100%;
+}
+
+.ad-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  flex-shrink: 0;
+  font-weight: 600;
+}
+
+.ad-placeholder {
+  flex: 1;
+  height: 90px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Section Titles
+   ========================================================================== */
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ==========================================================================
+   Calculators Section
+   ========================================================================== */
+.calculators-section {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  text-align: center;
+  padding: 4rem 0 2.5rem;
+}
+
+.calculators-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 1rem;
+}
+
+/* ==========================================================================
+   Calculator Card — minimal, refined
+   ========================================================================== */
+.calc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all var(--duration-slow) var(--ease);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Top accent bar — reveal on hover */
+.calc-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease);
+}
+
+.calc-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.calc-card:hover::before {
+  opacity: 1;
+}
+
+.calc-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.calc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  transition: all var(--duration-slow) var(--ease);
+  flex-shrink: 0;
+}
+
+.calc-card:hover .calc-icon {
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+
+.calc-badge {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 0.3rem 0.625rem;
+  border-radius: var(--radius-full);
+  background: var(--surface-alt);
+  color: var(--text-tertiary);
+  border: 1px solid var(--border);
+}
+
+.calc-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--text-primary);
+}
+
+.calc-desc {
+  color: var(--text-tertiary);
+  font-size: 0.825rem;
+  line-height: 1.5;
+  margin-bottom: 1.25rem;
+}
+
+.calc-category {
+  font-size: 0.7rem;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  font-weight: 600;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.calc-card:hover .calc-category {
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Features (Why Choose)
+   ========================================================================== */
+.features-section {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 5rem 2rem;
+}
+
+.features-inner {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.feature-card {
+  padding: 1.75rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  transition: all var(--duration-slow) var(--ease);
+}
+
+.feature-card:hover {
+  border-color: var(--border-hover);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.feature-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.875rem;
+  display: block;
+}
+
+.feature-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: var(--text-primary);
+}
+
+.feature-card p {
+  font-size: 0.84rem;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer {
+  padding: 4rem 2rem 2rem;
+  background: var(--bg);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.footer-brand .logo {
+  margin-bottom: 0.625rem;
+}
+
+.footer-tagline {
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+  margin-top: 0.4rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-tertiary);
+  font-size: 0.875rem;
+  padding: 0.3rem 0;
+  transition: color var(--duration) var(--ease);
+}
+
+.footer-col a:hover {
+  color: var(--accent);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--text-faint);
+  font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   Modal
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--duration-slow) var(--ease), visibility var(--duration-slow);
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  width: 100%;
+  max-width: 480px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-elevated);
+  transform: scale(0.97) translateY(8px);
+  transition: transform var(--duration-slow) var(--ease-bounce);
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1) translateY(0);
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.modal-title .modal-icon {
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  transition: all var(--duration) var(--ease);
+}
+
+.modal-close:hover {
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+/* ==========================================================================
+   Calculator Forms
+   ========================================================================== */
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.0625rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.form-input,
+.form-select {
+  padding: 0.8rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  transition: all var(--duration) var(--ease);
+  width: 100%;
+}
+
+.form-input::placeholder {
+  color: var(--text-faint);
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  background: var(--surface);
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23737373' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.625rem;
+  margin-top: 0.25rem;
+}
+
+.form-actions .btn {
+  flex: 1;
+}
+
+/* ==========================================================================
+   Result Display — clean, crisp
+   ========================================================================== */
+.calc-result {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  text-align: center;
+  display: none;
+  position: relative;
+}
+
+.calc-result.visible {
+  display: block;
+  animation: resultIn 0.3s var(--ease-bounce);
+}
+
+@keyframes resultIn {
+  from { opacity: 0; transform: translateY(6px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.result-label {
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+}
+
+.result-value {
+  font-family: var(--font-mono);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.result-secondary {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  margin-top: 0.625rem;
+}
+
+/* ==========================================================================
+   Affiliate Section
+   ========================================================================== */
+.calc-affiliate {
+  margin-top: 1.5rem;
+  padding-top: 0.875rem;
+  border-top: 1px solid var(--border);
+  display: none;
+}
+
+.calc-affiliate.visible { display: block; }
+
+.affiliate-title {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-faint);
+  margin-bottom: 0.625rem;
+  font-weight: 700;
+}
+
+.affiliate-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.affiliate-link {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.7rem 0.875rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  font-size: 0.815rem;
+  transition: all var(--duration) var(--ease);
+}
+
+.affiliate-link:hover {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.affiliate-link.highlight {
+  background: var(--accent-light);
+  border-color: rgba(0,102,255,0.25);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.affiliate-link.highlight:hover {
+  background: #D6E4FF;
+}
+
+/* ==========================================================================
+   Toast
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: var(--text-primary);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 0.8rem 1.375rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  z-index: 2000;
+  opacity: 0;
+  transition: all 0.3s var(--ease-bounce);
+  font-size: 0.875rem;
+  font-weight: 500;
+  box-shadow: 0 8px 24px rgba(10, 10, 10, 0.18);
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #22C55E;
+}
+
+/* ==========================================================================
+   Scientific Calculator
+   ========================================================================== */
+.scientific-calc {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sci-display {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: right;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  overflow-x: auto;
+  letter-spacing: -0.01em;
+}
+
+.sci-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.sci-btn {
+  padding: 0.75rem 0.5rem;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: all var(--duration) var(--ease);
+  cursor: pointer;
+  user-select: none;
+  text-align: center;
+}
+
+.sci-btn:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-hover);
+}
+
+.sci-btn:active {
+  transform: scale(0.96);
+  background: var(--surface-alt);
+}
+
+.sci-btn.accent {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+.sci-btn.accent:hover {
+  background: var(--accent-hover);
+}
+
+.sci-btn.accent:active {
+  background: #004BB2;
+}
+
+.sci-btn.muted {
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+}
+
+.sci-btn.wide {
+  grid-column: span 2;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: 0.5; transform: scale(1.25); }
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+
+[data-animate].animated {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-animate][data-delay="1"] { transition-delay: 0.04s; }
+[data-animate][data-delay="2"] { transition-delay: 0.08s; }
+[data-animate][data-delay="3"] { transition-delay: 0.12s; }
+[data-animate][data-delay="4"] { transition-delay: 0.16s; }
+[data-animate][data-delay="5"] { transition-delay: 0.20s; }
+[data-animate][data-delay="6"] { transition-delay: 0.24s; }
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.5rem 1.25rem;
+    flex-direction: column;
+    gap: 0;
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 0.75rem 1rem;
+  }
+
+  .hero {
+    padding: 7rem 1.25rem 3rem;
+    min-height: auto;
+  }
+
+  .hero-stats {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .calculators-section {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .calculators-grid {
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+  }
+
+  .features-section {
+    padding: 3.5rem 1.25rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .footer-links {
+    gap: 2.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .ad-placeholder {
+    height: 60px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .calculators-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ==========================================================================
+   Shared Calculator Page Layout (all 13 calculator pages)
+   ========================================================================== */
+.calc-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 7rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2.5rem;
+}
+
+.calc-form-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 2rem;
+  box-shadow: var(--shadow-card);
+  position: sticky;
+  top: 6rem;
+}
+
+.calc-info-panel h2 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.calc-info-panel h3 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  margin: 1.75rem 0 0.75rem;
+  color: var(--text-primary);
+}
+
+.calc-info-panel p {
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.calc-info-panel ul {
+  margin-bottom: 1.25rem;
+  padding-left: 1.2rem;
+  color: var(--text-muted);
+}
+
+.calc-info-panel li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.other-calc-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.other-calc-links a {
+  display: inline-block;
+  padding: 0.4rem 0.875rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  transition: all 0.15s ease;
+}
+
+.other-calc-links a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-subtle);
+}
+
+@media (max-width: 900px) {
+  .calc-page {
+    grid-template-columns: 1fr;
+    padding: 6rem 1rem 3rem;
+  }
+  .calc-form-panel {
+    position: static;
+  }
+}

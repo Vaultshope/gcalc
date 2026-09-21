@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator - Body Mass Index Tool | GCalc Free Calculator</title>
+  <meta name="description" content="Calculate your Body Mass Index (BMI) instantly with our free online BMI calculator. Includes visual health gauge and category breakdown. No sign-up required.">
+  <meta name="keywords" content="BMI calculator, body mass index, BMI calculator free, calculate BMI online, BMI health calculator, weight calculator">
+  <link rel="canonical" href="https://gcalc.app/calculators/bmi-calculator/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="BMI Calculator - Body Mass Index Tool | GCalc Free Calculator">
+  <meta property="og:description" content="Calculate your Body Mass Index (BMI) instantly with our free online BMI calculator. Includes visual health gauge and category breakdown. No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/bmi-calculator/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BMI Calculator - Body Mass Index Tool | GCalc Free Calculator">
+  <meta name="twitter:description" content="Calculate your Body Mass Index (BMI) instantly with our free online BMI calculator. Includes visual health gauge and category breakdown. No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .bmi-gauge-wrap {
+      margin-top: 1.5rem;
+    }
+    .bmi-gauge-bar {
+      height: 14px;
+      border-radius: 100px;
+      background: linear-gradient(90deg, #3b82f6 0%, #22c55e 25%, #eab308 50%, #f97316 75%, #ef4444 100%);
+      position: relative;
+    }
+    .bmi-indicator {
+      position: absolute;
+      top: -6px;
+      width: 26px;
+      height: 26px;
+      background: #fff;
+      border: 3px solid var(--accent);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      transition: left 0.4s ease;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .bmi-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0.5rem;
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .result-category {
+      display: inline-block;
+      padding: 0.4rem 0.875rem;
+      border-radius: 100px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: 0.75rem;
+    }
+    .cat-underweight { background: rgba(59,130,246,0.10); color: #1d4ed8; border: 1px solid rgba(59,130,246,0.25); }
+    .cat-normal { background: rgba(34,197,94,0.10); color: #15803d; border: 1px solid rgba(34,197,94,0.25); }
+    .cat-overweight { background: rgba(245,158,11,0.10); color: #b45309; border: 1px solid rgba(245,158,11,0.25); }
+    .cat-obese { background: rgba(239,68,68,0.10); color: #b91c1c; border: 1px solid rgba(239,68,68,0.25); }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/bmi-calculator/",
+      "name": "BMI Calculator | GCalc",
+      "description": "Calculate your Body Mass Index (BMI) instantly with our free online BMI calculator. Includes visual health gauge and category breakdown. No sign-up required.",
+      "url": "https://gcalc.app/calculators/bmi-calculator/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/bmi-calculator/#app",
+      "name": "BMI Calculator",
+      "description": "Calculate your Body Mass Index (BMI) instantly with our free online BMI calculator. Includes visual health gauge and category breakdown. No sign-up required.",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is a healthy BMI",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For most adults, a BMI between 18.5 and 24.9 is considered a healthy weight range. It is associated with the lowest risk of weight-related diseases in population studies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is BMI accurate for everyone",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. BMI does not account for muscle mass, bone density, body fat distribution, or ethnic differences. It is a population-level screening tool, not a personal diagnostic."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What BMI is considered obese",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A BMI of 30.0 or higher is classified as obese. This is subdivided into Class I (30-34.9), Class II (35-39.9), and Class III (40+)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you have a normal BMI but still be unhealthy",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This is often called \"normal-weight obesity.\" Someone with a normal BMI can still have high body fat, poor cardiovascular fitness, or metabolic syndrome. BMI is only one data point."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does BMI matter if you exercise regularly",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Somewhat. Regular exercise improves metabolic health independent of BMI. However, excess body fat still increases strain on joints, organs, and the circulatory system even in active individuals. Fitness and fatness both matter."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How often should I check my BMI",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If you are actively managing your weight, checking monthly is useful. For general monitoring, quarterly or semi-annually is sufficient. Daily weigh-ins are not recommended for BMI purposes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the average BMI in the United States",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As of recent CDC data, the average BMI for adult men is approximately 29.1 and for adult women is approximately 29.6, placing the average American in the overweight category."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the BMI formula different for men and women",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The formula is identical. However, women naturally carry more essential body fat than men, so a BMI at the higher end of the normal range may be perfectly healthy for a woman."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu">
+        <a href="../../" class="nav-link">Home</a>
+        <a href="../../#calculators" class="nav-link">Calculators</a>
+        <a href="../../about/" class="nav-link">About</a>
+      </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <!-- Calculator Panel -->
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem;color:var(--text-primary)">Calculate Your BMI</h3>
+      <div class="calc-form">
+        <div class="form-group">
+          <label class="form-label">Height (cm)</label>
+          <input type="number" id="bmi-height" class="form-input" placeholder="e.g., 175" min="1" step="0.1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Weight (kg)</label>
+          <input type="number" id="bmi-weight" class="form-input" placeholder="e.g., 70" min="1" step="0.1">
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-secondary" onclick="resetBMI()">Reset</button>
+          <button class="btn btn-primary" onclick="calculateBMI()">Calculate BMI</button>
+        </div>
+      </div>
+      <div id="bmi-result" class="calc-result">
+        <div class="result-label">Your BMI Score</div>
+        <div class="result-value"><span id="bmi-value">0.0</span></div>
+        <div id="bmi-category" class="result-category cat-normal">Normal</div>
+        <div class="bmi-gauge-wrap">
+          <div class="bmi-gauge-bar">
+            <div id="bmi-indicator" class="bmi-indicator" style="left:50%"></div>
+          </div>
+          <div class="bmi-labels">
+            <span>Under 18.5</span>
+            <span>18.5-24.9</span>
+            <span>25-29.9</span>
+            <span>30+</span>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="margin-top:1rem" onclick="copyBMI()">Copy Result</button>
+      </div>
+    </div>
+
+    <!-- Info Panel -->
+    <div class="calc-info-panel">
+      <h2>What Is BMI and How Is It Calculated?</h2>
+      <p>Body Mass Index (BMI) is a simple screening method used to estimate whether a person has a healthy body weight for their height. Developed in the 19th century by Belgian mathematician Adolphe Quetelet, it remains one of the most widely used tools in public health, medicine, and personal fitness tracking today.</p>
+      <p>BMI is calculated by dividing your weight in kilograms by the square of your height in meters: <strong>BMI = kg ÷ m²</strong>. If you prefer imperial units, the formula is: <strong>BMI = (lbs × 703) ÷ (inches²)</strong>. For example, a person who weighs 70 kg and is 1.75 m tall has a BMI of 70 ÷ (1.75 × 1.75) = 22.9, which falls in the normal weight range.</p>
+      <p>Doctors, nutritionists, and insurance companies use BMI as an initial screening tool because it is fast, non-invasive, and requires no special equipment. However, it is important to understand that BMI is a population-level measure, not a personal diagnosis. It estimates body fat indirectly and does not account for muscle mass, bone density, or fat distribution.</p>
+
+      <h2>Complete BMI Categories and Table</h2>
+      <p>The World Health Organization (WHO) and the Centers for Disease Control and Prevention (CDC) use the following standard BMI ranges for adults aged 20 and over:</p>
+      <ul>
+        <li><strong>Underweight:</strong> Below 18.5 — may indicate malnutrition, eating disorders, or other health conditions. Underweight individuals may have weakened immune systems, bone loss, and fertility issues.</li>
+        <li><strong>Normal weight:</strong> 18.5 to 24.9 — generally associated with the lowest risk of weight-related diseases. This range does not guarantee health, but it correlates strongly with favorable metabolic markers.</li>
+        <li><strong>Overweight:</strong> 25.0 to 29.9 — associated with moderate increases in risk for type 2 diabetes, hypertension, heart disease, and some cancers. Modest weight reduction can yield significant health benefits.</li>
+        <li><strong>Obese Class I:</strong> 30.0 to 34.9 — significantly elevated risk. Medical intervention, structured diet, and exercise programs are often recommended.</li>
+        <li><strong>Obese Class II:</strong> 35.0 to 39.9 — high risk. Medical supervision is strongly advised.</li>
+        <li><strong>Obese Class III:</strong> 40.0 and above — very high risk, sometimes called severe or morbid obesity. Surgical options may be considered.</li>
+      </ul>
+      <p>For quick reference, here is a simplified BMI table for common heights and weights:</p>
+      <ul>
+        <li>150 cm (4'11"): 41-56 kg = Normal | 57-68 kg = Overweight | 69+ kg = Obese</li>
+        <li>160 cm (5'3"): 47-63 kg = Normal | 64-76 kg = Overweight | 77+ kg = Obese</li>
+        <li>170 cm (5'7"): 54-71 kg = Normal | 72-85 kg = Overweight | 86+ kg = Obese</li>
+        <li>175 cm (5'9"): 57-76 kg = Normal | 77-91 kg = Overweight | 92+ kg = Obese</li>
+        <li>180 cm (5'11"): 60-80 kg = Normal | 81-97 kg = Overweight | 98+ kg = Obese</li>
+        <li>190 cm (6'3"): 67-88 kg = Normal | 89-105 kg = Overweight | 106+ kg = Obese</li>
+      </ul>
+
+      <h2>BMI for Children, Teens, and Older Adults</h2>
+      <p>BMI calculation works the same for children and teens, but the interpretation is different. Because body composition changes as children grow, doctors use BMI-for-age percentiles rather than fixed adult cutoffs. A BMI below the 5th percentile is considered underweight; 5th to 85th is healthy; 85th to 95th is overweight; and 95th and above is obese. If you are a parent, consult a pediatrician or use the CDC's BMI-for-age growth charts rather than this adult calculator.</p>
+      <p>For adults over 65, the relationship between BMI and health outcomes changes. Research suggests that a slightly higher BMI (25-27) in older adults may be protective and associated with lower mortality than the standard "normal" range. This is partly because higher BMI in older age can preserve muscle mass and nutrient reserves during illness. Always consult a geriatrician for age-appropriate weight targets.</p>
+
+      <h2>BMI for Athletes and Bodybuilders</h2>
+      <p>One of the most common criticisms of BMI is that it cannot distinguish between muscle and fat. A muscular athlete may have the same BMI as an overweight sedentary person. For example, a bodybuilder who is 180 cm and weighs 100 kg has a BMI of 30.9, classifying them as "obese" despite having very low body fat. If you are an athlete with high muscle mass, BMI should not be your sole health metric. Consider adding body fat percentage measurements, waist circumference, and performance benchmarks to your assessment.</p>
+
+      <h2>BMI During Pregnancy</h2>
+      <p>Pregnancy changes nearly every metric in the body, including how BMI is interpreted. Pre-pregnancy BMI is used to determine healthy weight gain ranges during pregnancy, but BMI itself is not a useful measure during the gestational period. Expected weight gain varies by pre-pregnancy BMI status:</p>
+      <ul>
+        <li>Underweight (BMI &lt; 18.5): Gain 12.5-18 kg (28-40 lbs)</li>
+        <li>Normal weight (18.5-24.9): Gain 11.5-16 kg (25-35 lbs)</li>
+        <li>Overweight (25-29.9): Gain 7-11.5 kg (15-25 lbs)</li>
+        <li>Obese (≥30.0): Gain 5-9 kg (11-20 lbs)</li>
+      </ul>
+
+      <h2>Health Risks Associated With BMI Categories</h2>
+      <p>BMI is correlated with a wide range of health conditions because excess body fat, especially visceral fat around the organs, is metabolically active and contributes to inflammation, insulin resistance, and hormonal changes.</p>
+      <p><strong>Underweight risks:</strong> Weakened immune function, osteoporosis, anemia, fertility problems, and growth delays in children.</p>
+      <p><strong>Overweight and obesity risks:</strong> Type 2 diabetes, hypertension, coronary artery disease, stroke, osteoarthritis, sleep apnea, fatty liver disease, polycystic ovary syndrome (PCOS), certain cancers (breast, colon, endometrial, kidney), and depression.</p>
+      <p>Research from the Framingham Heart Study and multiple meta-analyses confirms that moving from a BMI of 30+ to a BMI of 25 or below can reduce cardiovascular risk by 20-50%. Even a 5-10% reduction in body weight can produce measurable improvements in blood pressure, blood sugar, and cholesterol levels.</p>
+
+      <h2>BMI Alternatives: When to Use More Accurate Measures</h2>
+      <p>Because BMI cannot measure fat distribution, several alternatives have been developed to provide more accurate individual assessments:</p>
+      <ul>
+        <li><strong>Waist-to-Height Ratio (WHtR):</strong> Divide waist circumference by height. A ratio above 0.5 indicates increased health risk regardless of BMI.</li>
+        <li><strong>Waist-to-Hip Ratio (WHR):</strong> Men above 0.90 and women above 0.85 have elevated cardiovascular risk.</li>
+        <li><strong>Body Fat Percentage:</strong> Measured by DEXA scan, bioimpedance, or skinfold calipers. Athletes may be 6-13% body fat (men) or 14-20% (women), while obesity is generally defined as &gt;25% (men) or &gt;32% (women).</li>
+        <li><strong>Visceral Fat Area (VFA):</strong> Best measured by CT or MRI, but also estimated by waist circumference.</li>
+      </ul>
+      <p>For most people, a combination of BMI, waist circumference, and a basic physical examination provides a good enough health picture. But if you are an athlete, have a muscular build, or carry weight predominantly in your midsection, one of the above methods may be more informative.</p>
+
+      <h2>How to Lower Your BMI Safely</h2>
+      <p>If your BMI falls in the overweight or obese range and you are looking to reduce it, the evidence-based approach combines diet, physical activity, sleep, and behavioral changes. Aim for a gradual weight loss of 0.5-1 kg (1-2 lbs) per week, which is sustainable and minimizes muscle loss.</p>
+      <ul>
+        <li><strong>Diet:</strong> Create a modest calorie deficit of 300-500 kcal per day. Focus on whole foods, fiber, lean protein, and healthy fats. Avoid liquid calories, ultra-processed foods, and excessive alcohol.</li>
+        <li><strong>Exercise:</strong> Combine 150 minutes of moderate aerobic activity per week with 2-3 sessions of resistance training. Resistance training preserves muscle mass during weight loss, which keeps metabolic rate higher.</li>
+        <li><strong>Sleep:</strong> Adults need 7-9 hours of quality sleep. Poor sleep increases hunger hormones (ghrelin) and decreases satiety hormones (leptin).</li>
+        <li><strong>Behavioral:</strong> Self-monitoring (food diaries, weight tracking), social support, and stress management techniques improve long-term adherence.</li>
+      </ul>
+      <p>If you have a BMI of 35 or higher, or 30+ with comorbidities, consult a healthcare provider. Medical interventions such as GLP-1 agonists, medically supervised diets, or bariatric surgery may be appropriate and highly effective when lifestyle changes alone are insufficient.</p>
+
+      <h2>Frequently Asked Questions About BMI</h2>
+      <p><strong>What is a healthy BMI?</strong> For most adults, a BMI between 18.5 and 24.9 is considered a healthy weight range. It is associated with the lowest risk of weight-related diseases in population studies.</p>
+      <p><strong>Is BMI accurate for everyone?</strong> No. BMI does not account for muscle mass, bone density, body fat distribution, or ethnic differences. It is a population-level screening tool, not a personal diagnostic.</p>
+      <p><strong>What BMI is considered obese?</strong> A BMI of 30.0 or higher is classified as obese. This is subdivided into Class I (30-34.9), Class II (35-39.9), and Class III (40+).</p>
+      <p><strong>Can you have a normal BMI but still be unhealthy?</strong> Yes. This is often called "normal-weight obesity." Someone with a normal BMI can still have high body fat, poor cardiovascular fitness, or metabolic syndrome. BMI is only one data point.</p>
+      <p><strong>Does BMI matter if you exercise regularly?</strong> Somewhat. Regular exercise improves metabolic health independent of BMI. However, excess body fat still increases strain on joints, organs, and the circulatory system even in active individuals. Fitness and fatness both matter.</p>
+      <p><strong>How often should I check my BMI?</strong> If you are actively managing your weight, checking monthly is useful. For general monitoring, quarterly or semi-annually is sufficient. Daily weigh-ins are not recommended for BMI purposes.</p>
+      <p><strong>What is the average BMI in the United States?</strong> As of recent CDC data, the average BMI for adult men is approximately 29.1 and for adult women is approximately 29.6, placing the average American in the overweight category.</p>
+      <p><strong>Is the BMI formula different for men and women?</strong> No. The formula is identical. However, women naturally carry more essential body fat than men, so a BMI at the higher end of the normal range may be perfectly healthy for a woman.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../age-calculator/">Age Calculator</a>
+        <a href="../fuel-calculator/">Fuel Calculator</a>
+        <a href="../scientific-calculator/">Scientific Calculator</a>
+        <a href="../unit-converter/">Unit Converter</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+        <p class="footer-tagline">Smart calculators for smart people.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Calculators</h4>
+          <a href="../../#calculators">All Calculators</a>
+          <a href="../mortgage-calculator/">Mortgage Calculator</a>
+          <a href="../tip-calculator/">Tip Calculator</a>
+          <a href="../grade-calculator/">Grade Calculator</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="../../about/">About Us</a>
+          <a href="mailto:hello@gcalc.app">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 GCalc. All rights reserved. Made with love for the community.</div>
+  </footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    const bmiCalc = window.GCalcShared.calculators.find(c => c.id === 'bmi');
+
+    function calculateBMI() {
+      const h = parseFloat(document.getElementById('bmi-height').value);
+      const w = parseFloat(document.getElementById('bmi-weight').value);
+
+      if (!h || !w || h <= 0 || w <= 0) {
+        alert('Please enter valid height and weight values.');
+        return;
+      }
+
+      const result = bmiCalc.calculate({ weight: w, height: h });
+      if (!result) return;
+
+      const bmiVal = result.value;
+      const cat = result.secondary;
+
+      document.getElementById('bmi-value').textContent = bmiVal;
+
+      const catEl = document.getElementById('bmi-category');
+      const indicator = document.getElementById('bmi-indicator');
+
+      let cls, pos;
+      if (cat === 'Underweight') { cls = 'cat-underweight'; pos = 10; }
+      else if (cat === 'Normal') { cls = 'cat-normal'; pos = 37.5; }
+      else if (cat === 'Overweight') { cls = 'cat-overweight'; pos = 62.5; }
+      else { cls = 'cat-obese'; pos = 85; }
+
+      catEl.textContent = cat;
+      catEl.className = 'result-category ' + cls;
+      indicator.style.left = Math.min(Math.max(pos, 0), 100) + '%';
+
+      document.getElementById('bmi-result').classList.add('visible');
+    }
+
+    function resetBMI() {
+      document.getElementById('bmi-height').value = '';
+      document.getElementById('bmi-weight').value = '';
+      document.getElementById('bmi-result').classList.remove('visible');
+    }
+
+    function copyBMI() {
+      const val = document.getElementById('bmi-value').textContent;
+      const cat = document.getElementById('bmi-category').textContent;
+      copyToClipboard(`My BMI is ${val} (${cat})`);
+    }
+
+    // Real-time calculation on input
+    document.getElementById('bmi-height').addEventListener('input', calculateBMI);
+    document.getElementById('bmi-weight').addEventListener('input', calculateBMI);
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>

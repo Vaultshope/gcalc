@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Converter - Length, Weight, Temperature | GCalc Free Tool</title>
+  <meta name="description" content="Free unit converter for length, weight, and temperature conversions. Convert between metric and imperial units instantly. No sign-up required.">
+  <meta name="keywords" content="unit converter, length converter, weight converter, temperature converter, metric to imperial, cm to inches, kg to lbs, celsius to fahrenheit">
+  <link rel="canonical" href="https://gcalc.app/calculators/unit-converter/">
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Unit Converter - Length, Weight, Temperature | GCalc Free Tool">
+  <meta property="og:description" content="Free unit converter for length, weight, and temperature conversions. Convert between metric and imperial units instantly. No sign-up required.">
+  <meta property="og:url" content="https://gcalc.app/calculators/unit-converter/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="GCalc">
+  <meta property="og:image" content="https://gcalc.app/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unit Converter - Length, Weight, Temperature | GCalc Free Tool">
+  <meta name="twitter:description" content="Free unit converter for length, weight, and temperature conversions. Convert between metric and imperial units instantly. No sign-up required.">
+  <meta name="twitter:image" content="https://gcalc.app/og-image.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <style>
+        .unit-result { margin-top: 1.5rem; padding: 1.5rem; background: var(--bg); border-radius: var(--radius-md); border: 1px solid var(--border); text-align: center; }
+    .unit-result-value { font-family: var(--font-mono); font-size: 2.5rem; font-weight: 700; color: var(--accent); }
+    .unit-result-label { font-size: 0.75rem; color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+    .unit-swap { display: flex; align-items: center; justify-content: center; margin: 0.5rem 0; }
+    .unit-swap button { background: var(--accent-subtle); border: 1px solid var(--accent-border); color: var(--accent); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; transition: all 0.15s ease; }
+    .unit-swap button:hover { background: var(--accent); color: #fff; }
+      </style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://gcalc.app/calculators/unit-converter/",
+      "name": "Unit Converter | GCalc",
+      "description": "Free unit converter for length, weight, and temperature conversions. Supports metric and imperial units._SIDEBAR",
+      "url": "https://gcalc.app/calculators/unit-converter/",
+      "isPartOf": {
+        "@id": "https://gcalc.app/"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://gcalc.app/calculators/unit-converter/#app",
+      "name": "Unit Converter",
+      "description": "Free unit converter for length, weight, and temperature conversions. Supports metric and imperial units._SIDEBAR",
+      "applicationCategory": "Calculator",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert between metric and imperial units",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Enter your value in the input field, select the unit you are converting from, and select the unit you want to convert to. Our calculator applies the exact conversion factor instantly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why are there two different ounce measurements",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The US fluid ounce (\u224829.57 mL) and the imperial fluid ounce (\u224828.41 mL) are different because the US gallon is defined differently from the imperial gallon. Our converter uses US customary units where applicable."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between mass and weight",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mass is the amount of matter in an object (kg, lb), while weight is the force exerted by gravity on that mass (Newtons). On Earth, the two are proportional, so we convert between mass units directly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which countries still use the imperial system",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The United States is the only major country that still primarily uses the US customary (imperial-derived) system for everyday measurement. The United Kingdom uses a mix, with metric for most purposes but miles for road distances and pints for beer."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I convert temperature in my head",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For a quick estimate from Celsius to Fahrenheit, double the Celsius value and add 30. (The exact formula is multiply by 1.8 and add 32.) From Fahrenheit to Celsius, subtract 30 and halve it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the metric system use powers of 10",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The metric system was designed to be simple and universal. Because it is based on powers of 10, conversions require only moving the decimal point. There are 1000 meters in a kilometer, 100 centimeters in a meter, and 10 millimeters in a centimeter, making mental math straightforward."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the most accurate way to convert units",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Use exact conversion factors rather than rounded approximations. For example, 1 inch = 2.54 centimeters (exact), not 2.5. Our calculator uses precise factors to ensure accuracy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert between unrelated units, like length to weight",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Length and weight measure different physical properties and cannot be directly converted. Our calculator will alert you if you attempt to convert between incompatible unit types."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is absolute zero in all three temperature scales",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolute zero is -273.15\u00b0C, -459.67\u00b0F, and 0 Kelvin. It is the theoretical temperature at which all molecular motion ceases."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why do pilots use feet for altitude",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Aviation adopted feet for altitude before the metric system became dominant, and the convention persists worldwide for safety and standardization. Metric-based aviation, such as in China and Russia, uses meters for some altitudes but feet remain the global standard for commercial aviation."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <nav class="nav" id="navMenu"><a href="../../" class="nav-link">Home</a><a href="../../#calculators" class="nav-link">Calculators</a><a href="../../about/" class="nav-link">About</a></nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    </div>
+  </header>
+
+  <main class="calc-page">
+    <div class="calc-form-panel">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;margin-bottom:1.5rem">Convert Units</h3>
+      <div class="calc-form">
+        <div class="form-group"><label class="form-label">Value</label><input type="number" id="unit-value" class="form-input" placeholder="100" step="any"></div>
+        <div class="form-group"><label class="form-label">From</label>
+          <select id="unit-from" class="form-select">
+            <optgroup label="Length">
+              <option value="m">Meters (m)</option>
+              <option value="cm">Centimeters (cm)</option>
+              <option value="km">Kilometers (km)</option>
+              <option value="in">Inches (in)</option>
+              <option value="ft">Feet (ft)</option>
+              <option value="yd">Yards (yd)</option>
+              <option value="mi">Miles (mi)</option>
+            </optgroup>
+            <optgroup label="Weight">
+              <option value="kg">Kilograms (kg)</option>
+              <option value="g">Grams (g)</option>
+              <option value="lb">Pounds (lb)</option>
+              <option value="oz">Ounces (oz)</option>
+            </optgroup>
+            <optgroup label="Temperature">
+              <option value="c">Celsius (°C)</option>
+              <option value="f">Fahrenheit (°F)</option>
+              <option value="k">Kelvin (K)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="unit-swap" onclick="swapUnits()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16l-4-4 4-4"/><path d="M17 8l4 4-4 4"/><path d="M17 16H7"/><path d="M7 8h10"/></svg></div>
+        <div class="form-group"><label class="form-label">To</label>
+          <select id="unit-to" class="form-select">
+            <optgroup label="Length">
+              <option value="m">Meters (m)</option>
+              <option value="cm">Centimeters (cm)</option>
+              <option value="km">Kilometers (km)</option>
+              <option value="in">Inches (in)</option>
+              <option value="ft">Feet (ft)</option>
+              <option value="yd">Yards (yd)</option>
+              <option value="mi">Miles (mi)</option>
+            </optgroup>
+            <optgroup label="Weight">
+              <option value="kg">Kilograms (kg)</option>
+              <option value="g">Grams (g)</option>
+              <option value="lb">Pounds (lb)</option>
+              <option value="oz">Ounces (oz)</option>
+            </optgroup>
+            <optgroup label="Temperature">
+              <option value="c">Celsius (°C)</option>
+              <option value="f">Fahrenheit (°F)</option>
+              <option value="k">Kelvin (K)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="form-actions"><button class="btn btn-secondary" onclick="resetUnit()">Reset</button><button class="btn btn-primary" onclick="convertUnit()">Convert</button></div>
+      </div>
+      <div id="unit-result" class="unit-result">
+        <div class="unit-result-label">Result</div>
+        <div class="unit-result-value" id="unit-result-value">0</div>
+        <div id="unit-result-unit" style="color:var(--text-muted);margin-top:0.5rem"></div>
+        <button class="btn btn-secondary" style="margin-top:1rem" onclick="copyUnit()">Copy Result</button>
+      </div>
+    </div>
+
+    <div class="calc-info-panel">
+      <h2>What Is a Unit Converter and Why Use One?</h2>
+      <p>A unit converter is a tool that translates measurements from one system of units to another, ensuring that a value expressed in one format is accurately represented in another. Whether you are a professional engineer working across international standards, a home cook following a recipe from another country, a traveler interpreting road signs, or a student solving physics problems, unit conversion is an unavoidable part of daily life.</p>
+      <p>Our unit converter covers the three most common categories of everyday measurement: length, weight, and temperature. It supports both the metric (SI) system used by almost every country in the world and the imperial/US customary system still prevalent in the United States and a handful of other nations. By providing instant, accurate conversions, the tool eliminates the need for manual calculations, reference tables, or memorization of conversion factors.</p>
+      <p>The importance of accurate unit conversion extends beyond convenience. In engineering and science, incorrect conversions can lead to catastrophic failures. The Mars Climate Orbiter, a $327.6 million NASA mission, was lost in 1999 because one team used metric units while another used imperial units, causing the spacecraft to enter the Martian atmosphere at the wrong altitude. While your daily conversions are unlikely to have such dramatic consequences, they can still affect the outcome of a recipe, the fit of a piece of furniture, or the dosage of a medication.</p>
+
+      <h2>Understanding Measurement Systems: Metric, Imperial, and US Customary</h2>
+      <p>The metric system, officially known as the International System of Units (SI), is a decimal-based system used by over 95% of the world's population. It was first proposed in France in 1791 and has since become the global standard for science, medicine, and international trade. The base units are the meter (length), kilogram (mass), and second (time), with all other units derived from these. Because it is decimal, conversions within the metric system require only multiplication or division by powers of 10.</p>
+      <p>The imperial system, historically used in the British Empire, evolved from a collection of local and regional units used in medieval England. It is no longer used in the United Kingdom for most purposes, having been replaced by the metric system in the 1960s and 1970s. However, remnants of the imperial system persist in the UK, such as road distances in miles and beer in pints.</p>
+      <p>The US customary system, used in the United States, is derived from the imperial system but differs in some details. For example, a US fluid ounce is slightly larger than an imperial fluid ounce, and a US gallon is smaller than an imperial gallon. These differences are critical in cooking, medicine, and fuel measurement. Our converter uses US customary units where applicable and labels them clearly to avoid confusion.</p>
+
+      <h2>Length Conversions: Meters, Feet, Miles, and Everything In Between</h2>
+      <p>Length is one of the most frequently converted measurements. Construction materials, sports fields, travel distances, and screen sizes all require length conversion.</p>
+      <ul>
+        <li><strong>1 meter (m)</strong> = 100 centimeters (cm) = 1000 millimeters (mm). The meter is the SI base unit of length, defined as the distance light travels in a vacuum in 1/299,792,458 of a second since 1983.</li>
+        <li><strong>1 kilometer (km)</strong> = 1000 meters ≈ 0.621371 miles. Kilometers are used for road distances in most of the world.</li>
+        <li><strong>1 inch (in)</strong> = 2.54 centimeters (exact). The inch is a fundamental imperial unit, originally defined as the width of a thumb.</li>
+        <li><strong>1 foot (ft)</strong> = 12 inches = 30.48 centimeters. The foot has been used since ancient times and is still common in the US for human height and construction.</li>
+        <li><strong>1 yard (yd)</strong> = 3 feet = 0.9144 meters. The yard is used in American football and fabric measurement.</li>
+        <li><strong>1 mile (mi)</strong> = 5280 feet = 1609.344 meters. The mile originates from the Roman "mille passuum," or one thousand paces.</li>
+      </ul>
+      <p>For quick mental math, a kilometer is roughly two-thirds of a mile. More precisely, 5 kilometers equals approximately 3.1 miles, and 10 kilometers equals 6.2 miles.</p>
+
+      <h2>Weight and Mass Conversions: Kilograms, Pounds, Ounces, and Tons</h2>
+      <p>Weight and mass are often used interchangeably in everyday discourse, though they are technically different. Mass is a measure of the amount of matter in an object (measured in kilograms), while weight is the force exerted by gravity on that matter (measured in Newtons). On Earth, the difference is irrelevant for most practical purposes, so we convert between mass units directly.</p>
+      <ul>
+        <li><strong>1 kilogram (kg)</strong> = 1000 grams (g) ≈ 2.20462 pounds. The kilogram is the SI base unit of mass, defined since 2019 by the Planck constant rather than a physical object.</li>
+        <li><strong>1 pound (lb)</strong> = 16 ounces (oz) = 0.453592 kilograms. The pound originates from the Roman "libra" and is the standard unit of mass in the US.</li>
+        <li><strong>1 ounce (oz)</strong> ≈ 28.3495 grams. Ounces are used for cooking measurements, postal weights, and precious metals.</li>
+        <li><strong>1 metric ton (tonne)</strong> = 1000 kg ≈ 2204.62 pounds. Metric tons are used for shipping, vehicle weight, and industrial materials.</li>
+        <li><strong>1 US ton</strong> = 2000 pounds = 907.185 kg. The short ton is used in the US for vehicle and freight weights.</li>
+        <li><strong>1 imperial (long) ton</strong> = 2240 pounds = 1016.05 kg. The long ton is rarely used outside of specific maritime contexts.</li>
+      </ul>
+      <p>For quick conversions, a kilogram is roughly 2.2 pounds, and a pound is slightly less than half a kilogram.</p>
+
+      <h2>Temperature Conversions: Celsius, Fahrenheit, and Kelvin</h2>
+      <p>Temperature is unique among the units we convert because the scales have different zero points and different interval sizes, making conversion more complex than simple multiplication. Our calculator handles the three most common scales:</p>
+      <ul>
+        <li><strong>Celsius (°C):</strong> The metric temperature scale where water freezes at 0° and boils at 100°. Used in science and by most countries.</li>
+        <li><strong>Fahrenheit (°F):</strong> The US customary scale where water freezes at 32° and boils at 212°. Used primarily in the United States.</li>
+        <li><strong>Kelvin (K):</strong> The SI base unit for temperature, used in scientific calculations. Zero Kelvin is absolute zero, the theoretical point at which molecular motion stops. The Kelvin scale uses the same interval size as Celsius.</li>
+      </ul>
+      <p><strong>Conversion formulas:</strong></p>
+      <ul>
+        <li>°C to °F: (°C × 9/5) + 32</li>
+        <li>°F to °C: (°F - 32) × 5/9</li>
+        <li>°C to K: °C + 273.15</li>
+        <li>K to °C: K - 273.15</li>
+        <li>°F to K: (°F - 32) × 5/9 + 273.15</li>
+      </ul>
+      <p><strong>Key reference points:</strong> Water freezes at 0°C / 32°F / 273.15K, boils at 100°C / 212°F / 373.15K. Normal human body temperature is approximately 37°C / 98.6°F / 310.15K. Room temperature is about 20°C / 68°F / 293.15K.</p>
+
+      <h2>When to Use Each System: Practical Applications</h2>
+      <p>Choosing the right unit system depends on your location and field:</p>
+      <ul>
+        <li><strong>Metric (SI):</strong> Used in science, medicine, engineering, and by almost every country worldwide. Recommended for international projects, academic research, and any context where precision and consistency are required.</li>
+        <li><strong>Imperial/US:</strong> Used in the United States for construction, cooking, body measurements (height, weight), and road signage. If you are communicating with an American audience or working on a US-based project, imperial units are often expected.</li>
+        <li><strong>Both:</strong> In aviation, maritime navigation, and international trade, both systems are often used simultaneously. Altitude in aviation is measured in feet, while runway lengths may be listed in meters at international airports.</li>
+      </ul>
+
+      <h2>Common Mistakes in Unit Conversion</h2>
+      <p><strong>Mistake 1: Confusing mass and weight.</strong> Using kilograms when Newtons are required, or vice versa, leads to errors in physics and engineering calculations. Our converter handles mass (kg, lb) but does not convert to force (Newtons).</p>
+      <p><strong>Mistake 2: Using the wrong type of ton.</strong> The metric ton (tonne), US short ton, and imperial long ton are all different. Using the wrong one in shipping or construction can result in significant cost and safety errors.</p>
+      <p><strong>Mistake 3: Converting temperatures by simple ratio.</strong> Because Fahrenheit and Celsius have different zero points, you cannot simply multiply by a ratio. The correct formula accounts for the 32-degree offset.</p>
+      <p><strong>Mistake 4: Confusing US and imperial fluid ounces.</strong> A US fluid ounce is about 29.57 milliliters, while an imperial fluid ounce is about 28.41 milliliters. When cooking or dosing medicine, using the wrong one can lead to incorrect results.</p>
+      <p><strong>Mistake 5: Rounding too early.</strong> In multi-step conversions, rounding intermediate values can accumulate error. Always carry full precision through your calculation and round only the final answer.</p>
+
+      <h2>Frequently Asked Questions About Unit Conversion</h2>
+      <p><strong>How do I convert between metric and imperial units?</strong> Enter your value in the input field, select the unit you are converting from, and select the unit you want to convert to. Our calculator applies the exact conversion factor instantly.</p>
+      <p><strong>Why are there two different ounce measurements?</strong> The US fluid ounce (≈29.57 mL) and the imperial fluid ounce (≈28.41 mL) are different because the US gallon is defined differently from the imperial gallon. Our converter uses US customary units where applicable.</p>
+      <p><strong>What is the difference between mass and weight?</strong> Mass is the amount of matter in an object (kg, lb), while weight is the force exerted by gravity on that mass (Newtons). On Earth, the two are proportional, so we convert between mass units directly.</p>
+      <p><strong>Which countries still use the imperial system?</strong> The United States is the only major country that still primarily uses the US customary (imperial-derived) system for everyday measurement. The United Kingdom uses a mix, with metric for most purposes but miles for road distances and pints for beer.</p>
+      <p><strong>How do I convert temperature in my head?</strong> For a quick estimate from Celsius to Fahrenheit, double the Celsius value and add 30. (The exact formula is multiply by 1.8 and add 32.) From Fahrenheit to Celsius, subtract 30 and halve it.</p>
+      <p><strong>Why does the metric system use powers of 10?</strong> The metric system was designed to be simple and universal. Because it is based on powers of 10, conversions require only moving the decimal point. There are 1000 meters in a kilometer, 100 centimeters in a meter, and 10 millimeters in a centimeter, making mental math straightforward.</p>
+      <p><strong>What is the most accurate way to convert units?</strong> Use exact conversion factors rather than rounded approximations. For example, 1 inch = 2.54 centimeters (exact), not 2.5. Our calculator uses precise factors to ensure accuracy.</p>
+      <p><strong>Can I convert between unrelated units, like length to weight?</strong> No. Length and weight measure different physical properties and cannot be directly converted. Our calculator will alert you if you attempt to convert between incompatible unit types.</p>
+      <p><strong>What is absolute zero in all three temperature scales?</strong> Absolute zero is -273.15°C, -459.67°F, and 0 Kelvin. It is the theoretical temperature at which all molecular motion ceases.</p>
+      <p><strong>Why do pilots use feet for altitude?</strong> Aviation adopted feet for altitude before the metric system became dominant, and the convention persists worldwide for safety and standardization. Metric-based aviation, such as in China and Russia, uses meters for some altitudes but feet remain the global standard for commercial aviation.</p>
+
+      <h3>Related Calculators</h3>
+      <div class="other-calc-links">
+        <a href="../percentage-calculator/">Percentage Calculator</a>
+        <a href="../fuel-calculator/">Fuel Calculator</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../calorie-calculator/">Calorie Calculator</a>
+        <a href="../loan-calculator/">Loan Calculator</a>
+        <a href="../date-calculator/">Date Calculator</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="../../" class="logo"><span class="logo-icon">G</span><span>GCalc</span></a>
+      <p class="footer-tagline">Smart calculators for smart people.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Calculators</h4>
+        <a href="../../#calculators">All Calculators</a>
+        <a href="../bmi-calculator/">BMI Calculator</a>
+        <a href="../mortgage-calculator/">Mortgage Calculator</a>
+        <a href="../tip-calculator/">Tip Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="../../about/">About Us</a>
+        <a href="mailto:hello@gcalc.app">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 GCalc. All rights reserved. Made with love for the community.</p>
+  </div>
+</footer>
+
+  <script src="../../shared.js"></script>
+  <script>
+    const { copyToClipboard } = window.GCalcShared;
+    function convertUnit() {
+      const val = parseFloat(document.getElementById('unit-value').value);
+      const from = document.getElementById('unit-from').value;
+      const to = document.getElementById('unit-to').value;
+
+      if (isNaN(val)) {
+        alert('Please enter a value.');
+        return;
+      }
+
+      if (from === to) {
+        document.getElementById('unit-result-value').textContent = val;
+        document.getElementById('unit-result-unit').textContent = getUnitLabel(to);
+        return;
+      }
+
+      // Length to meters
+      const toM = { m: 1, cm: 0.01, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344 };
+      // Weight to kg
+      const toKg = { kg: 1, g: 0.001, lb: 0.453592, oz: 0.0283495 };
+
+      let result;
+
+      // Temperature conversions
+      if (['c', 'f', 'k'].includes(from) && ['c', 'f', 'k'].includes(to)) {
+        let c;
+        if (from === 'c') c = val;
+        else if (from === 'f') c = (val - 32) * 5 / 9;
+        else c = val - 273.15;
+
+        if (to === 'c') result = c;
+        else if (to === 'f') result = c * 9 / 5 + 32;
+        else result = c + 273.15;
+      }
+      // Length conversions
+      else if (toM[from] && toM[to]) {
+        const meters = val * toM[from];
+        result = meters / toM[to];
+      }
+      // Weight conversions
+      else if (toKg[from] && toKg[to]) {
+        const kg = val * toKg[from];
+        result = kg / toKg[to];
+      }
+      else {
+        alert('Cannot convert between these unit types (e.g., length to weight).');
+        return;
+      }
+
+      document.getElementById('unit-result-value').textContent = result.toFixed(4).replace(/\.?0+$/, '');
+      document.getElementById('unit-result-unit').textContent = getUnitLabel(to);
+    }
+
+    function getUnitLabel(unit) {
+      const labels = {
+        m: 'meters', cm: 'centimeters', km: 'kilometers',
+        in: 'inches', ft: 'feet', yd: 'yards', mi: 'miles',
+        kg: 'kilograms', g: 'grams', lb: 'pounds', oz: 'ounces',
+        c: '°C', f: '°F', k: 'K'
+      };
+      return labels[unit] || unit;
+    }
+
+    function swapUnits() {
+      const from = document.getElementById('unit-from');
+      const to = document.getElementById('unit-to');
+      const temp = from.value;
+      from.value = to.value;
+      to.value = temp;
+      convertUnit();
+    }
+
+    function resetUnit() {
+      document.getElementById('unit-value').value = '';
+      document.getElementById('unit-result-value').textContent = '0';
+      document.getElementById('unit-result-unit').textContent = '';
+    }
+
+    function copyUnit() {
+      const val = document.getElementById('unit-result-value').textContent;
+      const unit = document.getElementById('unit-result-unit').textContent;
+      copyToClipboard(val + ' ' + unit);
+    }
+
+    document.querySelectorAll('#unit-value, #unit-from, #unit-to').forEach(i => i.addEventListener('input', convertUnit));
+  </script>
+
+<script>
+(function() {
+  var menuToggle = document.getElementById('menuToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      navMenu.classList.toggle('open');
+    });
+    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('open');
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
