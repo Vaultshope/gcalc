@@ -32,7 +32,7 @@ function renderCalculatorGrid() {
         <span class="calc-icon" style="font-size:1.5rem">${calc.icon}</span>
         <span class="calc-badge">Free</span>
       </div>
-      <h3 class="calc-title">${calc.title}</h3>
+      <h3 class="calc-title"><a class="calc-title-link" href="calculators/${calc.slug}/">${calc.title}</a></h3>
       <p class="calc-desc">${calc.description}</p>
       <div class="calc-category">${calc.category}</div>
     </div>
@@ -55,10 +55,11 @@ function openCalculatorModal(calcId) {
 
   title.innerHTML = `<span style="font-size:1.5rem;margin-right:0.5rem">${calc.icon}</span>${calc.title}`;
 
+  const fullLink = `<a class="modal-full-link" href="calculators/${calc.slug}/">View full page &rarr;</a>`;
   if (calc.isScientific) {
-    body.innerHTML = renderScientificCalculator();
+    body.innerHTML = fullLink + renderScientificCalculator();
   } else {
-    body.innerHTML = renderCalcForm(calc);
+    body.innerHTML = fullLink + renderCalcForm(calc);
   }
 
   overlay.classList.add('active');
@@ -319,6 +320,7 @@ function initHeroCounters() {
 function setupEventListeners() {
   // Calculator cards
   document.getElementById('calculatorsGrid')?.addEventListener('click', e => {
+    if (e.target.closest('a')) return; // let real links navigate
     const card = e.target.closest('.calc-card');
     if (card) openCalculatorModal(card.dataset.calcId);
   });

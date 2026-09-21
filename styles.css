@@ -1288,3 +1288,23 @@ h3 { font-size: 1.125rem; font-weight: 600; }
     position: static;
   }
 }
+
+/* ---- Homepage card title link + modal full-page link ---- */
+.calc-title-link {
+  color: inherit;
+  text-decoration: none;
+}
+.calc-title-link:hover {
+  color: var(--accent);
+}
+.modal-full-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.modal-full-link:hover {
+  text-decoration: underline;
+}

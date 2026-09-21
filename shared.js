@@ -9,6 +9,7 @@ const calculators = [
   // HEALTH
   {
     id: 'bmi',
+    slug: 'bmi-calculator',
     title: 'BMI Calculator',
     description: 'Body Mass Index with visual gauge',
     category: 'health',
@@ -35,6 +36,7 @@ const calculators = [
   },
   {
     id: 'age',
+    slug: 'age-calculator',
     title: 'Age Calculator',
     description: 'Precise age with breakdowns',
     category: 'health',
@@ -64,6 +66,7 @@ const calculators = [
   },
   {
     id: 'calorie',
+    slug: 'calorie-calculator',
     title: 'Calorie Calculator',
     description: 'Daily calorie needs (BMR & TDEE)',
     category: 'health',
@@ -113,6 +116,7 @@ const calculators = [
   // FINANCE
   {
     id: 'tip',
+    slug: 'tip-calculator',
     title: 'Tip Calculator',
     description: 'Bill splitting with percentage',
     category: 'finance',
@@ -138,6 +142,7 @@ const calculators = [
   },
   {
     id: 'loan',
+    slug: 'loan-calculator',
     title: 'Loan Calculator',
     description: 'Monthly payment estimation',
     category: 'finance',
@@ -164,6 +169,7 @@ const calculators = [
   },
   {
     id: 'mortgage',
+    slug: 'mortgage-calculator',
     title: 'Mortgage Calculator',
     description: 'Detailed monthly payment',
     category: 'finance',
@@ -195,6 +201,7 @@ const calculators = [
   },
   {
     id: 'investment',
+    slug: 'investment-calculator',
     title: 'Investment Calculator',
     description: 'Compound interest growth',
     category: 'finance',
@@ -227,6 +234,7 @@ const calculators = [
   // UTILITY
   {
     id: 'unit',
+    slug: 'unit-converter',
     title: 'Unit Converter',
     description: 'Length, weight, temperature',
     category: 'utility',
@@ -285,6 +293,7 @@ const calculators = [
   },
   {
     id: 'percentage',
+    slug: 'percentage-calculator',
     title: 'Percentage Calculator',
     description: 'Percent of, increase/decrease',
     category: 'utility',
@@ -310,6 +319,7 @@ const calculators = [
   },
   {
     id: 'date',
+    slug: 'date-calculator',
     title: 'Date Calculator',
     description: 'Days between dates',
     category: 'utility',
@@ -334,6 +344,7 @@ const calculators = [
   },
   {
     id: 'fuel',
+    slug: 'fuel-calculator',
     title: 'Fuel Calculator',
     description: 'Trip fuel cost estimation',
     category: 'utility',
@@ -362,6 +373,7 @@ const calculators = [
   // SCIENCE
   {
     id: 'scientific',
+    slug: 'scientific-calculator',
     title: 'Scientific Calculator',
     description: 'Advanced math functions',
     category: 'science',
@@ -379,6 +391,7 @@ const calculators = [
   },
   {
     id: 'grade',
+    slug: 'grade-calculator',
     title: 'Grade Calculator',
     description: 'GPA and weighted grades',
     category: 'science',
