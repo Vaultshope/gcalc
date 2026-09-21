@@ -24,9 +24,9 @@ npx serve .
 ## Project Structure
 
 ```
-index.html                     # Landing page (calculator grid + modal)
+index.html                     # Landing page (calculator grid)
 shared.js                      # Calculator data, formulas, shared utilities
-app.js                         # Landing page UI: grid, modal, form handling
+app.js                         # Landing page UI: grid rendering, animations, mobile nav
 styles.css                     # Design system (CSS custom properties)
 about/index.html               # About page
 calculators/<name>/index.html  # 13 standalone SEO calculator pages
@@ -62,7 +62,7 @@ todo.md                        # Project status / changelog
 - Scientific Calculator
 - Grade Calculator (GPA)
 
-Each calculator has a **standalone page** under `calculators/` for SEO. Most are also reachable from the landing-page modal.
+Each calculator has a **standalone page** under `calculators/` for SEO, and every homepage card links directly to it.
 
 ## Features
 
@@ -110,11 +110,11 @@ Once you have a Measurement ID, replace that comment with your gtag.js snippet.
 
 ### Ads
 
-Replace the two `.ad-placeholder` divs in `index.html` (top and bottom banners) with your ad network's script tags.
+Two ad slots exist in `index.html` (top and bottom banners). They are **hidden by default** (`style="display:none"`) so visitors never see an empty placeholder. When approved, remove that style and insert your ad network's code inside the `.ad-container`.
 
 ### Affiliate Links
 
-Affiliate links live in `shared.js`, inside each calculator's `affiliate.links` array. All 39 entries are currently placeholders (`url: '#'`) and should be replaced with real URLs — or remove the `affiliate` blocks until you are approved for a program.
+Curated affiliate recommendations live in `shared.js`, inside each calculator's `affiliate.links` array. All 39 entries are placeholders (`url: '#'`) and are **not currently rendered** anywhere. Once you have real affiliate URLs, wire them into the standalone calculator pages (or re-add a UI block).
 
 ### Change the Primary Color
 
@@ -161,7 +161,7 @@ In `styles.css`, update the accent token in `:root`:
 
 - **Light theme only** — there is currently no theme switcher.
 - **Analytics disabled** — no GA4 Measurement ID configured yet.
-- **Affiliate links are placeholders** (`#`) and need real URLs.
+- **Affiliate links are placeholders** (`#`) and are not yet wired into any page.
 - **No `LICENSE` file** — add one if you intend to license the project.
 
 ---
