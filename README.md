@@ -1,44 +1,45 @@
-# GCalc - Free Smart Calculators
+# GCalc — Free Smart Calculators
 
-A fast, beautiful collection of 12+ free calculators. No sign-up. No limits. Built for speed and monetized via ads.
+A fast, no-build collection of **13 free calculators**, built as a static site and monetized with ads. No sign-up, no backend — every calculation runs in the browser.
 
-## Live URL (after deploy)
+## Live URL
 
-`https://<your-username>.github.io/new-project/`
+`https://gcalc.app/`
+
+(Update this if you deploy under a different domain or a `github.io/<repo>/` path.)
 
 ## Quick Start
 
+There is **no build step and no dependencies**. Just open `index.html`, or serve the folder locally:
+
 ```bash
-# Clone or open this repo
-cd new-project
+# Python (any machine with Python installed)
+python -m http.server 8000
+# then visit http://localhost:8000/
 
-# Open in browser
-open index.html  # Mac
-start index.html # Windows
+# Node
+npx serve .
 ```
 
-## File Structure
+## Project Structure
 
 ```
-├── index.html          # Main landing page
-├── app.js              # All calculator logic & UI handlers
-├── styles.css          # Professional SaaS design system
-├── sitemap.xml         # SEO sitemap
-├── README.md           # This file
-└── .github/workflows/
-    └── deploy.yml      # GitHub Pages auto-deploy
+index.html                     # Landing page (calculator grid + modal)
+shared.js                      # Calculator data, formulas, shared utilities
+app.js                         # Landing page UI: grid, modal, form handling
+styles.css                     # Design system (CSS custom properties)
+about/index.html               # About page
+calculators/<name>/index.html  # 13 standalone SEO calculator pages
+sitemap.xml                    # XML sitemap
+robots.txt                     # Crawler rules + sitemap reference
+favicon.svg                    # Favicon
+apple-touch-icon.png           # iOS home-screen icon
+og-image.png                   # Social share image (1200x630)
+.github/workflows/deploy.yml   # GitHub Pages auto-deploy
+todo.md                        # Project status / changelog
 ```
 
-## Features
-
-- **12 Calculators** across Health, Finance, Utility, and Science categories
-- **6 Theme Options** - Midnight, Ocean, Forest, Sunset, Nordic, Candy
-- **Real-time Results** - No submit buttons needed
-- **Mobile Responsive** - Works on all devices
-- **Privacy First** - All calculations happen in browser
-- **Ad Ready** - Placeholder slots for AdSense/Ezoic
-
-## Calculators Included
+## Calculators (13)
 
 ### Health
 - BMI Calculator
@@ -61,102 +62,107 @@ start index.html # Windows
 - Scientific Calculator
 - Grade Calculator (GPA)
 
-## Setup & Deploy
+Each calculator has a **standalone page** under `calculators/` for SEO. Most are also reachable from the landing-page modal.
 
-### Step 1: Initialize Git (if not already)
+## Features
 
-```bash
-git init
-git add .
-git commit -m "Initial commit - GCalc launch"
-```
+- **13 calculators** across Health, Finance, Utility, and Science
+- **Real-time results** where applicable (others calculate on submit)
+- **Mobile responsive** — works on phones, tablets, and desktops
+- **Privacy first** — all calculations happen in the browser; no data is collected or stored
+- **Ad ready** — two placeholder slots in `index.html`
+- **SEO ready** — canonical links, meta descriptions/keywords, Open Graph + Twitter cards, and JSON-LD (`WebPage`, `SoftwareApplication`, `FAQPage`) on every page
 
-### Step 2: Push to GitHub
+## Deploy (GitHub Pages)
+
+The repo ships with a GitHub Actions workflow that publishes the site on every push to `main`.
+
+### Step 1: Push to GitHub
 
 ```bash
 git remote add origin https://github.com/YOUR_USERNAME/new-project.git
-git branch -M main
 git push -u origin main
 ```
 
-### Step 3: Enable GitHub Pages
+Or, with the GitHub CLI:
+
+```bash
+gh repo create new-project --public --source=. --remote=origin --push
+```
+
+### Step 2: Enable GitHub Pages
 
 1. Go to **Repository Settings > Pages**
-2. Under **Build and deployment**, select **GitHub Actions**
-3. The workflow will auto-deploy on every push to `main`
-4. After ~2 minutes, your site will be live
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**
+3. The workflow deploys automatically; the site goes live after ~1 minute
 
-### Step 4: Add Your Ad Code
+## Configuration
 
-Once approved for AdSense/Ezoic:
+### Analytics (GA4)
 
-1. Open `index.html`
-2. Replace the `.ad-placeholder` divs with your ad script tags
-3. Push changes - workflow will auto-deploy
+Analytics is currently **disabled**. Each of the 15 HTML pages has this comment in the `<head>`:
 
-### Step 5: Add Affiliate Links (Optional)
+```html
+<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+```
 
-In `app.js`, find the `affiliate.links` arrays and replace `'#'` with your actual affiliate URLs.
+Once you have a Measurement ID, replace that comment with your gtag.js snippet.
 
-## Monetization Strategy
+### Ads
 
-1. **Ad Banners** - Top and bottom of calculator section (AdSense, Ezoic)
-2. **Affiliate Links** - Contextual recommendations after each calculation
-3. **Domain Purchase** - Buy `gcalc.app` or similar for credibility
+Replace the two `.ad-placeholder` divs in `index.html` (top and bottom banners) with your ad network's script tags.
 
-### Affiliate Program Recommendations
+### Affiliate Links
 
-| Calculator | Program | How to Join |
-|------------|---------|-------------|
-| BMI, Age, Calorie | Amazon Associates | [Sign up](https://affiliate-program.amazon.com) |
-| Tip, Loan, Mortgage | Bankrate, SoFi | [Bankrate Partners](https://www.bankrate.com/partners/) |
-| Investment | Fidelity, M1 Finance | [Fidelity](https://www.fidelity.com) |
-| Fuel | GasBuddy | [GasBuddy Partner](https://www.gasbuddy.com) |
-| Grade | Chegg, Grammarly | [Grammarly Affiliates](https://www.grammarly.com/affiliates) |
+Affiliate links live in `shared.js`, inside each calculator's `affiliate.links` array. All 39 entries are currently placeholders (`url: '#'`) and should be replaced with real URLs — or remove the `affiliate` blocks until you are approved for a program.
 
-## Customization
+### Change the Primary Color
 
-### Change Primary Color
-
-In `styles.css`, update the `:root` variables:
+In `styles.css`, update the accent token in `:root`:
 
 ```css
 :root {
-  --accent: #3b82f6;  /* Change to your brand color */
+  --accent: #0066FF; /* change to your brand color */
 }
 ```
 
-### Add More Calculators
+### Add a Calculator
 
-In `app.js`, add a new object to the `calculators` array:
+1. Add an object to the `calculators` array in `shared.js`:
 
 ```javascript
 {
   id: 'your-calc',
   title: 'Your Calculator',
   description: 'Brief description',
-  category: 'health', // or 'finance', 'utility', 'science'
-  icon: '🔥',
+  category: 'health', // health | finance | utility | science
+  icon: '🔧',
   fields: [
     { id: 'input1', label: 'Input 1', type: 'number', placeholder: '0' }
   ],
   calculate: (v) => {
-    // Return { value: result, secondary: 'details' }
+    // Return { value, unit, secondary } or null
   }
 }
 ```
 
+2. (Optional) Create `calculators/your-calc/index.html` for a standalone SEO page.
+3. Add the new URL to `sitemap.xml`.
+
 ## Tech Stack
 
-- **HTML5** - Semantic markup
-- **CSS3** - Custom properties for theming (no frameworks)
-- **Vanilla JavaScript** - ES6+ (no build step)
-- **Google Fonts** - Outfit, DM Sans, JetBrains Mono
-- **GitHub Pages** - Free hosting
+- **HTML5** — semantic markup
+- **CSS3** — custom properties for theming (no frameworks)
+- **Vanilla JavaScript** — ES6+ (no build step)
+- **Google Fonts** — Outfit, DM Sans, JetBrains Mono
+- **GitHub Pages** — free hosting
 
-## License
+## Known Gaps
 
-MIT License - Free to use and modify.
+- **Light theme only** — there is currently no theme switcher.
+- **Analytics disabled** — no GA4 Measurement ID configured yet.
+- **Affiliate links are placeholders** (`#`) and need real URLs.
+- **No `LICENSE` file** — add one if you intend to license the project.
 
 ---
 
