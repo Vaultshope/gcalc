@@ -307,6 +307,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -350,23 +351,5 @@
     document.querySelectorAll('#pct-value, #pct-percent').forEach(i => i.addEventListener('input', calculatePct));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

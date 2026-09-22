@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find . -type f -not -path '*/\\\\.*' -not -path '*/node_modules/*')",
+      "Bash(python3 *)",
+      "WebSearch",
+      "Bash(python *)",
+      "mcp__ide__executeCode",
+      "Bash(rtk git *)",
+      "Read(//c/Users/Admin/**)",
+      "Bash(rtk grep *)",
+      "Bash(rtk ls *)"
+    ]
+  }
+}

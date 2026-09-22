@@ -1142,6 +1142,29 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   background: var(--accent-subtle);
 }
 
+.calc-disclaimer {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.calc-disclaimer h3 {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.calc-disclaimer p {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin: 0;
+}
+
 @media (max-width: 900px) {
   .calc-page {
     grid-template-columns: 1fr;

@@ -16,10 +16,27 @@ _Last updated: 2026-09-22_
 - [x] Homepage calculator cards are real links to all 13 calculator pages
 - [x] Modal removed entirely (homepage is link-only now — HTML/JS/CSS)
 - [x] Sitemap `lastmod` refreshed to 2026-09-22
+- [x] `privacy-policy/index.html` created (12 sections: data collection, cookies, analytics, ads, affiliates, COPPA/GDPR/CCPA)
+- [x] Privacy Policy link added to the footer of all 15 pages
+- [x] `privacy-policy/` added to `sitemap.xml` and README structure
+
+### Trust / compliance (P0)
+- [x] Hero stats replaced with honest figures (13 Free Calculators / 100% Free Forever / 24/7 Always Available)
+- [x] Medical disclaimers on BMI + Calorie pages (`.calc-disclaimer` block + CSS)
+- [x] Financial disclaimers on Loan + Mortgage + Investment pages
+- [x] Fixed `401买的` text corruption in Investment page (JSON-LD + FAQ)
 
 ### Monetization prep
 - [x] Ad slots hidden by default, with insertion instructions
-- [x] Affiliate scaffold (39 entries) retained in `shared.js`
+- [x] Affiliate scaffold (39 entries) moved to standalone `affiliates.js` (not loaded by any page yet)
+
+### Code quality (Phase D)
+- [x] `shared.js` stripped to grid metadata + shared helpers (`copyToClipboard`, `showToast`, `initNavMenu`) — Option A
+- [x] Mobile-menu JS deduped: single handler in `shared.js`, all 15 inline IIFEs removed (incl. About page)
+- [x] Fixed privacy-policy mobile menu (leftover IIFE double-toggled the class → menu appeared broken)
+- [x] `app.js` cleaned: only grid render + scroll animations + hero counters
+- [x] `LICENSE` file added (MIT, © 2026 GCalc)
+- [x] Local browser QA: homepage, BMI (22.9 Normal ✓), privacy-policy, About, tip + all 11 remaining calculator pages — zero console errors; mobile menu verified on 4 pages; favicon renders; hero counters animate to 13 / 100% / 24/7
 
 ## ⏳ Blocked on external accounts / decisions
 
@@ -30,26 +47,20 @@ _Last updated: 2026-09-22_
 
 ## 🔜 Next session — Phase D (code quality)
 
-1. [ ] **Decide `shared.js` source of truth**
-   - Today: only the BMI page calls `shared.js`'s `calculate()`; `fields` (13) and `affiliate` (13) are unused
-   - Option A: strip `shared.js` to grid metadata only (`title`, `description`, `category`, `icon`, `slug`)
-   - Option B: move all calculator logic into `shared.js` and have every standalone page call it
-   - Recommendation: **Option A** (pages already own richer, tested logic)
-2. [ ] **Fix hero stats** in `index.html`
-   - "10,000+ Users Served" and "100Million+ Calculations" are fabricated (trust / AdSense risk)
-   - "100Million+" is also missing a space
-3. [ ] **Dedupe mobile-menu JS** — same block is copy-pasted inline in all 15 pages; move it into `shared.js`
-4. [ ] **Add `LICENSE` file** (README references MIT)
-5. [ ] **Local browser QA** — open every page, test every form (see testing checklist below)
+1. [x] **Decide `shared.js` source of truth** — DONE (Option A: stripped to grid metadata only)
+2. [x] **Fix hero stats** in `index.html` — DONE (replaced with honest stats)
+3. [x] **Dedupe mobile-menu JS** — DONE (moved into `shared.js` as `initNavMenu`; all inline IIFEs removed)
+4. [x] **Add `LICENSE` file** — DONE (MIT, © 2026 GCalc)
+5. [x] **Local browser QA** — DONE (see results under Code quality above)
 
 ## 🧪 Manual test checklist (before/after launch)
 
-- [ ] Homepage: all 13 cards navigate to the correct calculator page
-- [ ] Homepage: mobile menu opens/closes; hero counters animate
-- [ ] Each calculator: valid input → correct result; reset works; edge cases (0, negative, blank)
-- [ ] Every page loads `styles.css` + `shared.js` with no console errors
-- [ ] Favicon + social preview render (share a URL in a preview tool)
-- [ ] `robots.txt` and `sitemap.xml` reachable
+- [x] Homepage: all 13 cards navigate to the correct calculator page
+- [x] Homepage: mobile menu opens/closes; hero counters animate
+- [ ] Each calculator: valid input → correct result; reset works; edge cases (0, negative, blank) — BMI verified (175cm/70kg → 22.9 Normal); remaining pages load + render, full form edge-case testing still recommended
+- [x] Every page loads `styles.css` + `shared.js` with no console errors
+- [x] Favicon renders (`favicon.svg`); social preview render still worth checking in a share tool
+- [ ] `robots.txt` and `sitemap.xml` reachable — verify after deploy to GitHub Pages
 
 ## 🚀 Post-launch
 
@@ -61,7 +72,6 @@ _Last updated: 2026-09-22_
 
 - **Light theme only** — no theme switcher
 - **Analytics disabled** — no GA4 Measurement ID yet
-- **Affiliate links** are placeholders (`#`) and not wired into any page
+- **Affiliate links** are placeholders (`#`) in `affiliates.js` and not wired into any page
 - **Ad slots** are hidden until an ad network approves the site
-- **No `LICENSE` file** yet
-- **12 of 13 `calculate()` functions in `shared.js` are unused** — each standalone page has its own logic
+- **Minor (optional)**: logo `href="#"` on homepage, no `404.html`, BMI validation uses `alert()`, no `aria-live` on results

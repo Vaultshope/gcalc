@@ -238,7 +238,7 @@
       <p>Both formulas yield the same physical result when converted, but using the correct system for your region ensures that you are comparing apples to apples when evaluating vehicle efficiency. In the metric system, a lower L/100km number is better, while in the Imperial system, a higher MPG number is better. This inverse relationship is a common source of confusion for international drivers.</p>
 
       <h2>Understanding Fuel Efficiency: MPG, L/100km, and MPGe Explained</h2>
-      <p>Miles per gallon (MPG) is the most common fuel efficiency metric in the United States, Canada, and the United Kingdom. It measures how many miles a vehicle can travel using one gallon of fuel. A higher number means greater efficiency. However, MPG is not a linear measure. The improvement from 10 MPG to 20 MPG saves much more fuel than the improvement from 30 MPG to 40rossover: 20-28 MPG</li>
+      <p>Miles per gallon (MPG) is the most common fuel efficiency metric in the United States, Canada, and the United Kingdom. It measures how many miles a vehicle can travel using one gallon of fuel. A higher number means greater efficiency. However, MPG is not a linear measure. The improvement from 10 MPG to 20 MPG saves much more fuel than the improvement from 30 MPG to 40 crossover: 20-28 MPG</li>
         <li><strong>Truck/Van:</strong> 15-22 MPG</li>
         <li><strong>Large SUV/Truck:</strong> 12-18 MPG</li>
       </ul>
@@ -337,6 +337,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -450,23 +451,5 @@
     document.querySelectorAll('#fuel-dist, #fuel-mpg, #fuel-price, #fuel-dist-km, #fuel-lpk, #fuel-price-l').forEach(i => i.addEventListener('input', calculateFuel));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

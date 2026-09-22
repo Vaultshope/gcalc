@@ -95,7 +95,7 @@
           "name": "How do I handle a market crash",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Do not panic. Do not sell. Historically, every market crash has been followed by a recovery, often within 2-4 years. If anything, crashes are a buying opportunity. The most successful investors in history \u2014 Warren Buffett, Vanguard founder Jack Bogle, and others \u2014 all advise staying the course during downturns."
+            "text": "Do not panic. Do not sell. Historically, every market crash has been followed by a recovery, often within 2-4 years. If anything, crashes are a buying opportunity. The most successful investors in history — Warren Buffett, Vanguard founder Jack Bogle, and others — all advise staying the course during downturns."
           }
         },
         {
@@ -108,7 +108,7 @@
         },
         {
           "@type": "Question",
-          "name": "What is the difference between a 401\u4e70\u7684 and an IRA",
+          "name": "What is the difference between a 401(k) and an IRA",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "A 401(k) is an employer-sponsored plan. An IRA is an individual account you open on your own. Both offer tax advantages, but 401(k)s often come with employer matches (free money), while IRAs offer more investment choices. Ideally, you contribute to both."
@@ -238,9 +238,14 @@
       <p><strong>Should I pay off debt or invest first?</strong> It depends on the interest rate. If the debt is above 7-8%, pay it off first. If it is below 4% (like some mortgages or subsidized student loans), invest while making minimum payments. Between 4-7%, it is a judgment call based on your risk tolerance and the guaranteed return of debt payoff versus the uncertain return of the market.</p>
       <p><strong>How do I handle a market crash?</strong> Do not panic. Do not sell. Historically, every market crash has been followed by a recovery, often within 2-4 years. If anything, crashes are a buying opportunity. The most successful investors in history — Warren Buffett, Vanguard founder Jack Bogle, and others — all advise staying the course during downturns.</p>
       <p><strong>Is it better to invest in individual stocks or index funds?</strong> For 99% of people, low-cost index funds are superior. They provide instant diversification, require no research, have lower fees, and statistically outperform most actively managed funds over long periods. Stock picking is a full-time job and even professionals fail to beat the index most of the time.</p>
-      <p><strong>What is the difference between a 401买的 and an IRA?</strong> A 401(k) is an employer-sponsored plan. An IRA is an individual account you open on your own. Both offer tax advantages, but 401(k)s often come with employer matches (free money), while IRAs offer more investment choices. Ideally, you contribute to both.</p>
+      <p><strong>What is the difference between a 401(k) and an IRA?</strong> A 401(k) is an employer-sponsored plan. An IRA is an individual account you open on your own. Both offer tax advantages, but 401(k)s often come with employer matches (free money), while IRAs offer more investment choices. Ideally, you contribute to both.</p>
       <p><strong>Should I invest in a Roth or Traditional account?</strong> If you expect to be in a higher tax bracket in retirement, choose Roth. If you expect to be in a lower bracket, choose Traditional. For young people early in their careers (lower current tax bracket), Roth is usually the mathematically optimal choice. For peak earners in high-tax states, Traditional may be better.</p>
       <p><strong>How does inflation affect my investments?</strong> Inflation erodes purchasing power. If your investments return 8% but inflation is 3%, your real return is 5%. This is why simply keeping money in a savings account (which earns 0.5-5%) often results in a loss of purchasing power over time. Investing in real assets like stocks and real estate is the primary way to outpace inflation over long periods.</p>
+
+      <div class="calc-disclaimer">
+        <h3>Financial Disclaimer</h3>
+        <p>Projections from this calculator are hypothetical illustrations based on the assumptions you enter, not predictions or guarantees of future performance. All investments carry risk, including possible loss of principal, and past performance does not indicate future results. This tool is for informational purposes only and is not investment, tax, or financial advice. Consult a qualified financial advisor before investing.</p>
+      </div>
 
       <h3>Related Calculators</h3>
       <div class="other-calc-links">
@@ -271,6 +276,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -329,23 +335,5 @@
     document.querySelectorAll('#inv-initial, #inv-monthly, #inv-years, #inv-rate').forEach(i => i.addEventListener('input', calculateInvestment));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

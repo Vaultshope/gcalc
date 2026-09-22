@@ -242,6 +242,11 @@
       <p><strong>Can I get a loan with bad credit?</strong> Yes, but rates will be high (25-36%). Consider credit unions, peer-to-peer lenders, or secured loans. Improving your credit score by even 50 points can save thousands.</p>
       <p><strong>Is a co-signer a good idea?</strong> A co-signer with good credit can help you qualify and secure a lower rate, but they are legally responsible for the debt if you default. This can strain personal relationships.</p>
 
+      <div class="calc-disclaimer">
+        <h3>Financial Disclaimer</h3>
+        <p>Results from this calculator are estimates for informational purposes only and do not constitute financial, lending, or tax advice. Actual loan terms, rates, fees, and approvals depend on your lender, credit profile, and market conditions, and may differ from these estimates. Always compare official lender disclosures and consult a qualified financial professional before borrowing.</p>
+      </div>
+
       <h3>Related Calculators</h3>
       <div class="other-calc-links">
         <a href="../mortgage-calculator/">Mortgage Calculator</a>
@@ -271,6 +276,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -328,23 +334,5 @@
     document.querySelectorAll('#loan-principal, #loan-rate, #loan-years').forEach(i => i.addEventListener('input', calculateLoan));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

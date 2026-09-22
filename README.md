@@ -29,6 +29,7 @@ shared.js                      # Calculator data, formulas, shared utilities
 app.js                         # Landing page UI: grid rendering, animations, mobile nav
 styles.css                     # Design system (CSS custom properties)
 about/index.html               # About page
+privacy-policy/index.html      # Privacy policy page
 calculators/<name>/index.html  # 13 standalone SEO calculator pages
 sitemap.xml                    # XML sitemap
 robots.txt                     # Crawler rules + sitemap reference

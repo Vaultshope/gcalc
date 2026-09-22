@@ -242,6 +242,11 @@
       <p><strong>What happens if I miss a mortgage payment?</strong> Most lenders offer a grace period of 10-15 days. After that, late fees apply. After 30 days, the late payment is reported to credit bureaus. After 90-120 days of non-payment, the lender may begin foreclosure proceedings.</p>
       <p><strong>Is a 20% down payment necessary?</strong> No, but it is the threshold at which PMI is avoided. First-time buyers often put down 3-10%. VA and USDA loans allow 0% down. The trade-off is higher monthly payments and PMI costs, but homeownership may still be the right path depending on rent vs buy economics in your area.</p>
 
+      <div class="calc-disclaimer">
+        <h3>Financial Disclaimer</h3>
+        <p>Payment estimates from this calculator exclude costs that vary by property and lender, such as homeowners insurance, property taxes, HOA fees, and closing costs, and are provided for informational purposes only. They do not constitute financial or lending advice, and do not guarantee loan approval or actual rates. Consult a qualified mortgage professional and review official loan estimates before making decisions.</p>
+      </div>
+
       <h3>Related Calculators</h3>
       <div class="other-calc-links">
         <a href="../loan-calculator/">Loan Calculator</a>
@@ -271,6 +276,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -325,23 +331,5 @@
     document.querySelectorAll('#mh-price, #mh-down, #mh-rate, #mh-term, #mh-tax, #mh-ins').forEach(i => i.addEventListener('input', calculateMortgage));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

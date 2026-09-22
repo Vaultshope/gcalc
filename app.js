@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', init);
 function init() {
   renderCalculatorGrid();
   initScrollAnimations();
-  setupEventListeners();
   initHeroCounters();
 }
 
@@ -83,24 +82,4 @@ function initHeroCounters() {
   }, { threshold: 0.5 });
 
   counters.forEach(counter => observer.observe(counter));
-}
-
-function setupEventListeners() {
-  // Mobile menu toggle
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-
-    // Close menu when a link is clicked
-    navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
 }

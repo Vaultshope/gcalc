@@ -305,6 +305,11 @@
       <p><strong>What is the average BMI in the United States?</strong> As of recent CDC data, the average BMI for adult men is approximately 29.1 and for adult women is approximately 29.6, placing the average American in the overweight category.</p>
       <p><strong>Is the BMI formula different for men and women?</strong> No. The formula is identical. However, women naturally carry more essential body fat than men, so a BMI at the higher end of the normal range may be perfectly healthy for a woman.</p>
 
+      <div class="calc-disclaimer">
+        <h3>Medical Disclaimer</h3>
+        <p>BMI is a general screening tool, not a diagnosis of body fatness or health. It does not account for muscle mass, bone density, age, or ethnicity, and it may misclassify athletes, older adults, and pregnant women. This calculator is for informational purposes only and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider about your weight and health.</p>
+      </div>
+
       <h3>Related Calculators</h3>
       <div class="other-calc-links">
         <a href="../calorie-calculator/">Calorie Calculator</a>
@@ -333,6 +338,7 @@
         <div class="footer-col">
           <h4>Company</h4>
           <a href="../../about/">About Us</a>
+          <a href="../../privacy-policy/">Privacy Policy</a>
           <a href="mailto:hello@gcalc.app">Contact</a>
         </div>
       </div>
@@ -343,7 +349,6 @@
   <script src="../../shared.js"></script>
   <script>
     const { copyToClipboard } = window.GCalcShared;
-    const bmiCalc = window.GCalcShared.calculators.find(c => c.id === 'bmi');
 
     function calculateBMI() {
       const h = parseFloat(document.getElementById('bmi-height').value);
@@ -354,11 +359,12 @@
         return;
       }
 
-      const result = bmiCalc.calculate({ weight: w, height: h });
-      if (!result) return;
+      // BMI = weight (kg) / height (m)²
+      const hM = h / 100;
+      const bmi = w / (hM * hM);
+      const cat = bmi < 18.5 ? 'Underweight' : bmi < 25 ? 'Normal' : bmi < 30 ? 'Overweight' : 'Obese';
 
-      const bmiVal = result.value;
-      const cat = result.secondary;
+      const bmiVal = bmi.toFixed(1);
 
       document.getElementById('bmi-value').textContent = bmiVal;
 
@@ -395,23 +401,5 @@
     document.getElementById('bmi-weight').addEventListener('input', calculateBMI);
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>

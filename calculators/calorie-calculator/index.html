@@ -253,6 +253,11 @@
       <p><strong>How do I account for cheat meals?</strong> Plan for them. If you will eat 1,000 extra calories on Saturday, reduce intake by 200 calories for the other five days.</p>
       <p><strong>Is counting macros better than counting calories?</strong> Macros ensure you get enough protein for muscle retention and enough fat for hormones. For most people, counting calories is enough to start.</p>
 
+      <div class="calc-disclaimer">
+        <h3>Medical Disclaimer</h3>
+        <p>Calorie and macro targets produced by this calculator are statistical estimates based on population formulas, not personalized medical advice. Individual needs vary with genetics, health conditions, medications, and activity. If you are under 18, pregnant, breastfeeding, managing a medical condition, or have a history of disordered eating, consult a physician or registered dietitian before changing your diet.</p>
+      </div>
+
       <h3>Related Calculators</h3>
       <div class="other-calc-links">
         <a href="../bmi-calculator/">BMI Calculator</a>
@@ -282,6 +287,7 @@
       <div class="footer-col">
         <h4>Company</h4>
         <a href="../../about/">About Us</a>
+        <a href="../../privacy-policy/">Privacy Policy</a>
         <a href="mailto:hello@gcalc.app">Contact</a>
       </div>
     </div>
@@ -346,23 +352,5 @@
     document.querySelectorAll('#cal-weight, #cal-height, #cal-age, #cal-gender, #cal-activity').forEach(i => i.addEventListener('input', calculateCal));
   </script>
 
-<script>
-(function() {
-  var menuToggle = document.getElementById('menuToggle');
-  var navMenu = document.getElementById('navMenu');
-  if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      navMenu.classList.toggle('open');
-    });
-    navMenu.querySelectorAll('.nav-link').forEach(function(link) {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('open');
-      });
-    });
-  }
-})();
-</script>
 </body>
 </html>
