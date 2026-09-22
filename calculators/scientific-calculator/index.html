@@ -27,7 +27,6 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
   <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
   <style>
-        .sci-calc { }
     .sci-display { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.5rem; text-align: right; font-family: var(--font-mono); font-size: 2rem; margin-bottom: 1rem; min-height: 72px; overflow-x: auto; }
     .sci-keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
     .sci-keys .btn { padding: 1rem; font-size: 1.1rem; height: 60px; }
@@ -371,7 +370,6 @@
         log: 'log10(',
         ln: 'log(',
         sqrt: 'sqrt(',
-        pow: 'pow(',
         exp: 'exp(',
         pow10: 'pow(10,',
         abs: 'abs(',
@@ -382,7 +380,17 @@
         if (sciInput === '0' || sciInput === 'Error') {
           sciInput = 'factorial(';
         } else {
-          sciInput = 'factorial(' + sciInput;
+          sciInput = 'factorial(' + sciInput + ')';
+        }
+        updateDisplay();
+        return;
+      }
+      if (fn === 'pow') {
+        // Wrap current input as the base: 2 → Math.pow(2, then user types the exponent
+        if (sciInput === '0' || sciInput === 'Error') {
+          sciInput = 'Math.pow(';
+        } else {
+          sciInput = 'Math.pow(' + sciInput + ',';
         }
         updateDisplay();
         return;
@@ -391,7 +399,6 @@
         const prefix = 'Math.';
         if (sciInput === '0' || sciInput === 'Error') sciInput = '';
         sciInput += prefix + map[fn];
-        if (fn === 'pow') sciInput += ',';
         updateDisplay();
       }
     }
@@ -417,8 +424,12 @@
 
     function sciEquals() {
       try {
-        const expr = sciInput
+        let expr = sciInput
           .replace(/\^/g, '**');
+        // Auto-close unbalanced parentheses so sin(30 evaluates correctly
+        const open = (expr.match(/\(/g) || []).length;
+        const close = (expr.match(/\)/g) || []).length;
+        if (open > close) expr += ')'.repeat(open - close);
         const fn = new Function('toRad', 'toDeg', 'factorial', '"use strict"; return (' + expr + ')');
         const result = fn(toRad, toDeg, factorial);
         sciInput = isFinite(result) && !isNaN(result) ? String(result) : 'Error';

@@ -350,12 +350,12 @@
   <script>
     const { copyToClipboard } = window.GCalcShared;
 
-    function calculateBMI() {
+    function calculateBMI(silent) {
       const h = parseFloat(document.getElementById('bmi-height').value);
       const w = parseFloat(document.getElementById('bmi-weight').value);
 
       if (!h || !w || h <= 0 || w <= 0) {
-        alert('Please enter valid height and weight values.');
+        if (!silent) alert('Please enter valid height and weight values.');
         return;
       }
 
@@ -397,8 +397,8 @@
     }
 
     // Real-time calculation on input
-    document.getElementById('bmi-height').addEventListener('input', calculateBMI);
-    document.getElementById('bmi-weight').addEventListener('input', calculateBMI);
+    document.getElementById('bmi-height').addEventListener('input', () => calculateBMI(true));
+    document.getElementById('bmi-weight').addEventListener('input', () => calculateBMI(true));
   </script>
 
 </body>

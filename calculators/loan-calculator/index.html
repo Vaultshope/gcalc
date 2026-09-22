@@ -289,13 +289,13 @@
   <script src="../../shared.js"></script>
   <script>
     const { copyToClipboard } = window.GCalcShared;
-    function calculateLoan() {
+    function calculateLoan(silent) {
       const principal = parseFloat(document.getElementById('loan-principal').value);
       const annualRate = parseFloat(document.getElementById('loan-rate').value);
       const years = parseInt(document.getElementById('loan-years').value);
 
       if (isNaN(principal) || principal < 0 || isNaN(annualRate) || annualRate < 0 || isNaN(years) || years <= 0) {
-        alert('Please enter all required fields with valid values.');
+        if (!silent) alert('Please enter all required fields with valid values.');
         return;
       }
 
@@ -331,7 +331,7 @@
       copyToClipboard(`Monthly: ${monthly} | Total: ${total} | Interest: ${interest}`);
     }
 
-    document.querySelectorAll('#loan-principal, #loan-rate, #loan-years').forEach(i => i.addEventListener('input', calculateLoan));
+    document.querySelectorAll('#loan-principal, #loan-rate, #loan-years').forEach(i => i.addEventListener('input', () => calculateLoan(true)));
   </script>
 
 </body>

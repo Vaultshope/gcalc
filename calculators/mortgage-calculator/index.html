@@ -289,7 +289,7 @@
   <script src="../../shared.js"></script>
   <script>
     const { copyToClipboard } = window.GCalcShared;
-    function calculateMortgage() {
+    function calculateMortgage(silent) {
       const price = parseFloat(document.getElementById('mh-price').value);
       const down = parseFloat(document.getElementById('mh-down').value) || 0;
       const rateVal = parseFloat(document.getElementById('mh-rate').value);
@@ -298,7 +298,7 @@
       const ins = parseFloat(document.getElementById('mh-ins').value) || 0;
 
       if (isNaN(price) || price <= 0 || down < 0 || price <= down || isNaN(rateVal) || rateVal < 0) {
-        alert('Please enter a valid home price, down payment, and interest rate.');
+        if (!silent) alert('Please enter a valid home price, down payment, and interest rate.');
         return;
       }
 
@@ -328,7 +328,7 @@
       copyToClipboard(`Monthly mortgage: ${monthly} | Loan amount: ${loan}`);
     }
 
-    document.querySelectorAll('#mh-price, #mh-down, #mh-rate, #mh-term, #mh-tax, #mh-ins').forEach(i => i.addEventListener('input', calculateMortgage));
+    document.querySelectorAll('#mh-price, #mh-down, #mh-rate, #mh-term, #mh-tax, #mh-ins').forEach(i => i.addEventListener('input', () => calculateMortgage(true)));
   </script>
 
 </body>

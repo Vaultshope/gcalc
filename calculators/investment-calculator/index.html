@@ -289,14 +289,14 @@
   <script src="../../shared.js"></script>
   <script>
     const { copyToClipboard } = window.GCalcShared;
-    function calculateInvestment() {
+    function calculateInvestment(silent) {
       const initial = parseFloat(document.getElementById('inv-initial').value) || 0;
       const monthly = parseFloat(document.getElementById('inv-monthly').value) || 0;
       const years = parseFloat(document.getElementById('inv-years').value) || 0;
       const annualRate = parseFloat(document.getElementById('inv-rate').value) || 0;
 
       if (years <= 0) {
-        alert('Please enter a valid time period.');
+        if (!silent) alert('Please enter a valid time period.');
         return;
       }
 
@@ -332,7 +332,7 @@
       copyToClipboard(`Future Value: ${fv} | Contributed: ${contributed} | Growth: ${growth}`);
     }
 
-    document.querySelectorAll('#inv-initial, #inv-monthly, #inv-years, #inv-rate').forEach(i => i.addEventListener('input', calculateInvestment));
+    document.querySelectorAll('#inv-initial, #inv-monthly, #inv-years, #inv-rate').forEach(i => i.addEventListener('input', () => calculateInvestment(true)));
   </script>
 
 </body>
