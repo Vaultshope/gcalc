@@ -1,6 +1,6 @@
 # GCalc — Status & Todo
 
-_Last updated: 2026-09-22_
+_Last updated: 2026-09-23_
 
 ## ✅ Done
 
@@ -38,6 +38,13 @@ _Last updated: 2026-09-22_
 - [x] `LICENSE` file added (MIT, © 2026 GCalc)
 - [x] Local browser QA: homepage, BMI (22.9 Normal ✓), privacy-policy, About, tip + all 11 remaining calculator pages — zero console errors; mobile menu verified on 4 pages; favicon renders; hero counters animate to 13 / 100% / 24/7
 
+### Functional testing (all 13 calculators verified)
+- [x] Fixed alert-spam on partial input in 6 calculators (bmi, calorie, loan, mortgage, investment, unit-converter) — silent-parameter pattern; input listeners no longer alert, button click still validates
+- [x] Fixed scientific calculator: factorial wrap not closing paren (5! → Error), sciEquals not auto-balancing unbalanced parens (sin(30 → Error), pow button invalid syntax (2^10 → Error) — all fixed and verified
+- [x] Removed dead code + CSS empty ruleset in scientific-calculator page
+- [x] Test results: BMI 22.9 Normal ✓ · Tip $20/$120 ✓ · Percentage 10/60/40/250 ✓ · Loan $1,419.47/mo ✓ · Mortgage $2,455.95/mo ✓ · Investment FV $300,851 ✓ · Fuel imperial+metric ✓ · Grade GPA 3.75 (A−) + impossible case ✓ · Grade Final 95.0% ✓ · Age 36y 3m 7d ✓ · Date diff 264 days + add 30d ✓ · Calorie BMR 1649/TDEE 2556 ✓ · Unit 100km→62.14mi, 100kg→220.46lb, 100°C→212°F ✓ · Scientific: 2+3=5, sin30°≈0.5, 5!=120, 2^10=1024, 10^5=100000, sqrt144=12, log1000=3, tan45°≈1, ln(e)=1, sin(π/2)=1, abs(−7)=7, exp(1)=e, 10/4=2.5, 5/0→Error, backspace ✓
+- [x] Fixes committed and pushed (`6b88522` → `Vaultshope/gcalc` main)
+
 ## ⏳ Blocked on external accounts / decisions
 
 - [ ] **GA4 Measurement ID** — paste the gtag.js snippet into the 15 comment placeholders (`<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->`)
@@ -57,7 +64,7 @@ _Last updated: 2026-09-22_
 
 - [x] Homepage: all 13 cards navigate to the correct calculator page
 - [x] Homepage: mobile menu opens/closes; hero counters animate
-- [ ] Each calculator: valid input → correct result; reset works; edge cases (0, negative, blank) — BMI verified (175cm/70kg → 22.9 Normal); remaining pages load + render, full form edge-case testing still recommended
+- [x] Each calculator: valid input → correct result; reset works; edge cases (0, negative, blank) — all 13 calculators fully verified (see Functional testing above)
 - [x] Every page loads `styles.css` + `shared.js` with no console errors
 - [x] Favicon renders (`favicon.svg`); social preview render still worth checking in a share tool
 - [ ] `robots.txt` and `sitemap.xml` reachable — verify after deploy to GitHub Pages
@@ -74,4 +81,4 @@ _Last updated: 2026-09-22_
 - **Analytics disabled** — no GA4 Measurement ID yet
 - **Affiliate links** are placeholders (`#`) in `affiliates.js` and not wired into any page
 - **Ad slots** are hidden until an ad network approves the site
-- **Minor (optional)**: logo `href="#"` on homepage, no `404.html`, BMI validation uses `alert()`, no `aria-live` on results
+- **Minor (optional)**: logo `href="#"` on homepage, no `404.html`, no `aria-live` on results
