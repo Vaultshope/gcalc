@@ -7,8 +7,34 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
   renderCalculatorGrid();
+  initCalculatorSearch();
   initScrollAnimations();
   initHeroCounters();
+}
+
+// =====================
+// Live search/filter for the calculator grid
+// Matches title, description, category and keyword synonyms.
+// =====================
+function initCalculatorSearch() {
+  const input = document.getElementById('calcSearch');
+  const grid = document.getElementById('calculatorsGrid');
+  const noResults = document.getElementById('noResults');
+  if (!input || !grid) return;
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+
+    grid.querySelectorAll('.calc-card').forEach(card => {
+      const haystack = (card.textContent + ' ' + (card.dataset.keywords || '')).toLowerCase();
+      const match = !q || haystack.includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+
+    if (noResults) noResults.hidden = visible !== 0;
+  });
 }
 
 // =====================
@@ -20,7 +46,7 @@ function renderCalculatorGrid() {
   if (!grid) return;
 
   grid.innerHTML = calculators.map((calc, i) => `
-    <a class="calc-card" href="calculators/${calc.slug}/" data-animate data-delay="${(i % 6) + 1}">
+    <a class="calc-card" href="calculators/${calc.slug}/" data-keywords="${calc.keywords || ''}" data-animate data-delay="${(i % 6) + 1}">
       <div class="calc-card-header">
         <span class="calc-icon" style="font-size:1.5rem">${calc.icon}</span>
         <span class="calc-badge">Free</span>

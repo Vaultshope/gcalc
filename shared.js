@@ -9,27 +9,28 @@
   'use strict';
 
   // Grid metadata only — rendered by app.js on the homepage.
+  // `keywords` powers the homepage live search (synonyms users type).
   const calculators = [
     // HEALTH
-    { id: 'bmi', slug: 'bmi-calculator', title: 'BMI Calculator', description: 'Body Mass Index with visual gauge', category: 'health', icon: '🏥' },
-    { id: 'age', slug: 'age-calculator', title: 'Age Calculator', description: 'Precise age with breakdowns', category: 'health', icon: '🎂' },
-    { id: 'calorie', slug: 'calorie-calculator', title: 'Calorie Calculator', description: 'Daily calorie needs (BMR & TDEE)', category: 'health', icon: '🔥' },
+    { id: 'bmi', slug: 'bmi-calculator', title: 'BMI Calculator', description: 'Body Mass Index with visual gauge', category: 'health', icon: '🏥', keywords: 'body mass index weight height fitness obese' },
+    { id: 'age', slug: 'age-calculator', title: 'Age Calculator', description: 'Precise age with breakdowns', category: 'health', icon: '🎂', keywords: 'birthday born years months days date of birth' },
+    { id: 'calorie', slug: 'calorie-calculator', title: 'Calorie Calculator', description: 'Daily calorie needs (BMR & TDEE)', category: 'health', icon: '🔥', keywords: 'bmr tdee diet nutrition food macros weight loss maintenance' },
 
     // FINANCE
-    { id: 'tip', slug: 'tip-calculator', title: 'Tip Calculator', description: 'Bill splitting with percentage', category: 'finance', icon: '💵' },
-    { id: 'loan', slug: 'loan-calculator', title: 'Loan Calculator', description: 'Monthly payment estimation', category: 'finance', icon: '🏦' },
-    { id: 'mortgage', slug: 'mortgage-calculator', title: 'Mortgage Calculator', description: 'Detailed monthly payment', category: 'finance', icon: '🏠' },
-    { id: 'investment', slug: 'investment-calculator', title: 'Investment Calculator', description: 'Compound interest growth', category: 'finance', icon: '📈' },
+    { id: 'tip', slug: 'tip-calculator', title: 'Tip Calculator', description: 'Bill splitting with percentage', category: 'finance', icon: '💵', keywords: 'gratuity restaurant bill split dinner service waiter' },
+    { id: 'loan', slug: 'loan-calculator', title: 'Loan Calculator', description: 'Monthly payment estimation', category: 'finance', icon: '🏦', keywords: 'payment interest amortization car auto personal credit monthly' },
+    { id: 'mortgage', slug: 'mortgage-calculator', title: 'Mortgage Calculator', description: 'Detailed monthly payment', category: 'finance', icon: '🏠', keywords: 'home house property payment interest amortization refinance real estate' },
+    { id: 'investment', slug: 'investment-calculator', title: 'Investment Calculator', description: 'Compound interest growth', category: 'finance', icon: '📈', keywords: 'compound interest savings retirement growth wealth future value' },
 
     // UTILITY
-    { id: 'unit', slug: 'unit-converter', title: 'Unit Converter', description: 'Length, weight, temperature', category: 'utility', icon: '🔄' },
-    { id: 'percentage', slug: 'percentage-calculator', title: 'Percentage Calculator', description: 'Percent of, increase/decrease', category: 'utility', icon: '%' },
-    { id: 'date', slug: 'date-calculator', title: 'Date Calculator', description: 'Days between dates', category: 'utility', icon: '📅' },
-    { id: 'fuel', slug: 'fuel-calculator', title: 'Fuel Calculator', description: 'Trip fuel cost estimation', category: 'utility', icon: '⛽' },
+    { id: 'unit', slug: 'unit-converter', title: 'Unit Converter', description: 'Length, weight, temperature', category: 'utility', icon: '🔄', keywords: 'convert conversion length weight temperature metric imperial measurement' },
+    { id: 'percentage', slug: 'percentage-calculator', title: 'Percentage Calculator', description: 'Percent of, increase/decrease', category: 'utility', icon: '%', keywords: 'percent increase decrease change discount ratio off' },
+    { id: 'date', slug: 'date-calculator', title: 'Date Calculator', description: 'Days between dates', category: 'utility', icon: '📅', keywords: 'days between dates duration difference add subtract countdown' },
+    { id: 'fuel', slug: 'fuel-calculator', title: 'Fuel Calculator', description: 'Trip fuel cost estimation', category: 'utility', icon: '⛽', keywords: 'gas petrol trip car travel cost mpg efficiency distance' },
 
     // SCIENCE
-    { id: 'scientific', slug: 'scientific-calculator', title: 'Scientific Calculator', description: 'Advanced math functions', category: 'science', icon: '🔬' },
-    { id: 'grade', slug: 'grade-calculator', title: 'Grade Calculator', description: 'GPA and weighted grades', category: 'science', icon: '🎓' }
+    { id: 'scientific', slug: 'scientific-calculator', title: 'Scientific Calculator', description: 'Advanced math functions', category: 'science', icon: '🔬', keywords: 'math trigonometry sin cos tan log advanced functions' },
+    { id: 'grade', slug: 'grade-calculator', title: 'Grade Calculator', description: 'GPA and weighted grades', category: 'science', icon: '🎓', keywords: 'gpa school college course marks average exam test weighted' }
   ];
 
   // =====================
@@ -70,6 +71,56 @@
   }
 
   document.addEventListener('DOMContentLoaded', initNavMenu);
+
+  // =====================
+  // Theme (dark mode)
+  // The initial theme is applied by a tiny inline script in <head>
+  // (no flash of the wrong theme). This injects the toggle button into
+  // every page header — one implementation shared by all 16 pages.
+  // =====================
+  function initThemeToggle() {
+    const headerInner = document.querySelector('.header-inner');
+    if (!headerInner || document.getElementById('themeToggle')) return;
+
+    const SUN = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+    const MOON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+    const btn = document.createElement('button');
+    btn.id = 'themeToggle';
+    btn.className = 'theme-toggle';
+    btn.type = 'button';
+
+    const syncIcon = () => {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.innerHTML = dark ? SUN : MOON;
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('gcalc-theme', next); } catch (e) { /* private mode */ }
+      syncIcon();
+    });
+
+    syncIcon();
+
+    // Group with the mobile menu toggle so both buttons sit together on
+    // the right edge of the header (reuses the .header-actions styles).
+    const actions = document.createElement('div');
+    actions.className = 'header-actions';
+    actions.appendChild(btn);
+
+    const menuToggle = document.getElementById('menuToggle');
+    if (menuToggle && menuToggle.parentElement === headerInner) {
+      headerInner.insertBefore(actions, menuToggle);
+      actions.appendChild(menuToggle); // moving a node keeps its listeners
+    } else {
+      headerInner.appendChild(actions);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', initThemeToggle);
 
   window.GCalcShared = {
     calculators,

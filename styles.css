@@ -6,8 +6,11 @@
 
 /* ---- Design Tokens ---- */
 :root {
+  color-scheme: light;
+
   /* Surfaces */
   --bg:           #FAFAFA;
+  --header-bg:    rgba(255, 255, 255, 0.82);
   --surface:      #FFFFFF;
   --surface-alt:  #F5F5F5;
   --surface-hover:#EDEDEC;
@@ -61,6 +64,54 @@
   --ease-bounce: cubic-bezier(0.34, 1.2, 0.64, 1);
   --duration: 0.2s;
   --duration-slow: 0.35s;
+}
+
+/* ---- Dark Theme ----
+   Applied via html[data-theme="dark"], which is set by a tiny inline
+   script in <head> (see shared.js initThemeToggle) so there is no flash
+   of the wrong theme. Only tokens are overridden — every component
+   reads them, so the whole site adapts automatically. */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --bg:           #0A0A0A;
+  --surface:      #141414;
+  --surface-alt:  #1C1C1C;
+  --surface-hover:#232323;
+  --header-bg:    rgba(10, 10, 10, 0.82);
+
+  /* Borders */
+  --border:       #262626;
+  --border-hover: #404040;
+  --border-focus: #3390FF;
+
+  /* Text */
+  --text-primary:   #FAFAFA;
+  --text-secondary: #A3A3A3;
+  --text-tertiary:  #8A8A8A;
+  --text-faint:     #525252;
+  --text-muted:     #A3A3A3;
+
+  /* Accent — same confident blue, brightened for dark surfaces */
+  --accent:       #3390FF;
+  --accent-hover: #66ADFF;
+  --accent-light: rgba(51, 144, 255, 0.16);
+  --accent-subtle: rgba(51, 144, 255, 0.10);
+  --accent-border: rgba(51, 144, 255, 0.35);
+  --accent-glow:  rgba(51, 144, 255, 0.22);
+
+  /* Semantic — brightened for contrast on dark */
+  --success: #22C55E;
+  --warning: #F59E0B;
+  --error:   #EF4444;
+
+  /* Shadows — deepened */
+  --shadow-xs:  0 1px 2px rgba(0, 0, 0, 0.40);
+  --shadow-sm:  0 2px 4px rgba(0, 0, 0, 0.40), 0 0 0 1px rgba(0, 0, 0, 0.40);
+  --shadow-card:  0 1px 3px rgba(0, 0, 0, 0.50), 0 0 0 1px var(--border);
+  --shadow-card-hover: 0 4px 12px rgba(0, 0, 0, 0.60), 0 0 0 1px var(--border-hover);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.70), 0 0 0 1px var(--border);
 }
 
 /* ==========================================================================
@@ -204,7 +255,7 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   padding: 0 2rem;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.82);
+  background: var(--header-bg);
   backdrop-filter: blur(14px) saturate(1.2);
   -webkit-backdrop-filter: blur(14px) saturate(1.2);
   border-bottom: 1px solid var(--border);
@@ -272,6 +323,33 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+/* Theme toggle (injected by shared.js into .header-actions) */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all var(--duration) var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+}
+
+.theme-toggle svg {
+  width: 17px;
+  height: 17px;
 }
 
 /* Mobile menu toggle */
@@ -479,6 +557,51 @@ h3 { font-size: 1.125rem; font-weight: 600; }
 .section-header {
   text-align: center;
   padding: 4rem 0 2.5rem;
+}
+
+/* Calculator search (homepage) */
+.calc-search {
+  position: relative;
+  max-width: 480px;
+  margin: 0 auto 2.25rem;
+}
+
+.calc-search-icon {
+  position: absolute;
+  left: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 17px;
+  height: 17px;
+  color: var(--text-faint);
+  pointer-events: none;
+}
+
+.calc-search-input {
+  width: 100%;
+  padding: 0.8rem 1.25rem 0.8rem 2.7rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  outline: none;
+  transition: border-color var(--duration) var(--ease), box-shadow var(--duration) var(--ease);
+}
+
+.calc-search-input::placeholder { color: var(--text-faint); }
+
+.calc-search-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.no-results {
+  text-align: center;
+  color: var(--text-tertiary);
+  font-size: 0.95rem;
+  padding: 1rem 0 2rem;
 }
 
 .calculators-grid {
@@ -849,8 +972,9 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%) translateY(80px);
-  background: var(--text-primary);
+  background: #0A0A0A;
   color: #fff;
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 0.8rem 1.375rem;
   display: flex;
