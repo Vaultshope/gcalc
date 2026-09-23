@@ -1,4 +1,4 @@
-const { calculators } = window.GCalcShared;
+const { calculators, getRecentCalculators } = window.GCalcShared;
 
 // =====================
 // Initialize
@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', init);
 
 function init() {
   renderCalculatorGrid();
+  renderRecentlyUsed();
   initCalculatorSearch();
   initScrollAnimations();
   initHeroCounters();
@@ -57,6 +58,27 @@ function renderCalculatorGrid() {
     </a>
   `).join('');
 }
+// =====================
+// "Recently used" strip — return visitors get one-click chips to their
+// last calculators, right above the grid (powered by localStorage).
+// =====================
+function renderRecentlyUsed() {
+  const wrap = document.getElementById('recentCalculators');
+  const list = document.getElementById('recentList');
+  if (!wrap || !list) return;
+
+  const recent = (typeof getRecentCalculators === 'function' && getRecentCalculators()) || [];
+  if (!recent.length) { wrap.hidden = true; return; }
+
+  list.innerHTML = recent.map(calc => `
+    <a class="recent-chip" href="calculators/${calc.slug}/" data-animate>
+      <span class="recent-chip-icon">${calc.icon}</span>
+      <span>${calc.title}</span>
+    </a>
+  `).join('');
+  wrap.hidden = false;
+}
+
 
 function initScrollAnimations() {
   const observer = new IntersectionObserver(entries => {

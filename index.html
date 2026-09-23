@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#FAFAFA">
+  <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
 
 <script type="application/ld+json">
 {
@@ -103,6 +106,10 @@
   <div class="section-header" data-animate>
     <h2 class="section-title">All Calculators</h2>
     <p class="section-subtitle">Choose a tool to get started</p>
+  </div>
+  <div class="recent-calculators" id="recentCalculators" hidden>
+    <p class="recent-label">Recently used</p>
+    <div class="recent-list" id="recentList"></div>
   </div>
   <div class="calc-search" data-animate>
     <svg class="calc-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>

@@ -4,6 +4,22 @@ _Last updated: 2026-09-23_
 
 ## ✅ Done
 
+### Engagement — Batch 1 (shipped `05262af`)
+- [x] Dark mode toggle (all 17 pages) — `data-theme` on `<html>`, localStorage `gcalc-theme`, system-preference default, `prefers-color-scheme` transition listener
+- [x] `meta[name="theme-color"]` syncs with theme (light `#FAFAFA` / dark `#0A0A0A`)
+- [x] Homepage calculator search — live filter over all 13 cards, `.no-results` empty state
+- [x] `404.html` — self-contained, `/gcalc/`-prefixed links (TODO: strip prefix when custom domain connects)
+- [x] Scroll-in animations + hero counter polish
+
+### Engagement — Batch 2 (PWA + recently-used)
+- [x] Recently-used calculators — `localStorage 'gcalc-recent'` (max 5, dedupe, most-recent-first), tracked on every calculator page
+- [x] Homepage "Recently used" chip strip (hidden when empty)
+- [x] `manifest.json` — relative URLs (`./`), works at `/gcalc/`, localhost, and future custom domain unchanged
+- [x] `sw.js` service worker — precache (28 URLs), stale-while-revalidate, offline fallback, never caches non-ok responses (preserves GitHub Pages 404s)
+- [x] PWA icons — 192/512 + maskable variants, pixel-verified brand blue `#0066FF` + transparent rounded corners
+- [x] `manifest` + `theme-color` links added to all 17 pages
+- [x] Local QA: SW registers + `gcalc-v1` cache holds all 28 entries; manifest serves 200 valid JSON; icons serve 200; recent flow (track → order → dedupe → empty-state hidden); dark-mode + search regressions pass
+
 ### Launch / infra
 - [x] Git repo + GitHub remote (`Vaultshope/gcalc`), `main` branch
 - [x] GitHub Pages deploy workflow (`.github/workflows/deploy.yml`)
@@ -77,8 +93,10 @@ _Last updated: 2026-09-23_
 
 ## Known gaps
 
-- **Light theme only** — no theme switcher
+- **No `aria-live` on calculator results** — screen readers won't announce updates (Batch 3)
+- **No print/save or shareable URL params for results** (Batch 3)
 - **Analytics disabled** — no GA4 Measurement ID yet
 - **Affiliate links** are placeholders (`#`) in `affiliates.js` and not wired into any page
 - **Ad slots** are hidden until an ad network approves the site
-- **Minor (optional)**: logo `href="#"` on homepage, no `404.html`, no `aria-live` on results
+- **Minor (optional)**: logo `href="#"` on homepage
+- **Deploy note**: bump `VERSION` in `sw.js` (currently `gcalc-v1`) whenever shipping changed precached files, or returning visitors keep stale copies

@@ -604,6 +604,55 @@ h3 { font-size: 1.125rem; font-weight: 600; }
   padding: 1rem 0 2rem;
 }
 
+/* Recently used strip (homepage) — one-click chips for return visitors */
+.recent-calculators {
+  max-width: 480px;
+  margin: 0 auto 2.25rem;
+  text-align: left;
+}
+
+.recent-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.recent-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+}
+
+.recent-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.05rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+  transition: border-color var(--duration) var(--ease), background var(--duration) var(--ease), transform var(--duration) var(--ease);
+}
+
+.recent-chip:hover {
+  border-color: var(--accent-border);
+  background: var(--accent-subtle);
+  transform: translateY(-1px);
+}
+
+.recent-chip-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .calculators-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));

@@ -8,6 +8,10 @@
 (function() {
   'use strict';
 
+  // Absolute URL of this script — lets the service worker register at the
+  // right path on GitHub Pages (/gcalc/), a custom domain root, or localhost.
+  const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
+
   // Grid metadata only — rendered by app.js on the homepage.
   // `keywords` powers the homepage live search (synonyms users type).
   const calculators = [
@@ -96,14 +100,24 @@
       btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     };
 
+    // Keep the browser UI color (mobile address bar) in sync with the theme.
+    const syncThemeColor = () => {
+      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      document.querySelectorAll('meta[name="theme-color"]').forEach(m => {
+        m.setAttribute('content', dark ? '#0A0A0A' : '#FAFAFA');
+      });
+    };
+
     btn.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       try { localStorage.setItem('gcalc-theme', next); } catch (e) { /* private mode */ }
       syncIcon();
+      syncThemeColor();
     });
 
     syncIcon();
+    syncThemeColor();
 
     // Group with the mobile menu toggle so both buttons sit together on
     // the right edge of the header (reuses the .header-actions styles).
@@ -122,9 +136,53 @@
 
   document.addEventListener('DOMContentLoaded', initThemeToggle);
 
+  // =====================
+  // Recently used calculators (localStorage)
+  // Each calculator page records its id on visit; the homepage turns the
+  // list into one-click chips so return visits start where they left off.
+  // =====================
+  function trackRecentCalculator() {
+    const path = location.pathname;
+    const calc = calculators.find(c => path.indexOf('/calculators/' + c.slug + '/') !== -1);
+    if (!calc) return;
+
+    let recent = [];
+    try { recent = JSON.parse(localStorage.getItem('gcalc-recent') || '[]'); } catch (e) { recent = []; }
+    if (!Array.isArray(recent)) recent = [];
+
+    recent = recent.filter(id => id !== calc.id);
+    recent.unshift(calc.id);
+
+    try { localStorage.setItem('gcalc-recent', JSON.stringify(recent.slice(0, 5))); } catch (e) { /* private mode */ }
+  }
+
+  function getRecentCalculators() {
+    let recent = [];
+    try { recent = JSON.parse(localStorage.getItem('gcalc-recent') || '[]'); } catch (e) { recent = []; }
+    if (!Array.isArray(recent)) recent = [];
+    return recent.map(id => calculators.find(c => c.id === id)).filter(Boolean);
+  }
+
+  document.addEventListener('DOMContentLoaded', trackRecentCalculator);
+
+  // =====================
+  // PWA — service worker registration
+  // sw.js sits next to this file; resolving against SCRIPT_SRC keeps the
+  // registration path correct on GitHub Pages, a custom domain, and localhost.
+  // =====================
+  function registerServiceWorker() {
+    if (!SCRIPT_SRC) return;
+    navigator.serviceWorker.register(new URL('sw.js', SCRIPT_SRC).href).catch(() => {});
+  }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', registerServiceWorker);
+  }
+
   window.GCalcShared = {
     calculators,
     copyToClipboard,
-    showToast
+    showToast,
+    getRecentCalculators
   };
 })();
