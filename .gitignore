@@ -1,0 +1,7 @@
+# Dev-only files — never publish to GitHub Pages
+todo.md
+
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
