@@ -32,6 +32,8 @@ _Last updated: 2026-09-23_
 ### Launch / infra
 - [x] Git repo + GitHub remote (`Vaultshope/gcalc`), `main` branch
 - [x] GitHub Pages deploy workflow (`.github/workflows/deploy.yml`)
+- [x] **SITE IS LIVE** — `https://vaultshope.github.io/gcalc/` — first successful deploy 2026-09-23 (run `35920819461`, commit `aad0bdd`); repo made public + Pages source set to "GitHub Actions" (the workflow cannot self-enable Pages: `configure-pages` `enablement` defaults to `false` and `GITHUB_TOKEN` lacks the admin permission)
+- [x] Live verification: homepage + loan shareable URL (`?loan-principal=25000&loan-rate=6.5&loan-years=5` → $489.15/mo, prefill + aria-live + Share/Print buttons all working), `sw.js` serves `gcalc-v2`, `shared.js` serves `initResultFeatures`
 - [x] `robots.txt` with sitemap reference
 - [x] `favicon.svg` + `apple-touch-icon.png`, linked on all 15 pages
 - [x] `og-image.png` (1200x630) for social sharing
@@ -92,7 +94,7 @@ _Last updated: 2026-09-23_
 - [x] Each calculator: valid input → correct result; reset works; edge cases (0, negative, blank) — all 13 calculators fully verified (see Functional testing above)
 - [x] Every page loads `styles.css` + `shared.js` with no console errors
 - [x] Favicon renders (`favicon.svg`); social preview render still worth checking in a share tool
-- [ ] `robots.txt` and `sitemap.xml` reachable — verify after deploy to GitHub Pages
+- [x] `robots.txt` and `sitemap.xml` reachable — verified live after deploy (both HTTP 200 on `vaultshope.github.io/gcalc/`)
 
 ## 🚀 Post-launch
 
