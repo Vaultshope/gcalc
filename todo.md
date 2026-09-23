@@ -29,6 +29,17 @@ _Last updated: 2026-09-23_
 - [x] `sw.js` bumped to `gcalc-v2` for the new precached assets
 - [x] Local QA: tip prefill + share round-trip ✓ · date add-tab prefill (Jan 1 + 30d → Jan 31, input/result consistent) ✓ · fuel metric mode auto-activation ($12.00) ✓ · loan button-only auto-calc ($489.15/mo) ✓ · grade final-exam tab (108.0%) ✓ · scientific Print-only ✓ · print-media emulation (header/footer/form hidden, print-header shown, white bg) ✓ · dark mode + search + recent chips + SW v2 regressions ✓
 
+### Monetization — Batch 4 (consent + GA4 + ads + affiliates + engagement)
+- [x] Cookie consent banner on every page — `localStorage 'gcalc-consent'`, "Accept all" / "Essential only" buttons, privacy-policy link, never re-shown once answered
+- [x] GA4 centralized in `shared.js` — set `GA4_MEASUREMENT_ID` once and gtag.js auto-injects on every page, **only after consent = all** (`anonymize_ip: true`); the 16 per-page "paste snippet here" comments are gone
+- [x] Related calculators — every calculator page auto-renders 4 "Keep exploring" cards (same category first) under the calculator; real crawlable links → more pageviews/ad impressions
+- [x] Affiliate box — `affiliates.js` loaded on all 13 calculator pages; renders "Recommended for you" cards automatically once URLs are non-`#` (`rel="sponsored nofollow noopener"`)
+- [x] Ad slots added to all 13 calculator pages (`#adBannerTop` / `#adBannerBottom`, hidden until approved) — homepage already had them
+- [x] Ko-fi support button — set `KOFI_URL` in `shared.js` to render "☕ Support GCalc" in the footer
+- [x] `sw.js` → `gcalc-v3` + `affiliates.js` precached
+- [x] Deploy workflow strips `todo.md`, `.github/`, `.claude/` from the published artifact
+- [x] Fixed related-calc URL bug — `../../` resolved against shared.js dropped the `/gcalc/` base path; now resolves via the script URL (works on Pages, custom domain, localhost)
+
 ### Launch / infra
 - [x] Git repo + GitHub remote (`Vaultshope/gcalc`), `main` branch
 - [x] GitHub Pages deploy workflow (`.github/workflows/deploy.yml`)
@@ -55,7 +66,7 @@ _Last updated: 2026-09-23_
 
 ### Monetization prep
 - [x] Ad slots hidden by default, with insertion instructions
-- [x] Affiliate scaffold (39 entries) moved to standalone `affiliates.js` (not loaded by any page yet)
+- [x] Affiliate scaffold (39 entries) in standalone `affiliates.js` — now loaded by all 13 calculator pages (renders once URLs are real)
 
 ### Code quality (Phase D)
 - [x] `shared.js` stripped to grid metadata + shared helpers (`copyToClipboard`, `showToast`, `initNavMenu`) — Option A
@@ -74,9 +85,10 @@ _Last updated: 2026-09-23_
 
 ## ⏳ Blocked on external accounts / decisions
 
-- [ ] **GA4 Measurement ID** — paste the gtag.js snippet into the 15 comment placeholders (`<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->`)
-- [ ] **Ad network approval** (AdSense / Ezoic) — insert code into the 2 ad slots in `index.html`, then remove `style="display:none"`
-- [ ] **Affiliate approvals** — replace the 39 `url: '#'` entries and wire them into the standalone calculator pages
+- [ ] **GA4 Measurement ID** — set `GA4_MEASUREMENT_ID` at the top of `shared.js` (one line; gtag.js then loads on every page, only after cookie consent)
+- [ ] **Ad network approval** (AdSense / Ezoic) — insert code into the ad slots (`#adBannerTop` / `#adBannerBottom`, now on all 14 pages), then remove `style="display:none"`
+- [ ] **Affiliate approvals** — replace the 39 `url: '#'` entries in `affiliates.js`; the "Recommended for you" box then renders automatically on each calculator page
+- [ ] **Ko-fi support link** — set `KOFI_URL` at the top of `shared.js` to show the "☕ Support GCalc" footer button
 - [ ] **Custom domain** (`gcalc.app`) — once bought, canonical / OG / sitemap / robots URLs will match
 
 ## 🔜 Next session — Phase D (code quality)
@@ -104,9 +116,10 @@ _Last updated: 2026-09-23_
 
 ## Known gaps
 
-- **Analytics disabled** — no GA4 Measurement ID yet
-- **Affiliate links** are placeholders (`#`) in `affiliates.js` and not wired into any page
+- **Analytics disabled** — no GA4 Measurement ID yet (one-line activation in `shared.js`, consent-gated)
+- **Affiliate links** are placeholders (`#`) in `affiliates.js` — the recommendation box auto-renders once real URLs are added
 - **Ad slots** are hidden until an ad network approves the site
+- **Custom domain** (`gcalc.app`) not purchased yet — canonical/OG URLs already point there
 - **Minor (optional)**: logo `href="#"` on homepage
 - **Share edge cases**: fuel mode is inferred from param names (not explicit in URL); grade "Current GPA" course rows have no ids so they aren't shareable; a hand-crafted URL mixing params from multiple forms on the grade page triggers the other form's validation alert
-- **Deploy note**: bump `VERSION` in `sw.js` (currently `gcalc-v2`) whenever shipping changed precached files, or returning visitors keep stale copies
+- **Deploy note**: bump `VERSION` in `sw.js` (currently `gcalc-v3`) whenever shipping changed precached files, or returning visitors keep stale copies

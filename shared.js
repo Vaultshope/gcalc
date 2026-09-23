@@ -12,6 +12,19 @@
   // right path on GitHub Pages (/gcalc/), a custom domain root, or localhost.
   const SCRIPT_SRC = (document.currentScript && document.currentScript.src) || '';
 
+  // =====================
+  // MONETIZATION CONFIG — edit these two lines to go live.
+  //
+  // 1. GA4: create a property at analytics.google.com, copy the
+  //    Measurement ID (looks like "G-XXXXXXXXXX") and paste it below.
+  //    Analytics then loads automatically for visitors who accepted
+  //    cookies (consent banner below).
+  // 2. Ko-fi: paste your donation page URL (https://ko-fi.com/yourname)
+  //    and a "Support us" button appears in every footer.
+  // =====================
+  const GA4_MEASUREMENT_ID = ''; // e.g. 'G-XXXXXXXXXX'
+  const KOFI_URL = '';           // e.g. 'https://ko-fi.com/yourname'
+
   // Grid metadata only — rendered by app.js on the homepage.
   // `keywords` powers the homepage live search (synonyms users type).
   const calculators = [
@@ -274,6 +287,178 @@
   }
 
   document.addEventListener('DOMContentLoaded', initResultFeatures);
+
+  // =====================
+  // Cookie consent (GDPR/ePrivacy) — required before GA4 or AdSense
+  // drop their cookies. Stored in localStorage as 'gcalc-consent':
+  //   'all'      → analytics + ads allowed
+  //   'essential'→ only what the site needs (theme, recent list)
+  // The banner is injected by JS so no page HTML needs to change.
+  // =====================
+  function getConsent() {
+    try { return localStorage.getItem('gcalc-consent'); } catch (e) { return null; }
+  }
+
+  function setConsent(value) {
+    try { localStorage.setItem('gcalc-consent', value); } catch (e) { /* private mode */ }
+    document.querySelectorAll('.consent-banner').forEach(b => b.remove());
+    if (value === 'all') loadAnalytics();
+  }
+
+  function initConsentBanner() {
+    if (getConsent()) return; // already chose — never nag again
+
+    const banner = document.createElement('div');
+    banner.className = 'consent-banner no-print';
+    banner.setAttribute('role', 'region');
+    banner.setAttribute('aria-label', 'Cookie consent');
+
+    const resolveBase = new URL('privacy-policy/', SCRIPT_SRC || location.href).href;
+
+    banner.innerHTML =
+      '<div class="consent-inner">' +
+      '  <p class="consent-text">We use cookies for analytics and ads to keep GCalc free. ' +
+      '    <a href="' + resolveBase + '">Privacy Policy</a>' +
+      '  </p>' +
+      '  <div class="consent-actions">' +
+      '    <button type="button" class="btn btn-secondary consent-btn" data-consent="essential">Essential only</button>' +
+      '    <button type="button" class="btn btn-primary consent-btn" data-consent="all">Accept all</button>' +
+      '  </div>' +
+      '</div>';
+
+    banner.querySelectorAll('.consent-btn').forEach(btn => {
+      btn.addEventListener('click', () => setConsent(btn.getAttribute('data-consent')));
+    });
+
+    document.body.appendChild(banner);
+  }
+
+  document.addEventListener('DOMContentLoaded', initConsentBanner);
+
+  // =====================
+  // Google Analytics 4 — loaded only when a Measurement ID is set AND
+  // the visitor accepted analytics cookies. Configure once above
+  // (GA4_MEASUREMENT_ID); no per-page snippets needed.
+  // =====================
+  function loadAnalytics() {
+    if (!GA4_MEASUREMENT_ID || document.getElementById('gcalc-gtag')) return;
+
+    const s = document.createElement('script');
+    s.id = 'gcalc-gtag';
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA4_MEASUREMENT_ID;
+    document.head.appendChild(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA4_MEASUREMENT_ID, { anonymize_ip: true });
+  }
+
+  if (getConsent() === 'all') loadAnalytics();
+
+  // =====================
+  // Related calculators — injected on every calculator page below the
+  // article content. Same-category tools first, then popular others.
+  // Real crawlable <a> links grow pageviews (and ad impressions).
+  // =====================
+  function initRelatedCalculators() {
+    const info = document.querySelector('.calc-info-panel');
+    if (!info) return; // homepage / about / 404 skip out
+
+    const path = location.pathname;
+    const current = calculators.find(c => path.indexOf('/calculators/' + c.slug + '/') !== -1);
+    if (!current) return;
+
+    const sameCategory = calculators.filter(c => c.category === current.category && c.id !== current.id);
+    const others = calculators.filter(c => c.category !== current.category);
+    const related = sameCategory.concat(others).slice(0, 4);
+    if (!related.length) return;
+
+    // SCRIPT_SRC is always <site-root>/shared.js, so './calculators/<slug>/'
+    // resolves correctly on GitHub Pages (/gcalc/), a custom domain, or localhost.
+    const resolve = slug => new URL('./calculators/' + slug + '/', SCRIPT_SRC || location.href).href;
+
+    const section = document.createElement('section');
+    section.className = 'related-calcs no-print';
+    section.setAttribute('aria-label', 'Related calculators');
+    section.innerHTML =
+      '<h2 class="related-title">Keep exploring</h2>' +
+      '<div class="related-grid">' +
+      related.map(c =>
+        '<a class="related-card" href="' + resolve(c.slug) + '">' +
+        '  <span class="related-icon" aria-hidden="true">' + c.icon + '</span>' +
+        '  <span class="related-name">' + c.title + '</span>' +
+        '  <span class="related-desc">' + c.description + '</span>' +
+        '</a>'
+      ).join('') +
+      '</div>';
+
+    info.appendChild(section);
+  }
+
+  document.addEventListener('DOMContentLoaded', initRelatedCalculators);
+
+  // =====================
+  // Affiliate recommendations — renders GCalcAffiliates[calcId] under the
+  // article. Links with a placeholder '#' URL are skipped, so nothing
+  // shows until real tracking URLs are pasted into affiliates.js.
+  // rel="sponsored nofollow" is required by Google for affiliate links.
+  // =====================
+  function initAffiliateLinks() {
+    const info = document.querySelector('.calc-info-panel');
+    if (!info || !window.GCalcAffiliates) return;
+
+    const path = location.pathname;
+    const current = calculators.find(c => path.indexOf('/calculators/' + c.slug + '/') !== -1);
+    if (!current) return;
+
+    const data = window.GCalcAffiliates[current.id];
+    if (!data) return;
+
+    const links = (data.links || []).filter(l => l.url && l.url !== '#');
+    if (!links.length) return;
+
+    const section = document.createElement('section');
+    section.className = 'affiliate-box no-print';
+    section.setAttribute('aria-label', 'Recommended for you');
+    section.innerHTML =
+      '<h2 class="affiliate-title">' + data.title + '</h2>' +
+      '<div class="affiliate-grid">' +
+      links.map(l =>
+        '<a class="affiliate-link' + (l.highlight ? ' affiliate-highlight' : '') + '" ' +
+        'href="' + l.url + '" target="_blank" rel="sponsored nofollow noopener">' +
+        '  <span>' + l.text + '</span>' +
+        '  <span class="affiliate-arrow" aria-hidden="true">→</span>' +
+        '</a>'
+      ).join('') +
+      '</div>';
+
+    info.appendChild(section);
+  }
+
+  document.addEventListener('DOMContentLoaded', initAffiliateLinks);
+
+  // =====================
+  // Ko-fi support button — appears in the footer of every page when
+  // KOFI_URL is set above. Zero HTML edits needed.
+  // =====================
+  function initSupportButton() {
+    if (!KOFI_URL) return;
+    const bottom = document.querySelector('.footer-bottom');
+    if (!bottom) return;
+
+    const btn = document.createElement('a');
+    btn.className = 'support-btn no-print';
+    btn.href = KOFI_URL;
+    btn.target = '_blank';
+    btn.rel = 'noopener';
+    btn.innerHTML = '<span aria-hidden="true">☕</span> Support GCalc';
+    bottom.appendChild(btn);
+  }
+
+  document.addEventListener('DOMContentLoaded', initSupportButton);
 
   window.GCalcShared = {
     calculators,

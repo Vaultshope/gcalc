@@ -162,7 +162,7 @@
 }
 </script>
 
-<!-- Analytics: paste your Google Analytics 4 (gtag.js) snippet here. -->
+<!-- Analytics: configured centrally in shared.js (GA4_MEASUREMENT_ID). Loads only after cookie consent — nothing to paste here. -->
 <script>(function(){var t=null;try{t=localStorage.getItem('gcalc-theme')}catch(e){}if(t!=='dark'&&t!=='light'){t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.setAttribute('data-theme',t)})();</script>
 </head>
 <body>
@@ -175,6 +175,14 @@
     </button>
     </div>
   </header>
+
+  <!-- Ad slot (728x90): remove style="display:none" and insert your ad code here when approved. -->
+  <div class="ad-banner" id="adBannerTop" style="display:none">
+    <div class="ad-container">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder">Ad Space (728×90) — Add your ad code here</div>
+    </div>
+  </div>
 
   <main class="calc-page">
     <div class="calc-form-panel">
@@ -313,6 +321,14 @@
     </div>
   </main>
 
+  <!-- Ad slot (728x90): remove style="display:none" and insert your ad code here when approved. -->
+  <div class="ad-banner" id="adBannerBottom" style="display:none">
+    <div class="ad-container">
+      <span class="ad-label">Advertisement</span>
+      <div class="ad-placeholder">Ad Space (728×90) — Add your ad code here</div>
+    </div>
+  </div>
+
   <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -340,6 +356,7 @@
   </div>
 </footer>
 
+  <script src="../../affiliates.js"></script>
   <script src="../../shared.js"></script>
   <script>
     const { copyToClipboard } = window.GCalcShared;

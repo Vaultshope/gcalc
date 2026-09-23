@@ -8,13 +8,14 @@
 // DEPLOY NOTE: bump VERSION below whenever site files change so
 // returning visitors pick up the new build.
 // =====================
-const VERSION = 'gcalc-v2';
+const VERSION = 'gcalc-v3';
 
 const PRECACHE = [
   './',
   './index.html',
   './styles.css',
   './shared.js',
+  './affiliates.js',
   './app.js',
   './manifest.json',
   './favicon.svg',
