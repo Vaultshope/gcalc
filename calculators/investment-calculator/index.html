@@ -163,7 +163,7 @@
         <div class="form-group"><label class="form-label">Expected Annual Return (%)</label><input type="number" id="inv-rate" class="form-input" placeholder="7" step="0.1"></div>
         <div class="form-actions"><button class="btn btn-secondary" onclick="resetInvestment()">Reset</button><button class="btn btn-primary" onclick="calculateInvestment()">Calculate</button></div>
       </div>
-      <div id="inv-result" class="calc-result">
+      <div id="inv-result" class="calc-result" role="status" aria-live="polite">
         <div class="result-main">
           <div class="result-main-label">Future Value</div>
           <span id="inv-future">$0</span>

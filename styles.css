@@ -1347,3 +1347,119 @@ h3 { font-size: 1.125rem; font-weight: 600; }
     position: static;
   }
 }
+
+/* ==========================================================================
+   Result actions — Share / Print buttons (injected by shared.js)
+   ========================================================================== */
+.result-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+}
+
+.result-actions .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Print-only header (injected by shared.js — hidden on screen) */
+.print-header {
+  display: none;
+}
+
+/* ==========================================================================
+   Print — clean, ink-friendly "Save as PDF" output.
+   Hides site chrome and inputs; prints the result panel only.
+   ========================================================================== */
+@media print {
+  /* Force light appearance even when the visitor uses dark mode */
+  :root,
+  [data-theme="dark"] {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #ffffff;
+    --header-bg: #ffffff;
+    --text-primary: #0A0A0A;
+    --text-secondary: #525252;
+    --text-tertiary: #737373;
+    --text-muted: #525252;
+    --border: #D4D4D4;
+    --shadow-card: none;
+    --shadow-card-hover: none;
+    --shadow-elevated: none;
+  }
+
+  body {
+    background: #ffffff !important;
+  }
+
+  .header,
+  .footer,
+  .calc-info-panel,
+  .calc-form,
+  .form-actions,
+  .result-actions,
+  .other-calc-links,
+  .calc-disclaimer,
+  .date-tabs,
+  .grade-tabs,
+  .fuel-toggle,
+  .mode-toggle,
+  .unit-swap,
+  .toast,
+  .no-print,
+  button {
+    display: none !important;
+  }
+
+  .calc-page {
+    display: block;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .calc-form-panel {
+    position: static;
+    max-width: 100%;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .print-header {
+    display: block;
+    border-bottom: 2px solid #0A0A0A;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+    color: #0A0A0A;
+  }
+
+  .print-brand {
+    font-weight: 700;
+    color: #0066FF;
+  }
+
+  .print-meta {
+    display: block;
+    margin-top: 0.4rem;
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    color: #525252;
+    word-break: break-all;
+  }
+
+  /* Keep each result block on one page */
+  .calc-result,
+  .age-result,
+  .cal-results,
+  .date-result,
+  .fuel-results,
+  .grade-result,
+  .pct-results,
+  .unit-result,
+  .sci-display {
+    break-inside: avoid;
+  }
+}

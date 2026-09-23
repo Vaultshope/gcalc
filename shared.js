@@ -179,6 +179,102 @@
     window.addEventListener('load', registerServiceWorker);
   }
 
+  // =====================
+  // Result features — shareable URL params, Share/Print buttons,
+  // and a print-only header. Runs only on calculator pages (they all
+  // have .calc-form-panel); the homepage, about and 404 pages skip out.
+  // =====================
+  function activateContainerFor(el) {
+    // If a prefilled input sits inside a hidden tab panel (date/grade
+    // calculators) or a hidden unit-mode form (fuel calculator), click
+    // the tab/mode button that reveals it so the shared state is shown.
+    const container = el.closest('[id*="panel-"], [id*="form-"]');
+    if (!container || container.offsetParent !== null) return;
+    const m = container.id.match(/(?:panel|form)-(.+)$/);
+    if (!m) return;
+    const btn = document.querySelector('[data-tab="' + m[1] + '"], #mode-' + m[1]);
+    if (btn) btn.click();
+  }
+
+  function shareResult() {
+    const panel = document.querySelector('.calc-form-panel');
+    if (!panel) return;
+    const params = new URLSearchParams();
+    panel.querySelectorAll('input[id], select[id]').forEach(el => {
+      if (!el.value || el.offsetParent === null) return; // skip empty + hidden-mode inputs
+      params.set(el.id, el.value);
+    });
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? '?' + qs : location.pathname);
+    navigator.clipboard.writeText(location.href)
+      .then(() => showToast('Link copied!'))
+      .catch(() => showToast('Copy failed — link is in the address bar'));
+  }
+
+  function initResultFeatures() {
+    const panel = document.querySelector('.calc-form-panel');
+    if (!panel) return;
+
+    // 1. Prefill from URL params (?tip-bill=120&tip-percent=20 …) and
+    //    auto-run the calculation so shared links open with results.
+    const params = new URLSearchParams(location.search);
+    const filled = [];
+    params.forEach((value, key) => {
+      const el = document.getElementById(key);
+      if (el && /^(INPUT|SELECT|TEXTAREA)$/.test(el.tagName) && value !== '') {
+        filled.push({ el, value });
+      }
+    });
+    if (filled.length) {
+      // Deferred so page-level DOMContentLoaded handlers run first —
+      // some pages set default input values on load (e.g. the date
+      // calculator resets its fields to today) and must not clobber
+      // the shared values.
+      setTimeout(() => {
+        filled.forEach(({ el, value }) => { el.value = value; });
+        filled.forEach(({ el }) => activateContainerFor(el));
+        const buttons = new Set();
+        filled.forEach(({ el }) => {
+          const form = el.closest('.calc-form');
+          const btn = form && form.querySelector('.form-actions .btn-primary');
+          if (btn) buttons.add(btn);
+        });
+        buttons.forEach(btn => btn.click());
+      }, 0);
+    }
+
+    // 2. Share + Print buttons under the calculator.
+    const actions = document.createElement('div');
+    actions.className = 'result-actions no-print';
+    if (panel.querySelector('input[id], select[id]')) {
+      const shareBtn = document.createElement('button');
+      shareBtn.type = 'button';
+      shareBtn.className = 'btn btn-secondary';
+      shareBtn.textContent = 'Share Result';
+      shareBtn.addEventListener('click', shareResult);
+      actions.appendChild(shareBtn);
+    }
+    const printBtn = document.createElement('button');
+    printBtn.type = 'button';
+    printBtn.className = 'btn btn-secondary';
+    printBtn.textContent = 'Print / Save PDF';
+    printBtn.addEventListener('click', () => window.print());
+    actions.appendChild(printBtn);
+    panel.appendChild(actions);
+
+    // 3. Print-only header with brand, calculator name, source URL and date.
+    const heading = panel.querySelector('h3');
+    const printHeader = document.createElement('div');
+    printHeader.className = 'print-header';
+    const title = heading ? heading.textContent : document.title;
+    printHeader.innerHTML =
+      '<span class="print-brand">GCalc</span> — <strong>' + title + '</strong>' +
+      '<span class="print-meta">' + location.href + ' · ' + new Date().toLocaleDateString() + '</span>';
+    panel.prepend(printHeader);
+  }
+
+  document.addEventListener('DOMContentLoaded', initResultFeatures);
+
   window.GCalcShared = {
     calculators,
     copyToClipboard,

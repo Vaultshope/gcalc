@@ -159,7 +159,7 @@
         <div class="form-group"><label class="form-label">Number of People</label><input type="number" id="tip-people" class="form-input" placeholder="2" value="1" min="1"></div>
         <div class="form-actions"><button class="btn btn-secondary" onclick="resetTip()">Reset</button><button class="btn btn-primary" onclick="calculateTip()">Calculate</button></div>
       </div>
-      <div id="tip-result" class="calc-result">
+      <div id="tip-result" class="calc-result" role="status" aria-live="polite">
         <div class="result-details">
           <div class="result-row"><span>Bill:</span><span id="result-bill">$0.00</span></div>
           <div class="result-row"><span>Tip (<span id="result-pct">0</span>%):</span><span id="result-tip">$0.00</span></div>

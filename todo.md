@@ -20,6 +20,15 @@ _Last updated: 2026-09-23_
 - [x] `manifest` + `theme-color` links added to all 17 pages
 - [x] Local QA: SW registers + `gcalc-v1` cache holds all 28 entries; manifest serves 200 valid JSON; icons serve 200; recent flow (track → order → dedupe → empty-state hidden); dark-mode + search regressions pass
 
+### Engagement — Batch 3 (accessibility + sharing)
+- [x] `role="status" aria-live="polite"` on all 16 result regions across 13 calculators — screen readers announce result updates
+- [x] Print / Save PDF support — `@media print` stylesheet (light tokens forced, header/footer/forms/buttons hidden, result panels kept, `break-inside: avoid`), print-only header with brand + calculator name + source URL + date, `Print / Save PDF` button on all 13 calculators
+- [x] Shareable URL params — `Share Result` button serializes visible non-empty inputs to `?id=value` query params, copies link via clipboard with toast fallback; opening a shared link prefills inputs, activates the right tab/mode (date add/diff, grade tabs, fuel imperial/metric), and auto-runs the calculation
+- [x] Prefill deferred via `setTimeout(0)` so page-level `DOMContentLoaded` default-setters (e.g. date calculator resets fields to today) can't clobber shared values
+- [x] Scientific calculator gets Print only (no Share — keypad has no shareable inputs); percentage + scientific have no copy button (by design)
+- [x] `sw.js` bumped to `gcalc-v2` for the new precached assets
+- [x] Local QA: tip prefill + share round-trip ✓ · date add-tab prefill (Jan 1 + 30d → Jan 31, input/result consistent) ✓ · fuel metric mode auto-activation ($12.00) ✓ · loan button-only auto-calc ($489.15/mo) ✓ · grade final-exam tab (108.0%) ✓ · scientific Print-only ✓ · print-media emulation (header/footer/form hidden, print-header shown, white bg) ✓ · dark mode + search + recent chips + SW v2 regressions ✓
+
 ### Launch / infra
 - [x] Git repo + GitHub remote (`Vaultshope/gcalc`), `main` branch
 - [x] GitHub Pages deploy workflow (`.github/workflows/deploy.yml`)
@@ -93,10 +102,9 @@ _Last updated: 2026-09-23_
 
 ## Known gaps
 
-- **No `aria-live` on calculator results** — screen readers won't announce updates (Batch 3)
-- **No print/save or shareable URL params for results** (Batch 3)
 - **Analytics disabled** — no GA4 Measurement ID yet
 - **Affiliate links** are placeholders (`#`) in `affiliates.js` and not wired into any page
 - **Ad slots** are hidden until an ad network approves the site
 - **Minor (optional)**: logo `href="#"` on homepage
-- **Deploy note**: bump `VERSION` in `sw.js` (currently `gcalc-v1`) whenever shipping changed precached files, or returning visitors keep stale copies
+- **Share edge cases**: fuel mode is inferred from param names (not explicit in URL); grade "Current GPA" course rows have no ids so they aren't shareable; a hand-crafted URL mixing params from multiple forms on the grade page triggers the other form's validation alert
+- **Deploy note**: bump `VERSION` in `sw.js` (currently `gcalc-v2`) whenever shipping changed precached files, or returning visitors keep stale copies
